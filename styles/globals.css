@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Typography */
+
+body,
+.body {
+  @apply font-medium text-base leading-[1.4] tracking-normal;
+}
+
+.body--small {
+  @apply text-sm;
+}
+
+.body--semibold {
+  @apply font-semibold;
+}
+
+.body--large {
+  @apply text-lg;
+}
+
+.body--large-semibold {
+  @apply text-lg font-semibold;
+}
+
+h1 {
+  @apply font-light leading-none tracking-[-0.01em] text-[4.5rem];
+}
+
+h2 {
+  @apply font-light leading-none tracking-[-0.01em] text-[4rem];
+}
+
+h3 {
+  @apply font-semibold leading-none tracking-normal text-[3.5rem];
+}
+
+h4 {
+  @apply font-light leading-[1.05] tracking-[-0.01em] text-[3rem];
+}
+
+h5 {
+  @apply font-light leading-[1.10] tracking-[-0.01em] text-[2.5rem];
+}
+
+h6 {
+  @apply font-light leading-none tracking-[-0.01em] text-[2rem];
+}
+
+.eyebrow {
+  @apply font-semibold leading-[1.4] tracking-normal text-[1.375rem];
+}
