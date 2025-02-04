@@ -10,8 +10,6 @@ import {apiVersion, dataset, projectId} from './sanity/env'
 import {schema} from './sanity/schema'
 import { internationalizedArray } from 'sanity-plugin-internationalized-array'
 import { structureTool } from 'sanity/structure'
-import { pageStructure } from './sanity/plugins/settings'
-import settings from './sanity/schemas/singletons/settings'
 
 export default defineConfig({
   basePath: '/studio',
@@ -23,7 +21,7 @@ export default defineConfig({
     structureTool(),
     // Vision is a tool that lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
-    visionTool({defaultApiVersion: apiVersion}),
+    ...(process.env.NODE_ENV === "development" ? [visionTool({defaultApiVersion: apiVersion})] : []),
     internationalizedArray({
       languages: [
         { id: 'en', title: 'English' },
@@ -34,6 +32,7 @@ export default defineConfig({
         'string',
         'text',
       ],
+      languageDisplay: 'titleAndCode'
     })
   ],
 })
