@@ -29,6 +29,7 @@ export default defineConfig({
       ],
       defaultLanguages: ['en'],
       fieldTypes: [
+        'slug',
         'string',
         'text',
       ],

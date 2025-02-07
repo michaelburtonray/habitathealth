@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${gellix.variable} antialiased p-8 pt-0`}
+        className={`${gellix.variable} antialiased p-[--padding] pt-0`}
       >
         <Header />
         {children}
