@@ -1,22 +1,16 @@
+@import url("https://use.typekit.net/ytm5chc.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: var(--color-fern-green);
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
+  @apply bg-fern-green text-cream;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -24,7 +18,7 @@ body {
 
 body,
 .body {
-  @apply font-medium text-base leading-[1.4] tracking-normal;
+  @apply font-medium font-sans text-base leading-[1.4] tracking-normal;
 }
 
 .body--small {
@@ -44,11 +38,11 @@ body,
 }
 
 h1 {
-  @apply font-light leading-none tracking-[-0.01em] text-[4.5rem];
+  @apply font-light font-display leading-none tracking-[-0.01em] text-[4.5rem];
 }
 
 h2 {
-  @apply font-light leading-none tracking-[-0.01em] text-[4rem];
+  @apply font-light font-display leading-none tracking-[-0.01em] text-[4rem];
 }
 
 h3 {
@@ -56,17 +50,40 @@ h3 {
 }
 
 h4 {
-  @apply font-light leading-[1.05] tracking-[-0.01em] text-[3rem];
+  @apply font-light font-display leading-[1.05] tracking-[-0.01em] text-[3rem];
 }
 
 h5 {
-  @apply font-light leading-[1.10] tracking-[-0.01em] text-[2.5rem];
+  @apply font-light font-display leading-[1.10] tracking-[-0.01em] text-[2.5rem];
 }
 
 h6 {
-  @apply font-light leading-none tracking-[-0.01em] text-[2rem];
+  @apply font-light font-display leading-none tracking-[-0.01em] text-[2rem];
 }
 
 .eyebrow {
   @apply font-semibold leading-[1.4] tracking-normal text-[1.375rem];
+}
+
+/* Navigation */
+nav a {
+  @apply hover:text-green-tint
+}
+
+nav li {
+  @apply relative;
+}
+
+nav li.active {
+  @apply after:absolute after:-bottom-[1.625rem] after:inset-x-0 after:bg-green after:w-full after:h-[0.375rem];
+}
+
+/* Buttons */
+.button {
+  @apply bg-green flex items-center justify-center px-5 h-10 rounded-[2rem] text-lg text-white transition-colors hover:bg-fern-green;
+}
+
+/* Select */
+select {
+  @apply border border-green-tint hover:border-green box-border cursor-pointer px-5 h-10 rounded-[2rem] text-green text-lg;
 }

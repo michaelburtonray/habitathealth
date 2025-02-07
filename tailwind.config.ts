@@ -10,13 +10,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
         charcoal: "#232222",
         cream: "#F5F2EF",
-        current: "current",
+        current: "currentColor",
         "dark-grey": "#3C3C3C",
         "fern-green": "#106B68",
-        foreground: "var(--foreground)",
         green: "#003F3A",
         "green-tint": "rgba(0,63,51,0.40)",
         grey: "#C7C7C7",
@@ -26,48 +24,10 @@ export default {
         transparent: "transparent",
         white: "#FFFFFF",
       },
-      typography: {
-        DEFAULT: {
-          css: {
-            h1: {
-              color: 'inherit',
-              fontWeight: '300',
-              letterSpacing: '-0.01em',
-              lineHeight: '1',
-            },
-            h2: {
-              color: 'inherit',
-              fontWeight: '300',
-              letterSpacing: '-0.01em',
-              lineHeight: '1',
-            },
-            h3: {
-              color: 'inherit',
-              fontWeight: '600',
-              letterSpacing: '0',
-              lineHeight: '1',
-            },
-            h4: {
-              color: 'inherit',
-              fontWeight: '300',
-              letterSpacing: '-0.01em',
-              lineHeight: '1.05',
-            },
-            h5: {
-              color: 'inherit',
-              fontWeight: '300',
-              letterSpacing: '-0.01em',
-              lineHeight: '1.10',
-            },
-            h6: {
-              color: 'inherit',
-              fontWeight: '300',
-              letterSpacing: '-0.01em',
-              lineHeight: '1',
-            },
-          },
-        },
-      },
+      fontFamily: {
+        display: ["gelica", "serif"],
+        sans: ['var(--font-gellix)', "sans-serif"],
+      }
     },
   },
   plugins: [typography],
