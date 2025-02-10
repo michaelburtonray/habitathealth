@@ -43,6 +43,7 @@
 
 @media screen and (min-width: 1024px) {
   :root {
+    --header-height: 7.125rem;
     --padding: 2rem;
   }
 }

@@ -1,9 +1,13 @@
 import Hero from "@/components/Hero";
+import ImageWithText from "@/components/ImageWithText";
+import TextWithIcons from "@/components/TextWithIcons";
 
 export default function Home() {
   return (
     <main>
       <Hero />
+      <TextWithIcons />
+      <ImageWithText />
 
       <div className="styleguide p-[--padding]">
         <div className="grid gap-8 grid-cols-2 lg:grid-cols-6 py-[--padding]">
