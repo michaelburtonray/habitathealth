@@ -1,11 +1,16 @@
-import Logo from "@/components/Logo";
+import Hero from "@/components/Hero";
+import ImageWithText from "@/components/ImageWithText";
+import TextWithIcons from "@/components/TextWithIcons";
 
 export default function Home() {
   return (
     <main>
-      <div className="flex justify-center mt-8 text-cream"><Logo /></div>
-      <div className="styleguide p-8">
-        <div className="grid gap-8 grid-cols-2 lg:grid-cols-6 py-8">
+      <Hero />
+      <TextWithIcons />
+      <ImageWithText />
+
+      <div className="styleguide p-[--padding]">
+        <div className="grid gap-8 grid-cols-2 lg:grid-cols-6 py-[--padding]">
           <div className="bg-green flex items-end justify-center rounded-[0.25rem] w-full aspect-square p-2 border-black">
             <span className="body--small text-cream">green</span>
           </div>
