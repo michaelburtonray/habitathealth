@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import ImageWithText from "@/components/ImageWithText";
 import ImageWithTextGroup from "@/components/ImageWithTextGroup";
+import Testimonials from "@/components/Testimonials";
 import TextWithIcons from "@/components/TextWithIcons";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       <TextWithIcons />
       <ImageWithText />
       <ImageWithTextGroup />
+      <Testimonials />
 
       <div className="styleguide p-[--padding]">
         <div className="grid gap-8 grid-cols-2 lg:grid-cols-6 py-[--padding]">

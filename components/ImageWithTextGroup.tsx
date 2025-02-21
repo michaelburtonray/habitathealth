@@ -13,7 +13,7 @@ export default function ImageWithTextGroup() {
         </div>
 
         <div className="image-with-text__image lg:max-w-[50%] max-lg:my-10">
-          <figure className="aspect-square bg-green w-[40rem] rounded-[--radius]">
+          <figure className="aspect-square bg-green lg:w-[40rem] rounded-[--radius]">
             {/* <img src="/hh-map.jpg" alt="Habitat Health" className="rounded-[--radius] w-full" /> */}
           </figure>
         </div>
@@ -28,7 +28,7 @@ export default function ImageWithTextGroup() {
         </div>
 
         <div className="image-with-text__image lg:max-w-[50%] max-lg:my-10">
-          <figure className="aspect-square bg-green w-[40rem] rounded-[--radius]">
+          <figure className="aspect-square bg-green lg:w-[40rem] rounded-[--radius]">
             {/* <img src="/hh-map.jpg" alt="Habitat Health" className="rounded-[--radius] w-full" /> */}
           </figure>
         </div>
@@ -43,7 +43,7 @@ export default function ImageWithTextGroup() {
         </div>
 
         <div className="image-with-text__image lg:max-w-[50%] max-lg:my-10">
-          <figure className="aspect-square bg-green w-[40rem] rounded-[--radius]">
+          <figure className="aspect-square bg-green lg:w-[40rem] rounded-[--radius]">
             {/* <img src="/hh-map.jpg" alt="Habitat Health" className="rounded-[--radius] w-full" /> */}
           </figure>
         </div>
