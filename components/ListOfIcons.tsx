@@ -2,7 +2,7 @@ export default function ListOfIcons() {
   return (
     <div className={`list-of-icons bg-cream my-[--padding] px-5 lg:px-10 py-10 lg:py-20 rounded-[--radius] text-green`}>
       <h2 className="mb-6 lg:text-center">Providers and Partners</h2>
-      <p className="eyebrow lg:text-center">We combine our high-touch, scalable, and community-focused approach with trusted and established partners.</p>
+      <p className="body--large-semibold lg:max-w-[30rem] lg:mx-auto lg:text-center">We combine our high-touch, scalable, and community-focused approach with trusted and established partners.</p>
 
       <div className="list-of-icons__icons flex max-lg:flex-col gap-10 lg:justify-between mt-10 lg:mt-14 lg:px-14">
         <div className="flex flex-col gap-6 max-w-[17.5rem]">

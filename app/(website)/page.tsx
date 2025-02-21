@@ -1,3 +1,4 @@
+import Faqs from "@/components/Faqs";
 import Hero from "@/components/Hero";
 import ImageWithText from "@/components/ImageWithText";
 import ImageWithTextGroup from "@/components/ImageWithTextGroup";
@@ -13,7 +14,8 @@ export default function Home() {
       <ImageWithText />
       <ImageWithTextGroup />
       <Testimonials />
-      < ListOfIcons />
+      <ListOfIcons />
+      <Faqs />
 
       <div className="styleguide p-[--padding]">
         <div className="grid gap-8 grid-cols-2 lg:grid-cols-6 py-[--padding]">
