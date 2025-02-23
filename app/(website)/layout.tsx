@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 
 import "../../styles/globals.css";
 import { gellix } from "@/styles/font";
+import Footer from "@/components/Footer";
 /* const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,10 +32,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${gellix.variable} antialiased p-[--padding] pt-0`}
+        className={`${gellix.variable} antialiased px-[--padding] py-0`}
       >
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
