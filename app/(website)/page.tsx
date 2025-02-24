@@ -1,5 +1,9 @@
+import Faqs from "@/components/Faqs";
 import Hero from "@/components/Hero";
 import ImageWithText from "@/components/ImageWithText";
+import ImageWithTextGroup from "@/components/ImageWithTextGroup";
+import ListOfIcons from "@/components/ListOfIcons";
+import Testimonials from "@/components/Testimonials";
 import TextWithIcons from "@/components/TextWithIcons";
 
 export default function Home() {
@@ -8,8 +12,12 @@ export default function Home() {
       <Hero />
       <TextWithIcons />
       <ImageWithText />
+      <ImageWithTextGroup />
+      <Testimonials />
+      <ListOfIcons />
+      <Faqs />
 
-      <div className="styleguide p-[--padding]">
+      {/* <div className="styleguide p-[--padding]">
         <div className="grid gap-8 grid-cols-2 lg:grid-cols-6 py-[--padding]">
           <div className="bg-green flex items-end justify-center rounded-[0.25rem] w-full aspect-square p-2 border-black">
             <span className="body--small text-cream">green</span>
@@ -71,7 +79,7 @@ export default function Home() {
           <p>.body: The quick brown fox jumps over the lazy dog</p>
           <p className="body--small">.body--small: The quick brown fox jumps over the lazy dog</p>
           </div>
-      </div>
+      </div> */}
     </main>
   );
 }
