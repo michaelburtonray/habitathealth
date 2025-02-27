@@ -6,11 +6,10 @@ import ListOfIcons from "@/components/ListOfIcons";
 import Testimonials from "@/components/Testimonials";
 import TextWithIcons from "@/components/TextWithIcons";
 
-import { type Page } from "@/sanity.types";
 import { getPageData } from "@/sanity/lib/fetch";
 
 export default async function Home() {
-  const pageData = await getPageData({slug: 'homepage', lang: 'en'}) as Page;
+  const pageData = await getPageData({slug: 'homepage', lang: 'en'});
 
   return (
     <main>
