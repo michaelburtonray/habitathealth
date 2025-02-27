@@ -3,7 +3,6 @@ import Image from "next/image";
 
 export default function Hero(props) {
   const { title, copy, button, image, mobileImage } = props;
-  console.log(props);
 
   return (
     <div className="hero grid grid-cols-2">

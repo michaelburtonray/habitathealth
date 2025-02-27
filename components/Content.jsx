@@ -1,4 +1,6 @@
 import Hero from "./Hero";
+import ImageWithText from "./ImageWithText";
+import ImageWithTextGroup from "./ImageWithTextGroup";
 import TextWithIcons from "./TextWithIcons";
 
 export default function Content({ content }) {
@@ -12,10 +14,20 @@ export default function Content({ content }) {
             <Hero key={_id} {...c} />
           );
 
-          case 'textWithIcons':
-            return (
-              <TextWithIcons key={_id} {...c} />
-            );
+        case 'imageWithText':
+          return (
+            <ImageWithText key={_id} {...c} />
+          );
+
+        case 'imageWithTextGroup':
+          return (
+            <ImageWithTextGroup key={_id} {...c} />
+          );
+
+        case 'textWithIcons':
+          return (
+            <TextWithIcons key={_id} {...c} />
+          );
 
         default:
           return <h2>Missing Component</h2>

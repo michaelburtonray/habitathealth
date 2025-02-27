@@ -5,19 +5,28 @@ import category from './schemas/category'
 import post from './schemas/post'
 import author from './schemas/author'
 
+import settings from './schemas/singletons/settings'
+
 import hero from './schemas/documents/hero'
+import imageWithText from './schemas/documents/imageWithText'
+import imageWithTextGroup from './schemas/documents/imageWithTextGroup'
 import page from './schemas/documents/page'
 import textWithIcons from './schemas/documents/textWithIcons'
 
-import settings from './schemas/singletons/settings'
 
 import header from './schemas/objects/header'
 import button from './schemas/objects/button'
 
-const documents = [
-  hero,
-  page,
+const singletons = [
   settings,
+]
+
+const documents = [
+  ...singletons,
+  hero,
+  imageWithText,
+  imageWithTextGroup,
+  page,
   textWithIcons,
 ];
 
