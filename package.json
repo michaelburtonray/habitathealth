@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "npm run typegen",
     "dev": "next dev",
     "prebuild": "npm run typegen",
     "build": "next build",
@@ -14,7 +15,6 @@
     "@sanity/icons": "^2.0.0",
     "@sanity/image-url": "1",
     "@sanity/types": "^3.0.0",
-    "@sanity/ui": "^1.0.0",
     "@sanity/vision": "3",
     "@tailwindcss/typography": "^0.5.15",
     "motion": "^12.4.1",
@@ -22,8 +22,9 @@
     "next-sanity": "^9.8.42",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sanity": "^3.64.3",
+    "sanity": "^3.77.2",
     "sanity-plugin-internationalized-array": "^3.1.1",
+    "sanity-plugin-link-field": "^1.4.0",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {

@@ -21,6 +21,19 @@ export default defineType({
         source: 'title',
         maxLength: 96,
       },
+    }),
+
+    defineField({
+      name: 'content',
+      title: 'Content',
+      type: 'array',
+      of: [
+        { type: 'reference',
+          to: [
+            { type: 'hero' },
+          ]
+        }
+      ],
     })
   ],
   preview: {

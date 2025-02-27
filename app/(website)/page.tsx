@@ -1,15 +1,19 @@
+import Content from "@/components/Content";
 import Faqs from "@/components/Faqs";
-import Hero from "@/components/Hero";
 import ImageWithText from "@/components/ImageWithText";
 import ImageWithTextGroup from "@/components/ImageWithTextGroup";
 import ListOfIcons from "@/components/ListOfIcons";
 import Testimonials from "@/components/Testimonials";
 import TextWithIcons from "@/components/TextWithIcons";
 
-export default function Home() {
+import { getPageData } from "@/sanity/lib/fetch";
+
+export default async function Home() {
+  const pageData = await getPageData({slug: 'homepage', lang: 'en'});
+
   return (
     <main>
-      <Hero />
+      {pageData && pageData.content && <Content content={pageData.content} />}
       <TextWithIcons />
       <ImageWithText />
       <ImageWithTextGroup />
