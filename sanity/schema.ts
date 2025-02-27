@@ -9,6 +9,7 @@ import settings from './schemas/singletons/settings'
 
 import hero from './schemas/documents/hero'
 import imageWithText from './schemas/documents/imageWithText'
+import imageWithTextGroup from './schemas/documents/imageWithTextGroup'
 import page from './schemas/documents/page'
 import textWithIcons from './schemas/documents/textWithIcons'
 
@@ -24,6 +25,7 @@ const documents = [
   ...singletons,
   hero,
   imageWithText,
+  imageWithTextGroup,
   page,
   textWithIcons,
 ];

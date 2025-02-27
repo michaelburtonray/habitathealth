@@ -67,6 +67,23 @@ const imageWithTextData = /* groq */`{
   ),
 }`;
 
+const imageWithTextGroupData = /* groq */`{
+  ...,
+  content[]-> ${imageWithTextData},
+  'text': coalesce(
+    text[_key == $lang][0].value,
+    text[_key == "${defaultLang}"][0].value,
+    text,
+    "Missing translation",
+  ),
+  'title': coalesce(
+    title[_key == $lang][0].value,
+    title[_key == "${defaultLang}"][0].value,
+    title,
+    "Missing translation",
+  ),
+}`;
+
 const textWithIconsData = /* groq */`{
   ...,
   button ${buttonData},
@@ -95,6 +112,7 @@ const contentData = /* groq */`{
   ...,
   _type == 'hero' => ${heroData},
   _type == 'imageWithText' => ${imageWithTextData},
+  _type == 'imageWithTextGroup' => ${imageWithTextGroupData},
   _type == 'textWithIcons' => ${textWithIconsData},
 }`;
 

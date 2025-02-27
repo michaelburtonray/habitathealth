@@ -32,6 +32,7 @@ export default defineType({
           to: [
             { type: 'hero' },
             { type: 'imageWithText' },
+            { type: 'imageWithTextGroup' },
             { type: 'textWithIcons' },
           ]
         }
