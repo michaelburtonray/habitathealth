@@ -1,6 +1,5 @@
 import Content from "@/components/Content";
 import Faqs from "@/components/Faqs";
-import ImageWithText from "@/components/ImageWithText";
 import ImageWithTextGroup from "@/components/ImageWithTextGroup";
 import ListOfIcons from "@/components/ListOfIcons";
 import Testimonials from "@/components/Testimonials";
@@ -13,7 +12,6 @@ export default async function Home() {
   return (
     <main>
       {pageData && pageData.content && <Content content={pageData.content} />}
-      <ImageWithText />
       <ImageWithTextGroup />
       <Testimonials />
       <ListOfIcons />

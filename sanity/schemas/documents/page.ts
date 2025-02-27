@@ -31,6 +31,7 @@ export default defineType({
         { type: 'reference',
           to: [
             { type: 'hero' },
+            { type: 'imageWithText' },
             { type: 'textWithIcons' },
           ]
         }
