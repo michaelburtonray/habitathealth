@@ -42,9 +42,34 @@ const heroData = /* groq */`{
   ),
 }`;
 
+const textWithIconsData = /* groq */`{
+  ...,
+  button ${buttonData},
+  'copy': coalesce(
+    copy[_key == $lang][0].value,
+    copy[_key == "${defaultLang}"][0].value,
+    copy,
+    "Missing translation",
+  ),
+  icons[] ${imageData},
+  'text': coalesce(
+    text[_key == $lang][0].value,
+    text[_key == "${defaultLang}"][0].value,
+    text,
+    "Missing translation",
+  ),
+  'title': coalesce(
+    title[_key == $lang][0].value,
+    title[_key == "${defaultLang}"][0].value,
+    title,
+    "Missing translation",
+  ),
+}`
+
 const contentData = /* groq */`{
   ...,
   _type == 'hero' => ${heroData},
+  _type == 'textWithIcons' => ${textWithIconsData},
 }`;
 
 export const pageQuery = defineQuery(`
