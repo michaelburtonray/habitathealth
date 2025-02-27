@@ -4,7 +4,6 @@ import ImageWithText from "@/components/ImageWithText";
 import ImageWithTextGroup from "@/components/ImageWithTextGroup";
 import ListOfIcons from "@/components/ListOfIcons";
 import Testimonials from "@/components/Testimonials";
-import TextWithIcons from "@/components/TextWithIcons";
 
 import { getPageData } from "@/sanity/lib/fetch";
 
@@ -14,7 +13,6 @@ export default async function Home() {
   return (
     <main>
       {pageData && pageData.content && <Content content={pageData.content} />}
-      <TextWithIcons />
       <ImageWithText />
       <ImageWithTextGroup />
       <Testimonials />

@@ -1,4 +1,5 @@
 import Hero from "./Hero";
+import TextWithIcons from "./TextWithIcons";
 
 export default function Content({ content }) {
   const components = content
@@ -10,6 +11,14 @@ export default function Content({ content }) {
           return (
             <Hero key={_id} {...c} />
           );
+
+          case 'textWithIcons':
+            return (
+              <TextWithIcons key={_id} {...c} />
+            );
+
+        default:
+          return <h2>Missing Component</h2>
       }
     })
     : [];
