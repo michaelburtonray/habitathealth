@@ -1,14 +1,30 @@
 import { defineQuery } from "next-sanity";
 import { defaultLang } from "@/i18n-config";
 
+const copyCoalesce = /* groq */`coalesce(
+  copy[_key == $lang][0].value,
+  copy[_key == "${defaultLang}"][0].value,
+  copy,
+  "Missing translation",
+)`;
+
+const textCoalesce = /* groq */`coalesce(
+  text[_key == $lang][0].value,
+  text[_key == "${defaultLang}"][0].value,
+  text,
+  "Missing translation",
+)`;
+
+const titleCoalesce = /* groq */`coalesce(
+  title[_key == $lang][0].value,
+  title[_key == "${defaultLang}"][0].value,
+  title,
+  "Missing translation",
+)`;
+
 const buttonData = /* groq */`{
   ...,
-  'title': coalesce(
-    title[_key == $lang][0].value,
-    title[_key == "${defaultLang}"][0].value,
-    title,
-    "Missing translation",
-  ),
+  'title': ${titleCoalesce},
 }`;
 
 const imageData = /* groq */`{
@@ -26,86 +42,50 @@ const imageData = /* groq */`{
 const heroData = /* groq */`{
   ...,
   button ${buttonData},
-  'copy': coalesce(
-    copy[_key == $lang][0].value,
-    copy[_key == "${defaultLang}"][0].value,
-    copy,
-    "Missing translation",
-  ),
+  'copy': ${copyCoalesce},
   image ${imageData},
   mobileImage ${imageData},
-  'title': coalesce(
-    title[_key == $lang][0].value,
-    title[_key == "${defaultLang}"][0].value,
-    title,
-    "Missing translation",
-  ),
+  'title': ${titleCoalesce},
 }`;
 
 const imageWithTextData = /* groq */`{
   ...,
   button ${buttonData},
-  'copy': coalesce(
-    copy[_key == $lang][0].value,
-    copy[_key == "${defaultLang}"][0].value,
-    copy,
-    "Missing translation",
-  ),
+  'copy': ${copyCoalesce},
   'isImageOnLeft': isImageOnLeft,
   image ${imageData},
-  'text': coalesce(
-    text[_key == $lang][0].value,
-    text[_key == "${defaultLang}"][0].value,
-    text,
-    "Missing translation",
-  ),
-  'title': coalesce(
-    title[_key == $lang][0].value,
-    title[_key == "${defaultLang}"][0].value,
-    title,
-    "Missing translation",
-  ),
+  'text': ${textCoalesce},
+  'title': ${titleCoalesce},
 }`;
 
 const imageWithTextGroupData = /* groq */`{
   ...,
   content[]-> ${imageWithTextData},
-  'text': coalesce(
-    text[_key == $lang][0].value,
-    text[_key == "${defaultLang}"][0].value,
-    text,
-    "Missing translation",
-  ),
-  'title': coalesce(
-    title[_key == $lang][0].value,
-    title[_key == "${defaultLang}"][0].value,
-    title,
-    "Missing translation",
-  ),
+  'text': ${textCoalesce},
+  'title': ${titleCoalesce},
+}`;
+
+const testimonialData = /* groq */`{
+  ...,
+  image ${imageData},
+  'title': ${titleCoalesce},
+  'text': ${textCoalesce},
+}`;
+
+const testimonialsData = /* groq */`{
+  ...,
+  testimonials[] ${testimonialData},
+  'text': ${textCoalesce},
+  'title': ${titleCoalesce},
 }`;
 
 const textWithIconsData = /* groq */`{
   ...,
   button ${buttonData},
-  'copy': coalesce(
-    copy[_key == $lang][0].value,
-    copy[_key == "${defaultLang}"][0].value,
-    copy,
-    "Missing translation",
-  ),
+  'copy': ${copyCoalesce},
   icons[] ${imageData},
-  'text': coalesce(
-    text[_key == $lang][0].value,
-    text[_key == "${defaultLang}"][0].value,
-    text,
-    "Missing translation",
-  ),
-  'title': coalesce(
-    title[_key == $lang][0].value,
-    title[_key == "${defaultLang}"][0].value,
-    title,
-    "Missing translation",
-  ),
+  'text': ${textCoalesce},
+  'title': ${titleCoalesce},
 }`
 
 const contentData = /* groq */`{
@@ -113,6 +93,7 @@ const contentData = /* groq */`{
   _type == 'hero' => ${heroData},
   _type == 'imageWithText' => ${imageWithTextData},
   _type == 'imageWithTextGroup' => ${imageWithTextGroupData},
+  _type == 'testimonials' => ${testimonialsData},
   _type == 'textWithIcons' => ${textWithIconsData},
 }`;
 

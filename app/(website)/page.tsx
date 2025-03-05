@@ -1,7 +1,6 @@
 import Content from "@/components/Content";
 import Faqs from "@/components/Faqs";
 import ListOfIcons from "@/components/ListOfIcons";
-import Testimonials from "@/components/Testimonials";
 
 import { getPageData } from "@/sanity/lib/fetch";
 
@@ -11,7 +10,6 @@ export default async function Home() {
   return (
     <main>
       {pageData && pageData.content && <Content content={pageData.content} />}
-      <Testimonials />
       <ListOfIcons />
       <Faqs />
 
