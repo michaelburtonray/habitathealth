@@ -11,11 +11,13 @@ import hero from './schemas/documents/hero'
 import imageWithText from './schemas/documents/imageWithText'
 import imageWithTextGroup from './schemas/documents/imageWithTextGroup'
 import page from './schemas/documents/page'
+import testimonials from './schemas/documents/testimonials'
 import textWithIcons from './schemas/documents/textWithIcons'
 
 
 import header from './schemas/objects/header'
 import button from './schemas/objects/button'
+import testimonial from './schemas/objects/testimonial'
 
 const singletons = [
   settings,
@@ -27,12 +29,14 @@ const documents = [
   imageWithText,
   imageWithTextGroup,
   page,
+  testimonials,
   textWithIcons,
 ];
 
 const objects = [
   button,
   header,
+  testimonial
 ]
 
 export const schema: { types: SchemaTypeDefinition[] } = {

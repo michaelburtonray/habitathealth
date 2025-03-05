@@ -1,6 +1,7 @@
 import Hero from "./Hero";
 import ImageWithText from "./ImageWithText";
 import ImageWithTextGroup from "./ImageWithTextGroup";
+import Testimonials from "./Testimonials";
 import TextWithIcons from "./TextWithIcons";
 
 export default function Content({ content }) {
@@ -24,13 +25,18 @@ export default function Content({ content }) {
             <ImageWithTextGroup key={_id} {...c} />
           );
 
+        case 'testimonials':
+          return (
+            <Testimonials key={_id} {...c} />
+          );
+
         case 'textWithIcons':
           return (
             <TextWithIcons key={_id} {...c} />
           );
 
         default:
-          return <h2>Missing Component</h2>
+          return <h2>Missing Component: {c._type}</h2>
       }
     })
     : [];
