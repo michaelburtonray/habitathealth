@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react"
+import { AnimatePresence, motion } from "motion/react";
 import { PortableText } from "next-sanity";
 
 import IconClose from "./IconClose";
@@ -49,7 +49,7 @@ export default function Header(props: Header) {
             <option value="es">Español</option>
           </select>
 
-          <Link href="/" className="button button--green !h-10 !px-5">Check Eligibility</Link>
+          <Link href="/check-eligibility" className="button button--green !h-10 !px-5">Check Eligibility</Link>
         </div>
 
         <div className="menu flex items-center lg:hidden">
@@ -88,7 +88,7 @@ export default function Header(props: Header) {
                   <option value="es">Español</option>
                 </select>
 
-                <Link href="/" className="button button--arrow button--green">
+                <Link href="/check-eligibility" className="button button--arrow button--green">
                   <span>Check Eligibility</span>
                   <IconArrow />
                 </Link>

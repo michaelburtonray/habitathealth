@@ -97,6 +97,16 @@ const contentData = /* groq */`{
   _type == 'textWithIcons' => ${textWithIconsData},
 }`;
 
+export const enrollmentQuery = defineQuery(`
+  *[_type == "enrollment" && slug.current == $slug][0] {
+    ...,
+    cta ${buttonData},
+    sections[] {
+      ...,
+      image ${imageData},
+    }
+  }`)
+
 export const pageQuery = defineQuery(`
   *[_type == "page" && $slug in slug[].value.current][0] {
     ...,

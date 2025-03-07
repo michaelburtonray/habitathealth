@@ -8295,7 +8295,7 @@ sanity-plugin-internationalized-array@^3.1.1:
     lodash "^4.17.21"
     suspend-react "0.1.3"
 
-sanity-plugin-link-field@^1.3.2:
+sanity-plugin-link-field@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/sanity-plugin-link-field/-/sanity-plugin-link-field-1.4.0.tgz#c627663959eb27607caf0ca8ac747e46b94239d9"
   integrity sha512-KY+qA4t4Ov7FWpQXTtzKja9AXytK+bY0hIyXzvqqJRz13wIBMugkpTXuqT+zPjwY5PGXUHnaePHmmU4hii1O2Q==

@@ -7,6 +7,7 @@ import author from './schemas/author'
 
 import settings from './schemas/singletons/settings'
 
+import enrollment from './schemas/documents/enrollment'
 import hero from './schemas/documents/hero'
 import imageWithText from './schemas/documents/imageWithText'
 import imageWithTextGroup from './schemas/documents/imageWithTextGroup'
@@ -15,8 +16,14 @@ import testimonials from './schemas/documents/testimonials'
 import textWithIcons from './schemas/documents/textWithIcons'
 
 
-import header from './schemas/objects/header'
+import answerRadioButtons from './schemas/objects/answerRadioButtons'
+import answerSelectDropdown from './schemas/objects/answerSelectDropdown'
+import answerText from './schemas/objects/answerText'
+import answerTextArea from './schemas/objects/answerTextarea'
 import button from './schemas/objects/button'
+import enrollmentSection from './schemas/objects/enrollmentSection'
+import formField from './schemas/objects/formField'
+import header from './schemas/objects/header'
 import testimonial from './schemas/objects/testimonial'
 
 const singletons = [
@@ -25,6 +32,7 @@ const singletons = [
 
 const documents = [
   ...singletons,
+  enrollment,
   hero,
   imageWithText,
   imageWithTextGroup,
@@ -34,7 +42,13 @@ const documents = [
 ];
 
 const objects = [
+  answerRadioButtons,
+  answerSelectDropdown,
+  answerText,
+  answerTextArea,
   button,
+  enrollmentSection,
+  formField,
   header,
   testimonial
 ]
