@@ -57,6 +57,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body > * {
+  @apply max-w-[1440px] mx-auto;
+}
+
 /* Typography */
 
 body,
@@ -129,4 +133,21 @@ footer .logo {
 /* Select */
 select {
   @apply hover:bg-cream border border-green-tint hover:border-green box-border cursor-pointer px-5 h-10 rounded-[2rem] text-green text-lg transition-colors;
+}
+
+.label-select-group {
+  @apply flex flex-col gap-4;
+}
+
+.label-input-group input[type="radio"]:checked + label {
+  @apply bg-green text-white;
+}
+
+.label-input-group .input,
+.label-select-group select {
+  @apply border border-green mt-4 p-5 rounded-2xl w-full h-14;
+}
+
+.label-select-group select {
+  @apply !py-0 hover:bg-transparent;
 }

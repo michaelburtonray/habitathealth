@@ -29,7 +29,6 @@ export default defineType({
           { title: 'Green', value: 'green' },
         ],
       },
-      initialValue: 'orange',
     }),
 
     defineField({
@@ -38,6 +37,9 @@ export default defineType({
       type: 'boolean',
     })
   ],
+  initialValue: {
+    colorScheme: 'orange',
+  },
   preview: {
     select: {
       title: 'title',
