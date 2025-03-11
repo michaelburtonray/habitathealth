@@ -6,7 +6,7 @@ import TextWithIcons from "./TextWithIcons";
 
 export default function Content({ content }) {
   const components = content
-    ? content.map((c) => {
+    ? content.map((c, idx) => {
       const { _type, _id } = c;
 
       switch (_type) {
@@ -16,8 +16,9 @@ export default function Content({ content }) {
           );
 
         case 'imageWithText':
+          console.log(c)
           return (
-            <ImageWithText key={_id} {...c} />
+            <ImageWithText key={_id} {...c} isHero={idx === 0} />
           );
 
         case 'imageWithTextGroup':

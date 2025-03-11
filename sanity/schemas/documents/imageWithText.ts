@@ -65,12 +65,15 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
+      text: 'text',
       media: 'image',
     },
-    prepare({ media, title }) {
+    prepare({ media, text, title }) {
+      const  t = title[0]?.value ? title[0].value : text[0]?.value;
+
       return {
         media,
-        title: title[0]?.value,
+        title: t,
         subtitle: 'Image With Text',
       };
     },

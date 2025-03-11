@@ -4,6 +4,8 @@ import IconArrow from "./IconArrow";
 export default function Button(props) {
   const { hasArrow, modifier, title, type, url } = props;
 
+  if (Array.isArray(title) && !url) return null;
+
   if (type === 'submit') {
     return (
       <button type="submit" className={`button ${hasArrow && 'button--arrow'} ${modifier}`}>
