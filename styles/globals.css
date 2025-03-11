@@ -152,6 +152,7 @@ select {
   @apply !py-0 hover:bg-transparent;
 }
 
-.image-with-text__text p.eyebrow {
+.image-with-text__text p.eyebrow,
+.text-with-icons__text p.eyebrow {
   @apply max-lg:!text-lg max-lg:!font-semibold;
 }

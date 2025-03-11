@@ -12,9 +12,18 @@ export default defineType({
     }),
 
     defineField({
+      name: 'isStacked',
+      title: 'Is Stacked?',
+      description: 'If checked, text fields will be stacked above the grid of icons. If unchecked, text will be to the left of grid of icons.',
+      type: 'boolean',
+      initialValue: false,
+    }),
+
+    defineField({
       name: 'text',
       title: 'Text',
       type: 'internationalizedArrayString',
+      hidden: ({ parent }) => parent?.isStacked,
     }),
 
     defineField({
@@ -43,13 +52,25 @@ export default defineType({
               type: 'internationalizedArrayString',
               validation: (Rule) => Rule.required(),
             }),
+
+            defineField({
+              name: 'text',
+              title: 'Icon Text',
+              type: 'text',
+              rows: 2,
+              hidden: ({ document }) => !document?.isStacked,
+            }),
           ],
           preview: {
             select: {
               title: 'alt',
+              subtitle: 'text',
+              media: 'image',
             },
-            prepare({ title }) {
+            prepare({ media, subtitle, title }) {
               return {
+                media,
+                subtitle,
                 title: title[0]?.value,
               }
             }

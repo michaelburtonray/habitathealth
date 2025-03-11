@@ -2,22 +2,24 @@ import Button from "./Button";
 import Image from "next/image";
 
 export default function TextWithIcons(props) {
-  const { button, copy, icons, text, title } = props;
+  const { button, copy, icons, isStacked, text, title } = props;
+  const sanitizedString = (string) => Array.isArray(string) ? null : string;
 
   return (
-    <div className="text-with-icons bg-green lg:grid lg:grid-cols-2 my-[--padding] px-5 lg:px-10 py-10 lg:py-20 rounded-[--radius]">
+    <div className={`text-with-icons my-[--padding] px-5 py-10 lg:py-20 rounded-2xl ${isStacked ? 'bg-sky-blue lg:px-20 text-green' : 'bg-green lg:grid lg:grid-cols-2 lg:px-10'}`}>
       <div className="text-with-icons__text">
-        <div className=" flex flex-col gap-6 max-w-[33rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]">
-          {title && <div className="eyebrow">{title}</div>}
-          {text && <h4>{text}</h4>}
-          {copy && <p className="body--large max-w-[30rem]">{copy}</p>}
+        <div className={`flex flex-col gap-6 ${isStacked ? 'lg:gap-8 lg:items-center lg:text-center' : 'max-w-[33rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]'}`}>
+          {sanitizedString(title) && isStacked ? <h2>{title}</h2> : <div className="eyebrow">{title}</div>}
+          {sanitizedString(text) && <h4>{text}</h4>}
+          {sanitizedString(copy) && <p className={`${isStacked ? 'eyebrow max-w-[43.5rem]' : 'body--large max-w-[30rem]'}`}>{copy}</p>}
 
-          <Button {...button} modifier="max-lg:hidden mt-4" />
+          {!isStacked && <Button {...button} modifier="max-lg:hidden mt-4" />}
         </div>
       </div>
-      <div className="text-with-icons__icons grid grid-cols-2 gap-[2.375rem] lg:gap-14 max-lg:my-10">
-        {icons.map((icon) => (
-          <div key={icon._key} className="body--large-semibold flex flex-col items-center gap-6">
+
+      <div className={`text-with-icons__icons grid grid-cols-2 gap-[2.375rem] lg:gap-14 max-lg:my-10 ${isStacked ? 'max-lg:gap-x-5 max-lg:gap-y-10 lg:grid-cols-3 lg:justify-center mt-10 lg:mt-14' : ''}`}>
+        {icons.map((icon, idx) => (
+          <div key={icon._key} className={`body--large-semibold flex flex-col gap-6 ${isStacked ? 'lg:max-w-[17.5rem]' : 'items-center'} ${idx%3 == 1 && isStacked && 'justify-self-center'} ${idx%3 == 2 && isStacked && 'justify-self-end'}`}>
             {icon && icon.assetPath && <>
               <figure className="icon aspect-square relative w-full max-w-[6.25rem]">
                 <Image
@@ -28,12 +30,13 @@ export default function TextWithIcons(props) {
                 />
               </figure>
               <span>{icon.alt}</span>
+              {icon.text && <p className="body">{icon.text}</p>}
             </>}
           </div>
         ))}
       </div>
 
-      <Button {...button} modifier={'lg:hidden'} />
+      <Button {...button} modifier={`${isStacked ? 'lg:mt-14 lg:mx-auto' : 'lg:hidden'}`} />
     </div>
   )
 }
