@@ -22,7 +22,7 @@ export default function TextWithIcons(props) {
 
       <div className={`text-with-icons__icons grid grid-cols-2 gap-[2.375rem] lg:gap-14 max-lg:my-10 ${isStacked ? `max-lg:gap-x-5 max-lg:gap-y-10 lg:justify-center mt-10 lg:mt-14 ${getCols()}` : ''}`}>
         {icons.map((icon, idx) => (
-          <div key={icon._key} className={`body--large-semibold flex flex-col gap-6 ${isStacked ? 'lg:max-w-[17.5rem]' : 'items-center'} ${idx%3 == 1 && isStacked && 'justify-self-center'} ${idx%3 == 2 && isStacked && 'justify-self-end'}`}>
+          <div key={icon._key} className={`body--large-semibold flex flex-col gap-6 ${isStacked ? 'lg:max-w-[17.5rem]' : 'items-center'} ${idx%3 == 1 && isStacked && icons.length > 5 &&  'justify-self-center'} ${idx%3 == 2 && isStacked && icons.length > 5 && 'justify-self-end'}`}>
             {icon && icon.assetPath && <>
               <figure className="icon aspect-square relative w-full max-w-[6.25rem]">
                 <Image

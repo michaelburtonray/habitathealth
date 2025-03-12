@@ -1,4 +1,5 @@
 import Hero from "./Hero";
+import HeroSlider from "./HeroSlider";
 import ImageWithText from "./ImageWithText";
 import ImageWithTextGroup from "./ImageWithTextGroup";
 import Leadership from "./Leadership";
@@ -18,6 +19,11 @@ export default function Content({ content }) {
         case 'hero':
           return (
             <Hero key={_id} {...c} />
+          );
+
+        case 'heroSlider':
+          return (
+            <HeroSlider key={_id} {...c} />
           );
 
         case 'imageWithText':

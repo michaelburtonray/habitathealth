@@ -48,6 +48,11 @@ const heroData = /* groq */`{
   'title': ${titleCoalesce},
 }`;
 
+const heroSliderData = /* groq */`{
+  ...,
+  slides[] ${imageData},
+}`;
+
 const imageWithTextData = /* groq */`{
   ...,
   button ${buttonData},
@@ -114,6 +119,7 @@ const textWithPercentagesData = /* groq */`{
 const contentData = /* groq */`{
   ...,
   _type == 'hero' => ${heroData},
+  _type == 'heroSlider' => ${heroSliderData},
   _type == 'imageWithText' => ${imageWithTextData},
   _type == 'imageWithTextGroup' => ${imageWithTextGroupData},
   _type == 'leadership' => ${leadershipData},
