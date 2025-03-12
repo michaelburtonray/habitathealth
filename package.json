@@ -25,6 +25,7 @@
     "sanity": "^3.77.2",
     "sanity-plugin-internationalized-array": "^3.1.1",
     "sanity-plugin-link-field": "^1.4.0",
+    "sanity-plugin-vercel-deploy": "^3.3.4",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {

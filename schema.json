@@ -1750,6 +1750,13 @@
         },
         "optional": true
       },
+      "isStacked": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": true
+      },
       "text": {
         "type": "objectAttribute",
         "value": {
@@ -1874,6 +1881,13 @@
                       "name": "internationalizedArrayStringValue"
                     }
                   }
+                },
+                "optional": true
+              },
+              "text": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
                 },
                 "optional": true
               },

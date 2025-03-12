@@ -151,3 +151,21 @@ select {
 .label-select-group select {
   @apply !py-0 hover:bg-transparent;
 }
+
+.image-with-text__text p.eyebrow,
+.text-with-icons__text p.eyebrow {
+  @apply max-lg:!text-lg max-lg:!font-semibold;
+}
+
+.text-with-percentages ol {
+  counter-reset: annotaion;
+}
+
+.text-with-percentages ol > li {
+  counter-increment: annotation;
+}
+
+.text-with-percentages ol > li::before {
+  content: counter(annotation) ".";
+  padding-right: 0.25rem;
+}
