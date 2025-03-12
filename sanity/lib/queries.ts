@@ -79,6 +79,11 @@ const testimonialsData = /* groq */`{
   'title': ${titleCoalesce},
 }`;
 
+const textWithChartData = /* groq */`{
+  ...,
+  button ${buttonData},
+}`;
+
 const textWithIconsData = /* groq */`{
   ...,
   button ${buttonData},
@@ -88,13 +93,26 @@ const textWithIconsData = /* groq */`{
   'title': ${titleCoalesce},
 }`
 
+const textWithListData = /* groq */`{
+  ...,
+  button ${buttonData},
+}`;
+
+const textWithPercentagesData = /* groq */`{
+  ...,
+  button ${buttonData},
+}`;
+
 const contentData = /* groq */`{
   ...,
   _type == 'hero' => ${heroData},
   _type == 'imageWithText' => ${imageWithTextData},
   _type == 'imageWithTextGroup' => ${imageWithTextGroupData},
   _type == 'testimonials' => ${testimonialsData},
+  _type == 'textWithChart' => ${textWithChartData},
   _type == 'textWithIcons' => ${textWithIconsData},
+  _type == 'textWithList' => ${textWithListData},
+  _type == 'textWithPercentages' => ${textWithPercentagesData},
 }`;
 
 export const enrollmentQuery = defineQuery(`

@@ -34,9 +34,12 @@ export default defineType({
             { type: 'imageWithText' },
             { type: 'imageWithTextGroup' },
             { type: 'testimonials' },
+            { type: 'textWithChart' },
             { type: 'textWithIcons' },
-          ]
-        }
+            { type: 'textWithList' },
+            { type: 'textWithPercentages' },
+          ],
+        },
       ],
     })
   ],

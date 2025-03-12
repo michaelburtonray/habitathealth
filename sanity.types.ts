@@ -294,6 +294,7 @@ export type TextWithIcons = {
   title?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
+  isStacked?: boolean;
   text?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -313,6 +314,7 @@ export type TextWithIcons = {
     alt?: Array<{
       _key: string;
     } & InternationalizedArrayStringValue>;
+    text?: string;
     _type: "image";
     _key: string;
   }>;
@@ -888,6 +890,7 @@ export type PageQueryResult = {
     title: Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | string | "Missing translation";
+    isStacked?: boolean;
     text: Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | string | "Missing translation";
@@ -915,6 +918,7 @@ export type PageQueryResult = {
       alt: Array<{
         _key: string;
       } & InternationalizedArrayStringValue> | string | "Missing translation";
+      text?: string;
       _type: "image";
       _key: string;
       assetPath: string | null;

@@ -13,8 +13,10 @@ import imageWithText from './schemas/documents/imageWithText'
 import imageWithTextGroup from './schemas/documents/imageWithTextGroup'
 import page from './schemas/documents/page'
 import testimonials from './schemas/documents/testimonials'
+import textWithChart from './schemas/documents/textWithChart'
 import textWithIcons from './schemas/documents/textWithIcons'
-
+import textWithList from './schemas/documents/textWithList'
+import textWithPercentages from './schemas/documents/textWithPercentages'
 
 import answerRadioButtons from './schemas/objects/answerRadioButtons'
 import answerSelectDropdown from './schemas/objects/answerSelectDropdown'
@@ -38,7 +40,10 @@ const documents = [
   imageWithTextGroup,
   page,
   testimonials,
+  textWithChart,
   textWithIcons,
+  textWithList,
+  textWithPercentages,
 ];
 
 const objects = [

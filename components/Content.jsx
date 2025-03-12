@@ -2,7 +2,10 @@ import Hero from "./Hero";
 import ImageWithText from "./ImageWithText";
 import ImageWithTextGroup from "./ImageWithTextGroup";
 import Testimonials from "./Testimonials";
+import TextWithChart from "./TextWithChart";
 import TextWithIcons from "./TextWithIcons";
+import TextWithList from "./TextWithList";
+import TextWithPercentages from "./TextWithPercentages";
 
 export default function Content({ content }) {
   const components = content
@@ -16,7 +19,6 @@ export default function Content({ content }) {
           );
 
         case 'imageWithText':
-          console.log(c)
           return (
             <ImageWithText key={_id} {...c} isHero={idx === 0} />
           );
@@ -31,13 +33,28 @@ export default function Content({ content }) {
             <Testimonials key={_id} {...c} />
           );
 
+        case 'textWithChart':
+          return (
+            <TextWithChart key={_id} {...c} />
+          );
+
         case 'textWithIcons':
           return (
             <TextWithIcons key={_id} {...c} />
           );
 
+        case 'textWithList':
+          return (
+            <TextWithList key={_id} {...c} />
+          );
+
+        case 'textWithPercentages':
+          return (
+            <TextWithPercentages key={_id} {...c} />
+          );
+
         default:
-          return <h2>Missing Component: {c._type}</h2>
+          return <h2 key={c._id}>Missing Component: {c._type}</h2>
       }
     })
     : [];
