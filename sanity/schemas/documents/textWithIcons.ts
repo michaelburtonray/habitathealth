@@ -20,6 +20,19 @@ export default defineType({
     }),
 
     defineField({
+      name: 'bgColor',
+      title: 'Background Color',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Cream', value: 'cream' },
+          { title: 'Green', value: 'green' },
+          { title: 'Sky Blue', value: 'sky-blue' },
+        ],
+      },
+    }),
+
+    defineField({
       name: 'text',
       title: 'Text',
       type: 'internationalizedArrayString',
@@ -80,6 +93,11 @@ export default defineType({
       validation: (Rule) => Rule.max(8),
     })
   ],
+
+  initialValue: {
+    bgColor: 'green',
+  },
+
   preview: {
     select: {
       title: 'title',
