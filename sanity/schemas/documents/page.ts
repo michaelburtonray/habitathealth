@@ -33,6 +33,7 @@ export default defineType({
             { type: 'hero' },
             { type: 'imageWithText' },
             { type: 'imageWithTextGroup' },
+            { type: 'leadership' },
             { type: 'testimonials' },
             { type: 'textWithChart' },
             { type: 'textWithIcons' },

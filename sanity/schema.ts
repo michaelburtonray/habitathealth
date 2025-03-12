@@ -11,6 +11,7 @@ import enrollment from './schemas/documents/enrollment'
 import hero from './schemas/documents/hero'
 import imageWithText from './schemas/documents/imageWithText'
 import imageWithTextGroup from './schemas/documents/imageWithTextGroup'
+import leadership from './schemas/documents/leadership'
 import page from './schemas/documents/page'
 import testimonials from './schemas/documents/testimonials'
 import textWithChart from './schemas/documents/textWithChart'
@@ -38,6 +39,7 @@ const documents = [
   hero,
   imageWithText,
   imageWithTextGroup,
+  leadership,
   page,
   testimonials,
   textWithChart,
