@@ -169,3 +169,11 @@ select {
   content: counter(annotation) ".";
   padding-right: 0.25rem;
 }
+
+main.about > .image-with-text:not(:first-child) {
+  @apply !bg-green !text-white !pb-10 lg:!pb-14 rounded-b-none;
+}
+
+.rte p + p {
+  @apply mt-4;
+}

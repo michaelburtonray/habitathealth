@@ -1,12 +1,15 @@
 import Button from "./Button";
 import Image from "next/image";
+import { getBackgroundColor } from "./helpers";
 
 export default function TextWithIcons(props) {
-  const { button, copy, icons, isStacked, text, title } = props;
+  const { bgColor, button, copy, icons, isStacked, text, title } = props;
   const sanitizedString = (string) => Array.isArray(string) ? null : string;
+  const getCols = () => isStacked && icons.length < 6 ? 'max-lg:grid-cols-1 lg:grid-cols-5 lg:gap-x-10' : 'lg:grid-cols-3'
+  const getPadding = () => isStacked && icons.length > 5 ? 'lg:px-20' : 'lg:px-10';
 
   return (
-    <div className={`text-with-icons my-[--padding] px-5 py-10 lg:py-20 rounded-2xl ${isStacked ? 'bg-sky-blue lg:px-20 text-green' : 'bg-green lg:grid lg:grid-cols-2 lg:px-10'}`}>
+    <div className={`text-with-icons my-[--padding] px-5 py-10 lg:py-20 rounded-2xl ${isStacked ? `${getPadding()}` : 'lg:grid lg:grid-cols-2 lg:px-10'} ${getBackgroundColor(bgColor)}`}>
       <div className="text-with-icons__text">
         <div className={`flex flex-col gap-6 ${isStacked ? 'lg:gap-8 lg:items-center lg:text-center' : 'max-w-[33rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]'}`}>
           {sanitizedString(title) && isStacked ? <h2>{title}</h2> : <div className="eyebrow">{title}</div>}
@@ -17,7 +20,7 @@ export default function TextWithIcons(props) {
         </div>
       </div>
 
-      <div className={`text-with-icons__icons grid grid-cols-2 gap-[2.375rem] lg:gap-14 max-lg:my-10 ${isStacked ? 'max-lg:gap-x-5 max-lg:gap-y-10 lg:grid-cols-3 lg:justify-center mt-10 lg:mt-14' : ''}`}>
+      <div className={`text-with-icons__icons grid grid-cols-2 gap-[2.375rem] lg:gap-14 max-lg:my-10 ${isStacked ? `max-lg:gap-x-5 max-lg:gap-y-10 lg:justify-center mt-10 lg:mt-14 ${getCols()}` : ''}`}>
         {icons.map((icon, idx) => (
           <div key={icon._key} className={`body--large-semibold flex flex-col gap-6 ${isStacked ? 'lg:max-w-[17.5rem]' : 'items-center'} ${idx%3 == 1 && isStacked && 'justify-self-center'} ${idx%3 == 2 && isStacked && 'justify-self-end'}`}>
             {icon && icon.assetPath && <>

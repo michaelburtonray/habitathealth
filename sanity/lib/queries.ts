@@ -65,6 +65,14 @@ const imageWithTextGroupData = /* groq */`{
   'title': ${titleCoalesce},
 }`;
 
+const leadershipData = /* groq */`{
+  ...,
+  leaders[] {
+    ...,
+    image ${imageData},
+  },
+}`;
+
 const testimonialData = /* groq */`{
   ...,
   image ${imageData},
@@ -108,6 +116,7 @@ const contentData = /* groq */`{
   _type == 'hero' => ${heroData},
   _type == 'imageWithText' => ${imageWithTextData},
   _type == 'imageWithTextGroup' => ${imageWithTextGroupData},
+  _type == 'leadership' => ${leadershipData},
   _type == 'testimonials' => ${testimonialsData},
   _type == 'textWithChart' => ${textWithChartData},
   _type == 'textWithIcons' => ${textWithIconsData},

@@ -7,8 +7,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const pageData = await getPageData({ slug, lang: 'en'});
 
   return (
-    <div>
+    <main className={`${slug}`}>
       {pageData && pageData.content && <Content content={pageData.content} />}
-    </div>
+    </main>
   );
 }

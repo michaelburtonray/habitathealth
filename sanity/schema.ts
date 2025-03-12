@@ -11,8 +11,10 @@ import enrollment from './schemas/documents/enrollment'
 import hero from './schemas/documents/hero'
 import imageWithText from './schemas/documents/imageWithText'
 import imageWithTextGroup from './schemas/documents/imageWithTextGroup'
+import leadership from './schemas/documents/leadership'
 import page from './schemas/documents/page'
 import testimonials from './schemas/documents/testimonials'
+import textWithBubbles from './schemas/documents/textWithBubbles'
 import textWithChart from './schemas/documents/textWithChart'
 import textWithIcons from './schemas/documents/textWithIcons'
 import textWithList from './schemas/documents/textWithList'
@@ -38,8 +40,10 @@ const documents = [
   hero,
   imageWithText,
   imageWithTextGroup,
+  leadership,
   page,
   testimonials,
+  textWithBubbles,
   textWithChart,
   textWithIcons,
   textWithList,

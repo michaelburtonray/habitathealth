@@ -18,6 +18,18 @@ export default defineType({
     }),
 
     defineField({
+      name: 'bgColor',
+      title: 'Background Color',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Cream', value: 'cream' },
+          { title: 'Sky Blue', value: 'sky-blue' },
+        ],
+      },
+    }),
+
+    defineField({
       name: 'content',
       title: 'Content',
       type: 'array',
@@ -31,6 +43,11 @@ export default defineType({
       ],
     }),
   ],
+
+  initialValue: {
+    bgColor: 'cream',
+  },
+
   preview: {
     select: {
       title: 'title',

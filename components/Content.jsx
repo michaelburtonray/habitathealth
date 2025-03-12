@@ -1,7 +1,9 @@
 import Hero from "./Hero";
 import ImageWithText from "./ImageWithText";
 import ImageWithTextGroup from "./ImageWithTextGroup";
+import Leadership from "./Leadership";
 import Testimonials from "./Testimonials";
+import TextWithBubbles from "./TextWithBubbles";
 import TextWithChart from "./TextWithChart";
 import TextWithIcons from "./TextWithIcons";
 import TextWithList from "./TextWithList";
@@ -28,9 +30,19 @@ export default function Content({ content }) {
             <ImageWithTextGroup key={_id} {...c} />
           );
 
+        case 'leadership':
+          return (
+            <Leadership key={_id} {...c} />
+          );
+
         case 'testimonials':
           return (
             <Testimonials key={_id} {...c} />
+          );
+
+        case 'textWithBubbles':
+          return (
+            <TextWithBubbles key={_id} {...c} />
           );
 
         case 'textWithChart':
