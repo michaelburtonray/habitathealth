@@ -4,7 +4,7 @@ export default function TextWithList(props) {
   const { button, list, text, title } = props;
 
   return (
-    <div className="text-with-list my-[--padding] px-5 py-10 lg:py-20 rounded-2xl bg-green lg:grid lg:grid-cols-2 lg:px-10">
+    <div className="text-with-list bg-green lg:grid lg:grid-cols-2 my-[--padding] px-5 lg:px-10 py-10 lg:py-20 rounded-2xl">
       <div className="text-with-list__text">
         <div className="flex flex-col gap-6 max-w-[33rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]">
           {title && <h2>{title}</h2>}
