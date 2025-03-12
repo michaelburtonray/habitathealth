@@ -3,6 +3,7 @@ import ImageWithText from "./ImageWithText";
 import ImageWithTextGroup from "./ImageWithTextGroup";
 import Leadership from "./Leadership";
 import Testimonials from "./Testimonials";
+import TextWithBubbles from "./TextWithBubbles";
 import TextWithChart from "./TextWithChart";
 import TextWithIcons from "./TextWithIcons";
 import TextWithList from "./TextWithList";
@@ -37,6 +38,11 @@ export default function Content({ content }) {
         case 'testimonials':
           return (
             <Testimonials key={_id} {...c} />
+          );
+
+        case 'textWithBubbles':
+          return (
+            <TextWithBubbles key={_id} {...c} />
           );
 
         case 'textWithChart':

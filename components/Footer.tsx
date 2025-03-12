@@ -18,7 +18,7 @@ export default function Footer() {
           <li className="body--large-semibold">Company</li>
           <li><Link href="/about">About</Link></li>
           <li><Link href="/faq">FAQ</Link></li>
-          <li><Link href="/careers">Careers</Link></li>
+          <li><a href="https://job-boards.greenhouse.io/habitathealth" target="_blank" rel="noopener noreferrer">Careers</a></li>
         </ul>
 
         <ul className="flex flex-col gap-8">

@@ -14,14 +14,14 @@ export default function ImageWithTextGroup(props) {
         return (
           <div className={`image-with-text lg:grid grid-cols-2 lg:gap-20 mt-16`} key={_id}>
             <div className={`image-with-text__text ${index % 2 === 0 && 'lg:order-2'}`}>
-              <div className=" flex flex-col gap-6 max-w-[33rem] lg:py-[3.75rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]">
+              <div className="flex flex-col gap-6 max-w-[33rem] lg:py-[3.75rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]">
                 {title && <div className="eyebrow">{title}</div>}
                 {text && <h6>{text}</h6>}
               </div>
             </div>
 
-            <div className="image-with-text__image lg:max-w-[50%] max-lg:my-10">
-              <figure className="aspect-square lg:w-[40rem] relative">
+            <div className="image-with-text__image lg:max-w-full max-lg:my-10">
+              <figure className="aspect-square lg:w-[40rem] relative max-w-full">
                 {image && image.assetPath && <Image
                   src={image.assetPath}
                   alt={image.alt}

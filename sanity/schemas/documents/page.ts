@@ -35,6 +35,7 @@ export default defineType({
             { type: 'imageWithTextGroup' },
             { type: 'leadership' },
             { type: 'testimonials' },
+            { type: 'textWithBubbles' },
             { type: 'textWithChart' },
             { type: 'textWithIcons' },
             { type: 'textWithList' },
