@@ -9,6 +9,7 @@ import {defineConfig} from 'sanity'
 import {apiVersion, dataset, projectId} from './sanity/env'
 import {schema} from './sanity/schema'
 import { internationalizedArray } from 'sanity-plugin-internationalized-array'
+import { vercelDeployTool } from 'sanity-plugin-vercel-deploy'
 // import { linkField } from "sanity-plugin-link-field";
 import { structureTool } from 'sanity/structure'
 import { pageStructure, singletonPlugin } from './sanity/plugins/settings'
@@ -25,6 +26,7 @@ export default defineConfig({
     // Vision is a tool that lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     ...(process.env.NODE_ENV === "development" ? [visionTool({defaultApiVersion: apiVersion})] : []),
+    vercelDeployTool(),
     internationalizedArray({
       languages: [
         { id: 'en', title: 'English' },
