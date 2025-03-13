@@ -1,7 +1,9 @@
 import Hero from "./Hero";
+import HeroSlider from "./HeroSlider";
 import ImageWithText from "./ImageWithText";
 import ImageWithTextGroup from "./ImageWithTextGroup";
 import Leadership from "./Leadership";
+import LogoWithIcons from "./LogoWithIcons";
 import Testimonials from "./Testimonials";
 import TextWithBubbles from "./TextWithBubbles";
 import TextWithChart from "./TextWithChart";
@@ -20,6 +22,11 @@ export default function Content({ content }) {
             <Hero key={_id} {...c} />
           );
 
+        case 'heroSlider':
+          return (
+            <HeroSlider key={_id} {...c} />
+          );
+
         case 'imageWithText':
           return (
             <ImageWithText key={_id} {...c} isHero={idx === 0} />
@@ -33,6 +40,11 @@ export default function Content({ content }) {
         case 'leadership':
           return (
             <Leadership key={_id} {...c} />
+          );
+
+        case 'logoWithIcons':
+          return (
+            <LogoWithIcons key={_id} {...c} />
           );
 
         case 'testimonials':

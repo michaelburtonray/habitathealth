@@ -285,6 +285,40 @@ export type AnswerRadioButtons = {
   }>;
 };
 
+export type TextWithPercentages = {
+  _id: string;
+  _type: "textWithPercentages";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  button?: Button;
+  percentages?: Array<{
+    value?: string;
+    text?: string;
+    annotation?: string;
+    _type: "percentage";
+    _key: string;
+  }>;
+};
+
+export type TextWithList = {
+  _id: string;
+  _type: "textWithList";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  text?: string;
+  button?: Button;
+  list?: Array<{
+    title?: string;
+    text?: string;
+    _type: "item";
+    _key: string;
+  }>;
+};
+
 export type TextWithIcons = {
   _id: string;
   _type: "textWithIcons";
@@ -295,6 +329,7 @@ export type TextWithIcons = {
     _key: string;
   } & InternationalizedArrayStringValue>;
   isStacked?: boolean;
+  bgColor?: "cream" | "green" | "sky-blue";
   text?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -316,6 +351,55 @@ export type TextWithIcons = {
     } & InternationalizedArrayStringValue>;
     text?: string;
     _type: "image";
+    _key: string;
+  }>;
+};
+
+export type TextWithChart = {
+  _id: string;
+  _type: "textWithChart";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  text?: string;
+  button?: Button;
+  chart?: {
+    labels?: Array<string>;
+    rows?: Array<{
+      col1?: string;
+      col2?: string;
+      _type: "row";
+      _key: string;
+    }>;
+  };
+  disclaimer?: string;
+};
+
+export type TextWithBubbles = {
+  _id: string;
+  _type: "textWithBubbles";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  bubbles?: Array<string>;
+  disclaimer?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
     _key: string;
   }>;
 };
@@ -358,6 +442,11 @@ export type Page = {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "heroSlider";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
     [internalGroqTypeReferenceTo]?: "imageWithText";
   } | {
     _ref: string;
@@ -368,12 +457,62 @@ export type Page = {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "leadership";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
     [internalGroqTypeReferenceTo]?: "testimonials";
   } | {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "textWithBubbles";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "textWithChart";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
     [internalGroqTypeReferenceTo]?: "textWithIcons";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "textWithList";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "textWithPercentages";
+  }>;
+};
+
+export type Leadership = {
+  _id: string;
+  _type: "leadership";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  leaders?: Array<{
+    name?: string;
+    title?: string;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    _key: string;
   }>;
 };
 
@@ -389,6 +528,7 @@ export type ImageWithTextGroup = {
   text?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
+  bgColor?: "cream" | "sky-blue";
   content?: Array<{
     _ref: string;
     _type: "reference";
@@ -430,6 +570,29 @@ export type ImageWithText = {
     url?: string;
     _type: "image";
   };
+};
+
+export type HeroSlider = {
+  _id: string;
+  _type: "heroSlider";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  text?: string;
+  slides?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
 };
 
 export type Hero = {
@@ -626,7 +789,7 @@ export type InternationalizedArraySlug = Array<{
   _key: string;
 } & InternationalizedArraySlugValue>;
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | BlockContent | Category | Post | Author | Testimonial | FormField | EnrollmentSection | AnswerTextarea | AnswerText | AnswerSelectDropdown | AnswerRadioButtons | TextWithIcons | Testimonials | Page | ImageWithTextGroup | ImageWithText | Hero | Enrollment | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Button | Settings | Header | InternationalizedArrayTextValue | InternationalizedArrayStringValue | InternationalizedArraySlugValue | Slug | InternationalizedArrayText | InternationalizedArrayString | InternationalizedArraySlug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | BlockContent | Category | Post | Author | Testimonial | FormField | EnrollmentSection | AnswerTextarea | AnswerText | AnswerSelectDropdown | AnswerRadioButtons | TextWithPercentages | TextWithList | TextWithIcons | TextWithChart | TextWithBubbles | Testimonials | Page | Leadership | ImageWithTextGroup | ImageWithText | HeroSlider | Hero | Enrollment | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Button | Settings | Header | InternationalizedArrayTextValue | InternationalizedArrayStringValue | InternationalizedArraySlugValue | Slug | InternationalizedArrayText | InternationalizedArrayString | InternationalizedArraySlug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: enrollmentQuery
@@ -677,7 +840,7 @@ export type EnrollmentQueryResult = {
   disclaimer?: string;
 } | null;
 // Variable: pageQuery
-// Query: *[_type == "page" && $slug in slug[].value.current][0] {    ...,    content[]->{  ...,  _type == 'hero' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  mobileImage {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'imageWithText' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  'isImageOnLeft': isImageOnLeft,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'imageWithTextGroup' => {  ...,  content[]-> {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  'isImageOnLeft': isImageOnLeft,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'testimonials' => {  ...,  testimonials[] {  ...,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'textWithIcons' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  icons[] {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},  }
+// Query: *[_type == "page" && $slug in slug[].value.current][0] {    ...,    content[]->{  ...,  _type == 'hero' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  mobileImage {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'heroSlider' => {  ...,  slides[] {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},},  _type == 'imageWithText' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  'isImageOnLeft': isImageOnLeft,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'imageWithTextGroup' => {  ...,  content[]-> {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  'isImageOnLeft': isImageOnLeft,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'leadership' => {  ...,  leaders[] {    ...,    image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  },},  _type == 'testimonials' => {  ...,  testimonials[] {  ...,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'textWithChart' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},  _type == 'textWithIcons' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  icons[] {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'textWithList' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},  _type == 'textWithPercentages' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},},  }
 export type PageQueryResult = {
   _id: string;
   _type: "page";
@@ -745,6 +908,29 @@ export type PageQueryResult = {
     } | null;
   } | {
     _id: string;
+    _type: "heroSlider";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    text?: string;
+    slides: Array<{
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt: string | "Missing translation";
+      _type: "image";
+      _key: string;
+      assetPath: string | null;
+      aspectRatio: number | null;
+    }> | null;
+  } | {
+    _id: string;
     _type: "imageWithText";
     _createdAt: string;
     _updatedAt: string;
@@ -798,6 +984,7 @@ export type PageQueryResult = {
     text: Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | string | "Missing translation";
+    bgColor?: "cream" | "sky-blue";
     content: Array<{
       _id: string;
       _type: "imageWithText";
@@ -844,6 +1031,32 @@ export type PageQueryResult = {
     }> | null;
   } | {
     _id: string;
+    _type: "leadership";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    leaders: Array<{
+      name?: string;
+      title?: string;
+      image: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+        alt: "Missing translation";
+        assetPath: string | null;
+        aspectRatio: number | null;
+      } | null;
+      _key: string;
+    }> | null;
+  } | {
+    _id: string;
     _type: "testimonials";
     _createdAt: string;
     _updatedAt: string;
@@ -883,6 +1096,59 @@ export type PageQueryResult = {
     }> | null;
   } | {
     _id: string;
+    _type: "textWithBubbles";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    bubbles?: Array<string>;
+    disclaimer?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+  } | {
+    _id: string;
+    _type: "textWithChart";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    text?: string;
+    button: {
+      _type: "button";
+      title: Array<{
+        _key: string;
+      } & InternationalizedArrayStringValue> | string | "Missing translation";
+      url?: string;
+      colorScheme?: "green" | "orange";
+      hasArrow?: boolean;
+    } | null;
+    chart?: {
+      labels?: Array<string>;
+      rows?: Array<{
+        col1?: string;
+        col2?: string;
+        _type: "row";
+        _key: string;
+      }>;
+    };
+    disclaimer?: string;
+  } | {
+    _id: string;
     _type: "textWithIcons";
     _createdAt: string;
     _updatedAt: string;
@@ -891,6 +1157,7 @@ export type PageQueryResult = {
       _key: string;
     } & InternationalizedArrayStringValue> | string | "Missing translation";
     isStacked?: boolean;
+    bgColor?: "cream" | "green" | "sky-blue";
     text: Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | string | "Missing translation";
@@ -924,6 +1191,52 @@ export type PageQueryResult = {
       assetPath: string | null;
       aspectRatio: number | null;
     }> | null;
+  } | {
+    _id: string;
+    _type: "textWithList";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    text?: string;
+    button: {
+      _type: "button";
+      title: Array<{
+        _key: string;
+      } & InternationalizedArrayStringValue> | string | "Missing translation";
+      url?: string;
+      colorScheme?: "green" | "orange";
+      hasArrow?: boolean;
+    } | null;
+    list?: Array<{
+      title?: string;
+      text?: string;
+      _type: "item";
+      _key: string;
+    }>;
+  } | {
+    _id: string;
+    _type: "textWithPercentages";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    button: {
+      _type: "button";
+      title: Array<{
+        _key: string;
+      } & InternationalizedArrayStringValue> | string | "Missing translation";
+      url?: string;
+      colorScheme?: "green" | "orange";
+      hasArrow?: boolean;
+    } | null;
+    percentages?: Array<{
+      value?: string;
+      text?: string;
+      annotation?: string;
+      _type: "percentage";
+      _key: string;
+    }>;
   }> | null;
 } | null;
 // Variable: settingsQuery
@@ -945,7 +1258,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n  *[_type == \"enrollment\" && slug.current == $slug][0] {\n    ...,\n    cta {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n    sections[] {\n      ...,\n      image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    }\n  }": EnrollmentQueryResult;
-    "\n  *[_type == \"page\" && $slug in slug[].value.current][0] {\n    ...,\n    content[]->{\n  ...,\n  _type == 'hero' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  mobileImage {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'imageWithText' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  'isImageOnLeft': isImageOnLeft,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'imageWithTextGroup' => {\n  ...,\n  content[]-> {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  'isImageOnLeft': isImageOnLeft,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'testimonials' => {\n  ...,\n  testimonials[] {\n  ...,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'textWithIcons' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  icons[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  }\n": PageQueryResult;
+    "\n  *[_type == \"page\" && $slug in slug[].value.current][0] {\n    ...,\n    content[]->{\n  ...,\n  _type == 'hero' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  mobileImage {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'heroSlider' => {\n  ...,\n  slides[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n},\n  _type == 'imageWithText' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  'isImageOnLeft': isImageOnLeft,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'imageWithTextGroup' => {\n  ...,\n  content[]-> {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  'isImageOnLeft': isImageOnLeft,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'leadership' => {\n  ...,\n  leaders[] {\n    ...,\n    image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  },\n},\n  _type == 'testimonials' => {\n  ...,\n  testimonials[] {\n  ...,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'textWithChart' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  _type == 'textWithIcons' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  icons[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'textWithList' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  _type == 'textWithPercentages' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n},\n  }\n": PageQueryResult;
     "\n  *[_type == \"settings\"][0]\n": SettingsQueryResult;
   }
 }

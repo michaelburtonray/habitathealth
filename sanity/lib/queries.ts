@@ -48,6 +48,11 @@ const heroData = /* groq */`{
   'title': ${titleCoalesce},
 }`;
 
+const heroSliderData = /* groq */`{
+  ...,
+  slides[] ${imageData},
+}`;
+
 const imageWithTextData = /* groq */`{
   ...,
   button ${buttonData},
@@ -71,6 +76,11 @@ const leadershipData = /* groq */`{
     ...,
     image ${imageData},
   },
+}`;
+
+const logoWithIconsData = /* groq */`{
+  ...,
+  icons[] ${imageData},
 }`;
 
 const testimonialData = /* groq */`{
@@ -114,9 +124,11 @@ const textWithPercentagesData = /* groq */`{
 const contentData = /* groq */`{
   ...,
   _type == 'hero' => ${heroData},
+  _type == 'heroSlider' => ${heroSliderData},
   _type == 'imageWithText' => ${imageWithTextData},
   _type == 'imageWithTextGroup' => ${imageWithTextGroupData},
   _type == 'leadership' => ${leadershipData},
+  _type == 'logoWithIcons' => ${logoWithIconsData},
   _type == 'testimonials' => ${testimonialsData},
   _type == 'textWithChart' => ${textWithChartData},
   _type == 'textWithIcons' => ${textWithIconsData},

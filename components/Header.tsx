@@ -20,7 +20,7 @@ export default function Header(props: Header) {
   return (
     <header className="bg-fern-green sticky top-0 z-30">
       {isMenuOpen && <div className="bg-black/20 fixed inset-0" />}
-      <div className="promo-bar body--small flex gap-4 items-center justify-center h-8">
+      <div className="promo-bar rte body--small flex gap-4 items-center justify-center h-8">
         {promoBar && <PortableText value={promoBar} />}
         {/* <span>Now operating in Sacremento</span>
         <span className="inline-flex items-center gap-1">

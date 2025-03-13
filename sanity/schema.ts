@@ -9,9 +9,11 @@ import settings from './schemas/singletons/settings'
 
 import enrollment from './schemas/documents/enrollment'
 import hero from './schemas/documents/hero'
+import heroSlider from './schemas/documents/heroSlider'
 import imageWithText from './schemas/documents/imageWithText'
 import imageWithTextGroup from './schemas/documents/imageWithTextGroup'
 import leadership from './schemas/documents/leadership'
+import logoWithIcons from './schemas/documents/logoWithIcons'
 import page from './schemas/documents/page'
 import testimonials from './schemas/documents/testimonials'
 import textWithBubbles from './schemas/documents/textWithBubbles'
@@ -38,9 +40,11 @@ const documents = [
   ...singletons,
   enrollment,
   hero,
+  heroSlider,
   imageWithText,
   imageWithTextGroup,
   leadership,
+  logoWithIcons,
   page,
   testimonials,
   textWithBubbles,
