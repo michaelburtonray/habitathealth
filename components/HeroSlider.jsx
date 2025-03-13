@@ -54,13 +54,13 @@ export default function HeroSlider(props) {
         </Swiper>
       </div>
 
-      <div className="hero-slider__controls absolute inset-0 flex lg:items-end lg:justify-end pointer-events-none z-10">
-        <div className="flex gap-3 p-5 lg:p-10 sticky bottom-0">
-          <button ref={prevRef} className="button pointer-events-auto rotate-180" aria-label="Previous slide">
+      <div className="hero-slider__controls absolute inset-0 flex lg:items-end lg:justify-end z-10 pointer-events-none">
+        <div className="flex gap-3 p-5 lg:p-10 sticky bottom-0 pointer-events-auto">
+          <button ref={prevRef} className="button rotate-180" aria-label="Previous slide">
             <IconArrow />
           </button>
 
-          <button ref={nextRef} className="button pointer-events-auto" aria-label="Next slide">
+          <button ref={nextRef} className="button" aria-label="Next slide">
             <IconArrow />
           </button>
         </div>
