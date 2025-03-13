@@ -26,6 +26,7 @@ export default function HeroSlider(props) {
 
       <div className="hero-slider-slider -ml-[100%]">
         <Swiper
+          grabCursor={true}
           loop={true}
           modules={[Navigation]}
           navigation={{
