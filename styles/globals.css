@@ -182,6 +182,10 @@ main.about > .image-with-text:not(:first-child) {
   @apply max-lg:!font-medium max-lg:!text-base;
 }
 
+
+.rte a {
+  @apply underline;
+}
 .rte p + p {
   @apply mt-4;
 }

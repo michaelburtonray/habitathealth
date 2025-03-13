@@ -78,6 +78,11 @@ const leadershipData = /* groq */`{
   },
 }`;
 
+const logoWithIconsData = /* groq */`{
+  ...,
+  icons[] ${imageData},
+}`;
+
 const testimonialData = /* groq */`{
   ...,
   image ${imageData},
@@ -123,6 +128,7 @@ const contentData = /* groq */`{
   _type == 'imageWithText' => ${imageWithTextData},
   _type == 'imageWithTextGroup' => ${imageWithTextGroupData},
   _type == 'leadership' => ${leadershipData},
+  _type == 'logoWithIcons' => ${logoWithIconsData},
   _type == 'testimonials' => ${testimonialsData},
   _type == 'textWithChart' => ${textWithChartData},
   _type == 'textWithIcons' => ${textWithIconsData},
