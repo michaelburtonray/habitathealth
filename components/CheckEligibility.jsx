@@ -78,7 +78,6 @@ export default function CheckEligibility(props) {
     block: {
       normal: ({ children, markDefs }) => {
         const { props } = children[0];
-        let isArr = false;
         let icon = '';
 
         if (props) {
@@ -91,8 +90,7 @@ export default function CheckEligibility(props) {
               icon = <IconEmail />
             }
           }
-          isArr = true;
-          console.log(children)
+
           return <p className="button button--green flex gap-2 items-center !px-4 text-white">{icon}{children}</p>
         }
 
