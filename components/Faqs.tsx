@@ -5,7 +5,7 @@ import IconArrow from "./IconArrow";
 export default function Faqs() {
   return (
     <div className="faq bg-sky-blue my-[--padding] px-5 lg:px-10 py-10 lg:py-20 rounded-[--radius] text-green">
-      <div className="faq__interior flex flex-col gap-6 max-w-[56.25rem] mx-auto">
+      <div className="faq__interior flex flex-col gap-0 max-w-[56.25rem] mx-auto">
         <p className="eyebrow">Frequently Asked Questions</p>
 
         <FaqQa

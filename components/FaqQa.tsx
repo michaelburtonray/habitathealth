@@ -12,13 +12,13 @@ export default function FaqQa({ answer, index, question }: { answer: string, ind
 
   return (
     <div className="faq_qa border-t border-green pt-6">
-      <h5 className="cursor-pointer" onClick={handleClick}>{question}</h5>
+      <h5 className="cursor-pointer mb-6" onClick={handleClick}>{question}</h5>
       <AnimatePresence>
         {isExpanded && <motion.p
           animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           initial={{ height: 0, opacity: 0 }}
-          className="max-w-[40rem] overflow-hidden pt-6"
+          className="max-w-[40rem] overflow-hidden"
         >{answer}</motion.p>}
       </AnimatePresence>
     </div>

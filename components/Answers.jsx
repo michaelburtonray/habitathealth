@@ -2,7 +2,7 @@ export default function Answers({ data, formDataState, handleChange }) {
   const answers = data
     ? data.map((a) => {
       const { _key, _type, answers, heading, schemaName } = a;
-      console.log(a)
+      // console.log(a)
 
       switch (_type) {
         case 'answerRadioButtons':
@@ -31,10 +31,22 @@ export default function Answers({ data, formDataState, handleChange }) {
             );
 
           case 'answerText':
+            let inputType = 'text';
+            if (schemaName === 'email') inputType = 'email';
+            else if (schemaName === 'phone') inputType = 'tel';
+
             return (
               <div key={_key} className="label-input-group mt-10">
                 <label htmlFor={_key} className="body--large">{heading}</label>
-                <input type="text" id={_key} name={schemaName} value={formDataState[schemaName]} onChange={handleChange} className="input body--large" />
+                <input
+                  type={inputType}
+                  id={_key}
+                  name={schemaName}
+                  value={formDataState[schemaName] || ''}
+                  onChange={handleChange}
+                  className="input body--large"
+                  {...(inputType === 'tel' && { pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}', placeholder: '123-456-7890' })}
+                />
               </div>
             );
 

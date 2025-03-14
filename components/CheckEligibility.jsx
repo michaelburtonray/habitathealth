@@ -2,16 +2,34 @@
 
 import React, { useActionState, useCallback, useState } from "react";
 import Image from "next/image";
+import { PortableText } from "next-sanity";
 
-import Button from "@/components/Button";
 import Answers from "@/components/Answers";
-import { schema } from "@/sanity/schema";
+import Button from "@/components/Button";
+import IconPhone from "@/components/IconPhone";
+import IconEmail from "@/components/IconEmail";
+
 
 export default function CheckEligibility(props) {
-  const { copy, cta, disclaimer, intro, sections, title } = props;
+  const {
+    copy,
+    cta,
+    disclaimer,
+    intro,
+    sections,
+    successCopy,
+    title,
+    zipCodes,
+  } = props;
+
   const [currentSection, setCurrentSection] = useState(-1);
-  const [steps, setSteps] = useState(sections.filter(({ questions }) => questions && questions.length > 0));
+
+  const [steps, setSteps] = useState(
+    sections.filter(({ questions }) => questions && questions.length > 0)
+  );
+
   const [formDataState, setFormDataState] = useState({});
+  const [hasFailed, setHasFailed] = useState(false);
 
   const initialState = {
     message: '',
@@ -25,20 +43,62 @@ export default function CheckEligibility(props) {
 
     setFormDataState({ ...prevFormDataState, [name]: value });
 
-    if (type === 'radio') setCurrentSection(currentSection + 1);
+    if (type === 'radio') {
+      if (value == 'No') return setHasFailed(true);
+
+      setCurrentSection(currentSection + 1);
+    }
   }, [currentSection, formDataState, setFormDataState]);
 
   const handleSubmit = (e) => {
+    e.preventDefault();
+
     if (currentSection < steps.length - 1) {
-      e.preventDefault();
-      setCurrentSection(currentSection + 1);
+      const zip = formDataState['zip-code'];
+      if (zip) {
+        const isValidZip = zipCodes.includes(zip);
+
+        if (!isValidZip) {
+          return setHasFailed(true);
+        }
+      }
+
+      return setCurrentSection(currentSection + 1);
     }
+
+    window.scrollTo(0, 0);
+    setCurrentSection(currentSection + 1);
   }
 
   const handleIntroSubmit = (e) => {
     e.preventDefault();
     setCurrentSection(0);
   };
+
+  const components = {
+    block: {
+      normal: ({ children, markDefs }) => {
+        const { props } = children[0];
+        let icon = '';
+
+        if (props) {
+          const { markType, value } = props;
+
+          if (markType === 'link') {
+            if (value.href.includes('tel')) {
+              icon = <IconPhone />
+            } else if (value.href.includes('mailto')) {
+              icon = <IconEmail />
+            }
+          }
+
+          return <p className="button button--green flex gap-2 items-center !px-4 text-white">{icon}{children}</p>
+        }
+
+        return <p>{children}</p>
+      }
+    }
+  }
 
   return (
     <div className="lg:grid lg:grid-cols-2 lg:gap-[8rem] px-5 lg:px-10 py-10 lg:p-20">
@@ -90,9 +150,11 @@ export default function CheckEligibility(props) {
 
         {currentSection > -1 && (
           <>
-            <div className="form-nav flex gap-4 justify-between w-full">
+            <div className={`form-nav flex gap-4 justify-between w-full ${hasFailed || currentSection === steps.length && 'pointer-events-none'}`}>
               {steps?.map(({ _key, title }, idx) => {
                 const isActive = idx === currentSection;
+                const isCompleted = idx < currentSection;
+                const colors = isCompleted ? 'bg-cream border-cream' : '';
                 return (
                   <React.Fragment key={_key}>
                     {idx !== 0 && <div className="flex max-lg:hidden items-center w-full">
@@ -101,10 +163,14 @@ export default function CheckEligibility(props) {
                     <button
                       key={_key}
                       onClick={() => setCurrentSection(idx)}
-                      className={`body--large flex gap-3 items-center ${!isActive && 'max-lg:hidden'}`}
+                      className={`body--large flex gap-3 items-center ${!isActive && 'max-lg:hidden'} ${!isCompleted && 'pointer-events-none'}`}
                     >
-                      <span className={`box-border border border-green inline-flex items-center justify-center w-10 h-10 rounded-full transition-colors ${isActive && 'bg-green text-white'}`}>
-                        {idx + 1}
+                      <span className={`box-border border border-green inline-flex items-center justify-center w-10 h-10 rounded-full transition-colors ${isActive? 'bg-green text-white' : colors} `}>
+                        {isCompleted ? (
+                          <svg width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.5031 2L7.50293 14.0002L1.49609 7.99331" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+                          </svg>
+                        ) : idx + 1}
                       </span>
                       {title}
                     </button>
@@ -114,28 +180,39 @@ export default function CheckEligibility(props) {
             </div>
 
             <form action={`mailto:rinaldy@human-nyc.com?body=${formDataState}`} onSubmit={handleSubmit}>
-              {steps?.map(({ _key, questions }, idx) => {
-                return (
-                  <fieldset key={_key} className={`mt-10 ${idx === currentSection ? 'block' : 'hidden'}`}>
-                    {questions.map(({ _key, _type, answers, info, question }, idx) => {
-                      return (
-                        <React.Fragment key={_key}>
-                          {question && idx === 0 && <h4>{question}</h4>}
-                          {info && <p className="body--large mt-6">{info}</p>}
-                          <Answers data={answers} formDataState={formDataState} handleChange={handleChange} />
-                        </React.Fragment>
-                      )
-                    })}
-                  </fieldset>
-                )
+              {steps?.map(({ _key, failureCopy, questions }, idx) => {
+                return hasFailed ? (
+                    <div key={_key} className={`rte bg-orange p-5 rounded-2xl ${idx === currentSection ? 'block' : 'hidden'}`}>
+                      <PortableText value={failureCopy} components={components} />
+                    </div>
+                  )
+                  : (
+                    <fieldset key={_key} className={`mt-10 ${idx === currentSection ? 'block' : 'hidden'}`}>
+                      {questions.map(({ _key, _type, answers, info, question }, idx) => {
+                        return (
+                          <React.Fragment key={_key}>
+                            {question && idx === 0 && <h4>{question}</h4>}
+                            {info && <p className="body--large mt-6">{info}</p>}
+                            <Answers data={answers} formDataState={formDataState} handleChange={handleChange} />
+                          </React.Fragment>
+                        )
+                      })}
+                    </fieldset>
+                  )
               })}
 
-             {currentSection !== steps.length - 1 && <div className="flex justify-end mt-10">
-                <button type="button" className="button button--green" onClick={() => setCurrentSection(currentSection + 1)}>Next</button>
+              {currentSection === steps.length && (
+                <div className={`rte bg-sky-blue p-5 rounded-2xl`}>
+                  <PortableText value={successCopy} components={components} />
+                </div>
+              )}
+
+             {currentSection <= steps.length - 2 && !hasFailed && <div className="flex justify-end mt-10">
+                <button type="submit" className="button button--green">Next</button>
               </div>}
 
               {currentSection === steps.length - 1 && <div className="flex lg:justify-center mt-10">
-                <Button hasArrow={true} modifier={'!w-[15rem]'} title={'Submit'} type={'submit'} />
+                <Button hasArrow={true} modifier={'!w-[15rem]'} title={'Submit'} type="submit" />
               </div>}
             </form>
           </>
