@@ -27,6 +27,6 @@ export default defineType({
         defineArrayMember({ type: 'answerText' }),
         defineArrayMember({ type: 'answerTextarea' }),
       ]
-    })
+    }),
   ]
 })

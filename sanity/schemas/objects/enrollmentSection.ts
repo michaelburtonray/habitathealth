@@ -11,17 +11,20 @@ export default defineType({
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
+
     defineField({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
     }),
+
     defineField({
       name: 'copy',
       title: 'Copy',
       type: 'text',
       validation: (Rule) => Rule.required(),
     }),
+
     defineField({
       name: 'image',
       title: 'Image',
@@ -36,12 +39,32 @@ export default defineType({
         }),
       ],
     }),
+
     defineField({
       name: 'questions',
       title: 'Questions',
       type: 'array',
       of: [
         defineArrayMember({ type: 'formField' }),
+      ],
+    }),
+
+    defineField({
+      name: 'failureCopy',
+      title: 'Failure Copy',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          lists: [],
+          marks: {
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+            ],
+          },
+        }),
       ],
     }),
   ],

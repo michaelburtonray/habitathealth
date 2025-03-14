@@ -4223,6 +4223,13 @@
           "type": "string"
         },
         "optional": true
+      },
+      "zipCodes": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
       }
     }
   },

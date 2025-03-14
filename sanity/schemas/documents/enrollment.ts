@@ -58,5 +58,31 @@ export default defineType({
       title: 'Disclaimer',
       type: 'text',
     }),
+
+    defineField({
+      name: 'zipCodes',
+      title: 'Zip Codes',
+      type: 'text',
+      description: 'Comma separated list of zip codes',
+    }),
+
+    defineField({
+      name: 'successCopy',
+      title: 'Success Copy',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          lists: [],
+          marks: {
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+            ],
+          },
+        }),
+      ],
+    }),
   ],
 });

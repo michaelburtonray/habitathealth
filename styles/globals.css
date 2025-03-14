@@ -16,7 +16,7 @@
 
   /* Buttons */
   .button {
-    @apply bg-orange hover:bg-cream flex items-center justify-center px-8 h-[3.25rem] rounded-[2rem] text-lg text-green transition-colors w-max;
+    @apply bg-orange cursor-pointer hover:bg-cream flex items-center justify-center px-8 h-[3.25rem] rounded-[2rem] text-lg text-green transition-colors w-max;
   }
 
   .button--slim {
@@ -148,6 +148,10 @@ select {
   @apply border border-green mt-4 p-5 rounded-2xl w-full h-14;
 }
 
+.label-input-group label {
+  @apply cursor-pointer;
+}
+
 .label-select-group select {
   @apply !py-0 hover:bg-transparent;
 }
@@ -181,7 +185,6 @@ main.about > .image-with-text:not(:first-child) {
 .hero-slider p.eyebrow {
   @apply max-lg:!font-medium max-lg:!text-base;
 }
-
 
 .rte a {
   @apply underline;
