@@ -162,7 +162,7 @@ export default function CheckEligibility(props) {
                     <button
                       key={_key}
                       onClick={() => setCurrentSection(idx)}
-                      className={`body--large flex gap-3 items-center ${!isActive && 'max-lg:hidden'}`}
+                      className={`body--large flex gap-3 items-center ${!isActive && 'max-lg:hidden'} ${!isCompleted && 'pointer-events-none'}`}
                     >
                       <span className={`box-border border border-green inline-flex items-center justify-center w-10 h-10 rounded-full transition-colors ${isActive? 'bg-green text-white' : colors} `}>
                         {isCompleted ? (
