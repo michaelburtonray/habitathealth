@@ -66,6 +66,7 @@ export default function CheckEligibility(props) {
       return setCurrentSection(currentSection + 1);
     }
 
+    window.scrollTo(0, 0);
     setCurrentSection(currentSection + 1);
   }
 
