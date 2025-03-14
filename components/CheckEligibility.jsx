@@ -151,7 +151,7 @@ export default function CheckEligibility(props) {
 
         {currentSection > -1 && (
           <>
-            <div className={`form-nav flex gap-4 justify-between w-full ${hasFailed && 'pointer-events-none'}`}>
+            <div className={`form-nav flex gap-4 justify-between w-full ${hasFailed || currentSection === steps.length && 'pointer-events-none'}`}>
               {steps?.map(({ _key, title }, idx) => {
                 const isActive = idx === currentSection;
                 const isCompleted = idx < currentSection;
