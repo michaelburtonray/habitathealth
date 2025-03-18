@@ -189,6 +189,11 @@ main.about > .image-with-text:not(:first-child) {
 .rte a {
   @apply underline;
 }
+
 .rte p + p {
   @apply mt-4;
+}
+
+footer .rte p.button + p.button {
+  @apply mt-0;
 }

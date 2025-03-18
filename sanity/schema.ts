@@ -28,8 +28,11 @@ import answerText from './schemas/objects/answerText'
 import answerTextArea from './schemas/objects/answerTextarea'
 import button from './schemas/objects/button'
 import enrollmentSection from './schemas/objects/enrollmentSection'
+import footer from './schemas/objects/footer'
 import formField from './schemas/objects/formField'
 import header from './schemas/objects/header'
+import linkList from './schemas/objects/linkList'
+import linkObject from './schemas/objects/linkObject'
 import testimonial from './schemas/objects/testimonial'
 
 const singletons = [
@@ -61,8 +64,11 @@ const objects = [
   answerTextArea,
   button,
   enrollmentSection,
+  footer,
   formField,
   header,
+  linkList,
+  linkObject,
   testimonial
 ]
 

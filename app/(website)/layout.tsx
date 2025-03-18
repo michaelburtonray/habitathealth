@@ -33,15 +33,15 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const settingsData = await getSettingsData() as Settings;
-  const { header } = settingsData;
+  const { header, footer } = settingsData;
   return (
     <html lang="en">
       <body
-        className={`${gellix.variable} antialiased px-[--padding] py-0`}
+        className={`${gellix.variable} antialiased px-[--padding] pb-[--padding]`}
       >
         {header && <Header { ...header } />}
         {children}
-        <Footer />
+        {footer && <Footer { ...footer } />}
       </body>
     </html>
   );

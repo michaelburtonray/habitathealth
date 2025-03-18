@@ -39,6 +39,14 @@ const imageData = /* groq */`{
   'aspectRatio': asset->metadata.dimensions.aspectRatio,
 }`;
 
+const linkObjectData = /* groq */`{
+  ...,
+  internalLink->{
+    'slug': slug.current,
+    title,
+  },
+}`;
+
 const heroData = /* groq */`{
   ...,
   button ${buttonData},
@@ -147,12 +155,24 @@ export const enrollmentQuery = defineQuery(`
   }`)
 
 export const pageQuery = defineQuery(`
-  *[_type == "page" && $slug in slug[].value.current][0] {
+  *[_type == "page" && $slug == slug.current][0] {
     ...,
     content[]->${contentData},
   }
 `);
 
 export const settingsQuery = defineQuery(`
-  *[_type == "settings"][0]
+  *[_type == "settings"][0] {
+    ...,
+    footer {
+      ...,
+      contactInfo,
+      linkLists[] {
+        ...,
+        links[] ${linkObjectData},
+      },
+      regulatoryLinks[] ${linkObjectData},
+      socialLinks[] ${linkObjectData},
+    }
+  }
 `);

@@ -8,14 +8,14 @@ export default defineType({
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'internationalizedArrayString',
+      type: 'string',
       validation: (Rule) => Rule.required(),
     }),
 
     defineField({
       name: 'slug',
       title: 'Slug',
-      type: 'internationalizedArraySlug',
+      type: 'slug',
       validation: (Rule) => Rule.required(),
       options: {
         source: 'title',
@@ -54,8 +54,8 @@ export default defineType({
     },
     prepare({ title, slug }) {
       return {
-        title: title[0]?.value,
-        subtitle: `/${slug[0]?.value?.current}`,
+        title: title,
+        subtitle: `/${slug.current}`,
       }
     }
   }

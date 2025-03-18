@@ -37,5 +37,12 @@ export default defineType({
       type: 'header',
       description: 'The header of the site',
     }),
-  ]
-})
+
+    defineField({
+      name: 'footer',
+      title: 'Footer',
+      type: 'footer',
+      description: 'The footer of the site',
+    }),
+  ],
+});
