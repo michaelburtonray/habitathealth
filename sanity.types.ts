@@ -211,6 +211,31 @@ export type Testimonial = {
   };
 };
 
+export type LinkObject = {
+  _type: "linkObject";
+  title?: string;
+  url?: string;
+  internalLink?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "page";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "enrollment";
+  };
+};
+
+export type LinkList = {
+  _type: "linkList";
+  title?: string;
+  links?: Array<{
+    _key: string;
+  } & LinkObject>;
+};
+
 export type FormField = {
   _type: "formField";
   question?: string;
@@ -246,6 +271,24 @@ export type EnrollmentSection = {
   questions?: Array<{
     _key: string;
   } & FormField>;
+  failureCopy?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
 };
 
 export type AnswerTextarea = {
@@ -427,12 +470,8 @@ export type Page = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: Array<{
-    _key: string;
-  } & InternationalizedArrayStringValue>;
-  slug?: Array<{
-    _key: string;
-  } & InternationalizedArraySlugValue>;
+  title?: string;
+  slug?: Slug;
   content?: Array<{
     _ref: string;
     _type: "reference";
@@ -698,6 +737,24 @@ export type Enrollment = {
   } & EnrollmentSection>;
   disclaimer?: string;
   zipCodes?: string;
+  successCopy?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
 };
 
 export type SanityImageCrop = {
@@ -777,6 +834,56 @@ export type Settings = {
   defaultTitle?: string;
   description?: string;
   header?: Header;
+  footer?: Footer;
+};
+
+export type Footer = {
+  _type: "footer";
+  linkLists?: Array<{
+    _key: string;
+  } & LinkList>;
+  contactInfo?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  socialLinks?: Array<{
+    _key: string;
+  } & LinkObject>;
+  regulatoryLinks?: Array<{
+    _key: string;
+  } & LinkObject>;
+  copy?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
 };
 
 export type Header = {
@@ -834,7 +941,7 @@ export type InternationalizedArraySlug = Array<{
   _key: string;
 } & InternationalizedArraySlugValue>;
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | BlockContent | Category | Post | Author | Testimonial | FormField | EnrollmentSection | AnswerTextarea | AnswerText | AnswerSelectDropdown | AnswerRadioButtons | TextWithPercentages | TextWithList | TextWithIcons | TextWithChart | TextWithBubbles | Testimonials | Page | LogoWithIcons | Leadership | ImageWithTextGroup | ImageWithText | HeroSlider | Hero | Enrollment | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Button | Settings | Header | InternationalizedArrayTextValue | InternationalizedArrayStringValue | InternationalizedArraySlugValue | Slug | InternationalizedArrayText | InternationalizedArrayString | InternationalizedArraySlug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | BlockContent | Category | Post | Author | Testimonial | LinkObject | LinkList | FormField | EnrollmentSection | AnswerTextarea | AnswerText | AnswerSelectDropdown | AnswerRadioButtons | TextWithPercentages | TextWithList | TextWithIcons | TextWithChart | TextWithBubbles | Testimonials | Page | LogoWithIcons | Leadership | ImageWithTextGroup | ImageWithText | HeroSlider | Hero | Enrollment | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Button | Settings | Footer | Header | InternationalizedArrayTextValue | InternationalizedArrayStringValue | InternationalizedArraySlugValue | Slug | InternationalizedArrayText | InternationalizedArrayString | InternationalizedArraySlug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: enrollmentQuery
@@ -881,9 +988,45 @@ export type EnrollmentQueryResult = {
     questions?: Array<{
       _key: string;
     } & FormField>;
+    failureCopy?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
   }> | null;
   disclaimer?: string;
   zipCodes?: string;
+  successCopy?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
 } | null;
 // Variable: pageQuery
 // Query: *[_type == "page" && $slug in slug[].value.current][0] {    ...,    content[]->{  ...,  _type == 'hero' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  mobileImage {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'heroSlider' => {  ...,  slides[] {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},},  _type == 'imageWithText' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  'isImageOnLeft': isImageOnLeft,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'imageWithTextGroup' => {  ...,  content[]-> {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  'isImageOnLeft': isImageOnLeft,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'leadership' => {  ...,  leaders[] {    ...,    image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  },},  _type == 'logoWithIcons' => {  ...,  icons[] {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},},  _type == 'testimonials' => {  ...,  testimonials[] {  ...,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'textWithChart' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},  _type == 'textWithIcons' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  icons[] {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'textWithList' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},  _type == 'textWithPercentages' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},},  }
@@ -893,12 +1036,8 @@ export type PageQueryResult = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: Array<{
-    _key: string;
-  } & InternationalizedArrayStringValue>;
-  slug?: Array<{
-    _key: string;
-  } & InternationalizedArraySlugValue>;
+  title?: string;
+  slug?: Slug;
   content: Array<{
     _id: string;
     _type: "hero";
@@ -1336,6 +1475,7 @@ export type SettingsQueryResult = {
   defaultTitle?: string;
   description?: string;
   header?: Header;
+  footer?: Footer;
 } | null;
 
 // Query TypeMap

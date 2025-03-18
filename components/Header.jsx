@@ -10,9 +10,8 @@ import IconClose from "./IconClose";
 import IconHamburger from "./IconHamburger";
 import Logo from "./Logo";
 import IconArrow from "./IconArrow";
-import { type Header } from "@/sanity.types";
 
-export default function Header(props: Header) {
+export default function Header(props) {
   const { promoBar } = props;
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
