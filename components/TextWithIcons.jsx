@@ -5,11 +5,10 @@ import { getBackgroundColor } from "./helpers";
 export default function TextWithIcons(props) {
   const { bgColor, button, copy, icons, isStacked, text, title } = props;
   const sanitizedString = (string) => Array.isArray(string) ? null : string;
-  const getCols = () => isStacked && icons.length < 6 ? 'max-lg:grid-cols-1 lg:grid-cols-5 lg:gap-x-10' : 'lg:grid-cols-3'
-  const getPadding = () => isStacked && icons.length > 5 ? 'lg:px-20' : 'lg:px-10';
+  const getCols = () => isStacked && icons.length < 6 ? 'max-lg:grid-cols-1 lg:flex lg:justify-between lg:gap-x-10' : 'lg:grid-cols-3'
 
   return (
-    <div className={`text-with-icons my-[--padding] px-5 py-10 lg:py-20 rounded-2xl ${isStacked ? `${getPadding()}` : 'lg:grid lg:grid-cols-2 lg:px-10'} ${getBackgroundColor(bgColor)}`}>
+    <div className={`text-with-icons my-[--padding] px-5 py-10 lg:py-20 rounded-2xl ${isStacked ? `lg:px-20` : 'lg:grid lg:grid-cols-2 lg:px-10'} ${getBackgroundColor(bgColor)}`}>
       <div className="text-with-icons__text">
         <div className={`flex flex-col gap-6 ${isStacked ? 'lg:gap-8 lg:items-center lg:text-center' : 'max-w-[33rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]'}`}>
           {sanitizedString(title) && isStacked ? <h2>{title}</h2> : <div className="eyebrow">{title}</div>}
