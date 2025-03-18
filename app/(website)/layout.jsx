@@ -19,7 +19,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${gellix.variable} antialiased px-[--padding] pb-[--padding]`}
+        className={`${gellix.variable} antialiased px-[--padding] max-lg:pb-20 pb-[--padding]`}
       >
         {header && <Header { ...header } />}
         {children}

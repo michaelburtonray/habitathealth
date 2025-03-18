@@ -36,14 +36,18 @@ export default defineType({
       name: 'socialLinks',
       title: 'Social Links',
       type: 'array',
-      of: [{ type: 'linkObject' }],
+      of: [
+        defineArrayMember({ type: 'linkObject' }),
+      ],
     }),
 
     defineField({
       name: "regulatoryLinks",
       title: "Regulatory Links",
       type: "array",
-      of: [{ type: "linkObject" }],
+      of: [
+        defineArrayMember({ type: 'linkObject' }),
+      ],
     }),
 
     defineField({
