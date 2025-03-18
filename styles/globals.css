@@ -200,7 +200,7 @@ main.about > .image-with-text:not(:first-child) {
   @apply underline;
 }
 
-.rte p + p {
+.rte:not(.promo-bar) p + p {
   @apply mt-4;
 }
 

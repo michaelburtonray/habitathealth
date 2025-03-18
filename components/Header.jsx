@@ -9,14 +9,41 @@ import { PortableText } from "next-sanity";
 
 import IconClose from "./IconClose";
 import IconHamburger from "./IconHamburger";
-import Logo from "./Logo";
 import IconArrow from "./IconArrow";
+import IconPhone from "./IconPhone";
+import IconEmail from "./IconEmail";
 import LinkObject from "./LinkObject";
+import Logo from "./Logo";
 
 export default function Header(props) {
   const { contactList, image, nav, promoBar } = props;
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const components = {
+    block: {
+      normal: ({ children, markDefs }) => {
+        const { props } = children[0];
+        let icon = '';
+
+        if (props) {
+          const { markType, value } = props;
+
+          if (markType === 'link') {
+            if (value.href.includes('tel')) {
+              icon = <IconPhone />
+            } else if (value.href.includes('mailto')) {
+              icon = <IconEmail />
+            }
+          }
+
+          return <p className="flex gap-1 items-center !px-4">{icon}{children}</p>
+        }
+
+        return <p>{children}</p>
+      }
+    }
+  }
 
   // Closes on route change
   useEffect(() => {
@@ -37,10 +64,10 @@ export default function Header(props) {
   }, [isMenuOpen]);
 
   return (
-    <header className={`bg-fern-green sticky top-0 z-30 ${isMenuOpen && 'menu-open'}`}>
+    <header className={`bg-fern-green sticky top-0 z-30 ${isMenuOpen ? 'menu-open' : ''}`}>
       {isMenuOpen && <div className="bg-charcoal/70 fixed inset-0" />}
-      <div className="promo-bar rte body--small flex gap-4 items-end lg:items-center justify-center h-20 lg:h-10 max-lg:pb-5 relative text-white">
-        {promoBar && <PortableText value={promoBar} />}
+      <div className="promo-bar rte body--small flex max-lg:flex-col lg:gap-2 items-center justify-end lg:justify-center h-20 lg:h-10 max-lg:pb-5 relative text-white">
+        {promoBar && <PortableText value={promoBar} components={components} />}
         {/* <span>Now operating in Sacremento</span>
         <span className="inline-flex items-center gap-1">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
