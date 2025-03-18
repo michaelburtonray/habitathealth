@@ -1,7 +1,10 @@
 import Link from "next/link";
 
+import IconPhone from "./IconPhone";
+import IconEmail from "./IconEmail";
+
 export default function LinkObject(props) {
-  const { internalLink, modifiers, title, url } = props;
+  const { internalLink, isButton, modifiers, title, url } = props;
   let icon = null;
 
   switch (title) {
@@ -44,14 +47,22 @@ export default function LinkObject(props) {
       break;
   }
 
+  if (isButton) {
+    if (url.includes('tel')) {
+      icon = <IconPhone />
+    } else if (url.includes('mailto')) {
+      icon = <IconEmail />
+    }
+  }
+
   return internalLink
     ? (
       <Link href={`/${internalLink.slug}`} className={modifiers}>{title || internalLink.title}</Link>
     )
     : (
-      <a href={url || '/'} className={modifiers} target="_blank" rel="noopener noreferrer">
+      <a href={url || '/'} className={`${modifiers} ${isButton ? 'button button--slim flex gap-2 items-center !px-4' : ''}`} target="_blank" rel="noopener noreferrer">
         {icon}
-        <span className={icon && 'hidden'}>{title}</span>
+        <span className={(icon && !isButton) && 'hidden'}>{title}</span>
       </a>
     )
 };

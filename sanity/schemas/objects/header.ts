@@ -20,25 +20,43 @@ export default defineType({
               {title: 'Strong', value: 'strong'},
               {title: 'Emphasis', value: 'em'},
             ],
-
-            /* annotations: [
-              {
-                name: 'link',
-                title: 'Link',
-                type: 'link',
-              },
-            ], */
           },
         }),
       ],
     }),
 
-    /* defineField({
+    defineField({
       name: 'nav',
       title: 'Navigation',
       type: 'array',
-      of: [{ type: 'link' }],
+      of: [
+        defineArrayMember({ type: 'linkObject' }),
+      ],
       validation: (Rule) => Rule.max(3).required(),
-    }), */
-  ]
-})
+    }),
+
+    defineField({
+      name: 'image',
+      title: 'Mobile Menu Image',
+      type: 'image',
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
+
+    defineField({
+      name: 'contactList',
+      title: 'Contact List',
+      type: 'array',
+      of: [
+        defineArrayMember({ type: 'linkObject' }),
+      ],
+      validation: (Rule) => Rule.max(2),
+    }),
+  ],
+});

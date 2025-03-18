@@ -173,6 +173,16 @@ export const settingsQuery = defineQuery(`
       },
       regulatoryLinks[] ${linkObjectData},
       socialLinks[] ${linkObjectData},
+    },
+    header {
+      ...,
+      contactList[] ${linkObjectData},
+      image {
+        ...,
+        'assetPath': asset->path,
+        'aspectRatio': asset->metadata.dimensions.aspectRatio,
+      },
+      nav[] ${linkObjectData},
     }
   }
 `);
