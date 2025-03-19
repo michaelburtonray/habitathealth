@@ -7,7 +7,7 @@ export default function ImageWithTextGroup(props) {
   return (
     <div className={`image-with-text-group my-[--padding] px-5 lg:px-10 py-10 lg:py-20 rounded-[--radius] ${getBackgroundColor(bgColor)}`}>
       {title &&<div className="eyebrow lg:text-center">{title}</div>}
-      {text &&<h4 className="lg:text-center mt-6 mx-auto max-w-[46.875rem]">{text}</h4>}
+      {text &&<h3 className="lg:text-center mt-6 mx-auto max-w-[46.875rem]">{text}</h3>}
 
       {content.map((c, index) => {
         const { _id, image, text, title } = c;

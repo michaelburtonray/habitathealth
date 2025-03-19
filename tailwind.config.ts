@@ -20,6 +20,7 @@ export default {
         grey: "#C7C7C7",
         "light-grey": "#E3E3E3",
         orange: "#FCA949",
+        red: "#BA0306",
         "sky-blue": "#D8EEF6",
         transparent: "transparent",
         white: "#FFFFFF",

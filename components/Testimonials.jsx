@@ -9,7 +9,7 @@ export default function Testimonials(props) {
       {text && <p className="eyebrow lg:text-center">{text}</p>}
 
       <div className="grid gap-10 lg:grid-cols-2 mt-10 lg:mt-[3.1875rem]">
-        {testimonials?.map((testimonial) => <TestimonialCard key={testimonial._id} {...testimonial} />)}
+        {testimonials?.map((testimonial) => <TestimonialCard key={testimonial._key} {...testimonial} />)}
       </div>
     </div>
   )
