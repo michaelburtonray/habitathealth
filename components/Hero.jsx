@@ -6,7 +6,7 @@ export default function Hero(props) {
 
   return (
     <div className="hero grid grid-cols-2">
-      <figure className="hero__image max-lg:!aspect-[35.8/55] bg-green -mr-[100%] overflow-hidden relative rounded-b-2xl lg:w-[200%] lg:h-[calc(100svh-8.875rem)]" style={{ aspectRatio: image.aspectRatio }}>
+      <figure className="hero__image max-lg:!aspect-[35.8/55] bg-green -mr-[100%] overflow-hidden relative rounded-b-2xl lg:w-[200%] lg:max-h-[calc(100svh-9.5rem)]" style={{ aspectRatio: image.aspectRatio }}>
         {image && image.assetPath && <Image
           src={image.assetPath}
           fill={true}
