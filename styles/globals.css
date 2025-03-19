@@ -85,7 +85,7 @@ body,
 }
 
 h1 {
-  @apply font-light font-display leading-[1.10] lg:leading-none tracking-[-0.01em] text-[2.5rem] lg:text-[4.5rem];
+  @apply font-light font-display leading-[1.1] lg:leading-none tracking-[-0.01em] text-[2.5rem] lg:text-[4.5rem];
 }
 
 h2 {
@@ -93,15 +93,15 @@ h2 {
 }
 
 h3 {
-  @apply font-semibold leading-none tracking-normal text-[3.5rem];
+  @apply font-display font-light leading-none lg:leading-[1.05] tracking-[-0.01em] text-[2rem] lg:text-[3rem];
 }
 
 h4 {
-  @apply font-light font-display leading-[1.05] tracking-[-0.01em] text-[3rem];
+  @apply font-light font-display leading-[1.1] tracking-[-0.01em] text-[2.5rem];
 }
 
 h5 {
-  @apply font-light font-display leading-[1.10] tracking-[-0.01em] text-[2.5rem];
+  @apply font-light font-display leading-none tracking-[-0.01em] text-[2rem];
 }
 
 h6 {
@@ -188,15 +188,11 @@ main.about > .image-with-text:not(:first-child) {
   @apply !bg-green !text-white !pb-10 lg:!pb-14 rounded-b-none;
 }
 
-.hero-slider h4 {
-  @apply max-lg:!font-sans max-lg:leading-[1.4] max-lg:!tracking-normal max-lg:!font-semibold max-lg:!text-lg;
-}
-
 .hero-slider p.eyebrow {
   @apply max-lg:!font-medium max-lg:!text-base;
 }
 
-.rte a {
+div:not(.hero) .rte a {
   @apply underline;
 }
 

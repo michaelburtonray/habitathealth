@@ -30,7 +30,7 @@ export default function ImageWithText(props) {
     if (!text) return;
 
     if (isHero) return <h1>{text}</h1>
-    else return <h4>{text}</h4>
+    else return <h3>{text}</h3>
   }
 
   return (

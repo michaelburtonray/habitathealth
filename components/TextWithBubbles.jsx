@@ -7,7 +7,7 @@ export default function TextWithBubbles(props) {
     <div className="text-with-bubbles bg-green lg:grid lg:grid-cols-2 -mt-[--padding] pb-10 lg:pb-20 px-5 lg:px-10 rounded-b-2xl">
       <div className="text-with-bubbles__text">
         <div className="flex flex-col gap-6 max-w-[35rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]">
-          {title && <h4>{title}</h4>}
+          {title && <h3>{title}</h3>}
         </div>
       </div>
 

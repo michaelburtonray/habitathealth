@@ -5,7 +5,7 @@ export default function Leadership(props) {
 
   return (
     <div className="leadership bg-cream my-[--padding] px-5 lg:px-[11.25rem] py-10 lg:py-20 rounded-2xl text-green">
-      {title && <h4 className="lg:max-w-[33rem] lg:mx-auto">{title}</h4>}
+      {title && <h3 className="lg:max-w-[33rem] lg:mx-auto lg:text-center">{title}</h3>}
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10 lg:gap-y-14 mt-10 lg:mt-14">
         {leaders.map(({ _key, image, name, title: t }) => (
