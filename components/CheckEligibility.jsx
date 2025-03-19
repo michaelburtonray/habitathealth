@@ -179,26 +179,30 @@ export default function CheckEligibility(props) {
               })}
             </div>
 
-            <form action={`mailto:rinaldy@human-nyc.com?body=${formDataState}`} onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
               {steps?.map(({ _key, failureCopy, questions }, idx) => {
-                return hasFailed ? (
-                    <div key={_key} className={`rte bg-orange p-5 rounded-2xl ${idx === currentSection ? 'block' : 'hidden'}`}>
+                return idx === currentSection && (
+                  <React.Fragment key={_key}>
+                    {hasFailed ? (
+                    <div className={`rte bg-orange p-5 rounded-2xl`}>
                       <PortableText value={failureCopy} components={components} />
                     </div>
                   )
                   : (
-                    <fieldset key={_key} className={`mt-10 ${idx === currentSection ? 'block' : 'hidden'}`}>
+                    <fieldset className={`mt-10`}>
                       {questions.map(({ _key, _type, answers, info, question }, idx) => {
                         return (
                           <React.Fragment key={_key}>
-                            {question && idx === 0 && <h4>{question}</h4>}
+                            {question && idx === 0 && <h3>{question}</h3>}
                             {info && <p className="body--large mt-6">{info}</p>}
                             <Answers data={answers} formDataState={formDataState} handleChange={handleChange} />
                           </React.Fragment>
                         )
                       })}
                     </fieldset>
-                  )
+                  )}
+                  </React.Fragment>
+                )
               })}
 
               {currentSection === steps.length && (
@@ -208,7 +212,7 @@ export default function CheckEligibility(props) {
               )}
 
              {currentSection <= steps.length - 2 && !hasFailed && <div className="flex justify-end mt-10">
-                <button type="submit" className="button button--green">Next</button>
+                <button type="button" className="button button--green">Next</button>
               </div>}
 
               {currentSection === steps.length - 1 && <div className="flex lg:justify-center mt-10">
