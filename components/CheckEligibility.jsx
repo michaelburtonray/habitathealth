@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useActionState, useCallback, useState } from "react";
+import React, { useActionState, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 
@@ -75,6 +75,11 @@ export default function CheckEligibility(props) {
     setCurrentSection(0);
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    console.log(formDataState);
+  }, [currentSection, hasFailed]);
+
   const components = {
     block: {
       normal: ({ children, markDefs }) => {
@@ -108,7 +113,7 @@ export default function CheckEligibility(props) {
           {currentSection === -1 && (
             <>
               <p className="eyebrow !max-w-[30rem]">{intro}</p>
-              <form method="post" onSubmit={handleIntroSubmit}>
+              <form onSubmit={handleIntroSubmit}>
                 {cta && <Button {...cta} type={'submit'} />}
               </form>
             </>
@@ -179,10 +184,10 @@ export default function CheckEligibility(props) {
               })}
             </div>
 
-            <form onSubmit={handleSubmit}>
+            <div>
               {steps?.map(({ _key, failureCopy, questions }, idx) => {
                 return idx === currentSection && (
-                  <React.Fragment key={_key}>
+                  <form key={_key} id="elligibility-form" onSubmit={handleSubmit}>
                     {hasFailed ? (
                     <div className={`rte bg-orange p-5 rounded-2xl`}>
                       <PortableText value={failureCopy} components={components} />
@@ -201,7 +206,7 @@ export default function CheckEligibility(props) {
                       })}
                     </fieldset>
                   )}
-                  </React.Fragment>
+                  </form>
                 )
               })}
 
@@ -212,13 +217,19 @@ export default function CheckEligibility(props) {
               )}
 
              {currentSection <= steps.length - 2 && !hasFailed && <div className="flex justify-end mt-10">
-                <button type="button" className="button button--green">Next</button>
+                <button type="submit" form="elligibility-form" className="button button--green">Next</button>
               </div>}
 
               {currentSection === steps.length - 1 && <div className="flex lg:justify-center mt-10">
-                <Button hasArrow={true} modifier={'!w-[15rem]'} title={'Submit'} type="submit" />
+                <Button
+                  formName={'elligibility-form'}
+                  hasArrow={true}
+                  modifier={'!w-[15rem]'}
+                  title={'Submit'}
+                  type="submit"
+                />
               </div>}
-            </form>
+            </div>
           </>
         )}
       </div>

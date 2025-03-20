@@ -47,6 +47,11 @@ const linkObjectData = /* groq */`{
   },
 }`;
 
+const faqData = /* groq */`{
+  ...,
+  button ${buttonData},
+}`;
+
 const heroData = /* groq */`{
   ...,
   button ${buttonData},
@@ -131,6 +136,7 @@ const textWithPercentagesData = /* groq */`{
 
 const contentData = /* groq */`{
   ...,
+  _type == 'faq' => ${faqData},
   _type == 'hero' => ${heroData},
   _type == 'heroSlider' => ${heroSliderData},
   _type == 'imageWithText' => ${imageWithTextData},

@@ -120,7 +120,7 @@ export default function Header(props) {
                 <ul className="flex flex-col gap-3">
                   {nav.map((link) => (
                      <li key={link._key} className={`${pathname === link.slug ? 'active' : ''}`}>
-                      <h5><LinkObject {...link} /></h5>
+                      <h1><LinkObject {...link} /></h1>
                      </li>
                   ))}
                 </ul>

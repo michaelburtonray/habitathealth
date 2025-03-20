@@ -1,3 +1,4 @@
+import Faqs from "./Faqs";
 import Hero from "./Hero";
 import HeroSlider from "./HeroSlider";
 import ImageWithText from "./ImageWithText";
@@ -17,6 +18,11 @@ export default function Content({ content }) {
       const { _type, _id } = c;
 
       switch (_type) {
+        case 'faq':
+          return (
+            <Faqs key={_id} {...c} />
+          );
+
         case 'hero':
           return (
             <Hero key={_id} {...c} />

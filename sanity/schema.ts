@@ -8,6 +8,7 @@ import author from './schemas/author'
 import settings from './schemas/singletons/settings'
 
 import enrollment from './schemas/documents/enrollment'
+import faq from './schemas/documents/faq'
 import hero from './schemas/documents/hero'
 import heroSlider from './schemas/documents/heroSlider'
 import imageWithText from './schemas/documents/imageWithText'
@@ -28,6 +29,7 @@ import answerText from './schemas/objects/answerText'
 import answerTextArea from './schemas/objects/answerTextarea'
 import button from './schemas/objects/button'
 import enrollmentSection from './schemas/objects/enrollmentSection'
+import faqQA from './schemas/objects/faqQA'
 import footer from './schemas/objects/footer'
 import formField from './schemas/objects/formField'
 import header from './schemas/objects/header'
@@ -42,6 +44,7 @@ const singletons = [
 const documents = [
   ...singletons,
   enrollment,
+  faq,
   hero,
   heroSlider,
   imageWithText,
@@ -64,6 +67,7 @@ const objects = [
   answerTextArea,
   button,
   enrollmentSection,
+  faqQA,
   footer,
   formField,
   header,

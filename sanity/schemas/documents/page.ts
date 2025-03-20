@@ -30,6 +30,7 @@ export default defineType({
       of: [
         { type: 'reference',
           to: [
+            { type: 'faq' },
             { type: 'hero' },
             { type: 'heroSlider' },
             { type: 'imageWithText' },
