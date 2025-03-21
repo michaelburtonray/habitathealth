@@ -8,7 +8,7 @@ export default function Button(props) {
 
   if (type === 'submit') {
     return (
-      <button type="submit" form={formName || ''} className={`button ${hasArrow ? 'button--arrow' : ''} ${modifier}`}>
+      <button type="submit" form={formName || undefined} className={`button ${hasArrow ? 'button--arrow' : ''} ${modifier || ''}`}>
         <span>{title || 'Check'}</span>
 
         {hasArrow && <IconArrow />}

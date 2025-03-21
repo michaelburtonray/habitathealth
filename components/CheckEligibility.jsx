@@ -71,13 +71,14 @@ export default function CheckEligibility(props) {
   }
 
   const handleIntroSubmit = (e) => {
+    console.log('submitting intro form');
     e.preventDefault();
     setCurrentSection(0);
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log(formDataState);
+    console.log(currentSection, formDataState);
   }, [currentSection, hasFailed]);
 
   const components = {
@@ -114,7 +115,7 @@ export default function CheckEligibility(props) {
             <>
               <p className="eyebrow !max-w-[30rem]">{intro}</p>
               <form onSubmit={handleIntroSubmit}>
-                {cta && <Button {...cta} type={'submit'} />}
+                {cta && <Button {...cta} type={'submit'} onClick={handleIntroSubmit} />}
               </form>
             </>
           )}

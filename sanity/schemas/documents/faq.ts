@@ -2,7 +2,7 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
   name: 'faq',
-  title: 'FAQ',
+  title: 'FAQ Section',
   type: 'document',
   fields: [
     defineField({

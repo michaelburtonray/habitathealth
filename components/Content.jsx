@@ -1,3 +1,4 @@
+import FaqPageModule from "./FaqPageModule";
 import Faqs from "./Faqs";
 import Hero from "./Hero";
 import HeroSlider from "./HeroSlider";
@@ -21,6 +22,11 @@ export default function Content({ content }) {
         case 'faq':
           return (
             <Faqs key={_id} {...c} />
+          );
+
+        case 'faqPageModule':
+          return (
+            <FaqPageModule key={_id} {...c} />
           );
 
         case 'hero':

@@ -9,6 +9,7 @@ import settings from './schemas/singletons/settings'
 
 import enrollment from './schemas/documents/enrollment'
 import faq from './schemas/documents/faq'
+import faqPageModule from './schemas/documents/faqPageModule'
 import hero from './schemas/documents/hero'
 import heroSlider from './schemas/documents/heroSlider'
 import imageWithText from './schemas/documents/imageWithText'
@@ -45,6 +46,7 @@ const documents = [
   ...singletons,
   enrollment,
   faq,
+  faqPageModule,
   hero,
   heroSlider,
   imageWithText,

@@ -31,6 +31,7 @@ export default defineType({
         { type: 'reference',
           to: [
             { type: 'faq' },
+            { type: 'faqPageModule' },
             { type: 'hero' },
             { type: 'heroSlider' },
             { type: 'imageWithText' },

@@ -52,6 +52,15 @@ const faqData = /* groq */`{
   button ${buttonData},
 }`;
 
+const faqPageModuleData = /* groq */`{
+  ...,
+  sections[]->{
+    _id,
+    faqQAs,
+    title,
+  },
+}`;
+
 const heroData = /* groq */`{
   ...,
   button ${buttonData},
@@ -137,6 +146,7 @@ const textWithPercentagesData = /* groq */`{
 const contentData = /* groq */`{
   ...,
   _type == 'faq' => ${faqData},
+  _type == 'faqPageModule' => ${faqPageModuleData},
   _type == 'hero' => ${heroData},
   _type == 'heroSlider' => ${heroSliderData},
   _type == 'imageWithText' => ${imageWithTextData},
