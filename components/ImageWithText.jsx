@@ -34,7 +34,7 @@ export default function ImageWithText(props) {
   }
 
   return (
-    <div className={`image-with-text lg:flex lg:justify-between my-[--padding] px-5 lg:px-10 py-10 lg:py-20 rounded-[--radius] text-green ${isHero ? 'bg-cream mt-0 relative rounded-t-none max-lg:px-0 max-lg:py-0' : 'bg-sky-blue'} ${isImageOnLeft && 'lg:flex-row-reverse'}`}>
+    <div className={`image-with-text lg:flex lg:gap-6 lg:justify-between my-[--padding] px-5 lg:px-10 py-10 lg:py-20 rounded-[--radius] text-green ${isHero ? 'bg-cream mt-0 relative rounded-t-none max-lg:px-0 max-lg:py-0' : 'bg-sky-blue'} ${isImageOnLeft && 'lg:flex-row-reverse'}`}>
       <div className={`image-with-text__text ${isHero && 'max-lg:absolute max-lg:bottom-10 max-lg:px-5 max-lg:text-white z-10'}`}>
         <div className=" flex flex-col gap-6 max-w-[33rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]">
           {sanitizedTitle &&  <div className="eyebrow">{sanitizedTitle}</div>}
