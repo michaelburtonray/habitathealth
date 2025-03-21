@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Keyboard, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -40,7 +40,7 @@ export default function HeroSlider(props) {
           onInit={(swiper) => {
             swiper.params.navigation.prevEl = prevRef.current;
             swiper.params.navigation.nextEl = nextRef.current;
-            swiper.navigation.init()
+            swiper.navigation.init();
             swiper.navigation.update();
           }}
           slidesPerView={1}
@@ -66,11 +66,11 @@ export default function HeroSlider(props) {
 
       <div className="hero-slider__controls absolute inset-0 flex lg:items-end lg:justify-end z-10 pointer-events-none">
         <div className="flex gap-3 p-5 lg:p-10 sticky bottom-0 pointer-events-auto">
-          <button ref={prevRef} className="button rotate-180" aria-label="Previous slide">
+          <button ref={prevRef} className="button *:pointer-events-none rotate-180" aria-label="Previous slide">
             <IconArrow />
           </button>
 
-          <button ref={nextRef} className="button" aria-label="Next slide">
+          <button ref={nextRef} className="button *:pointer-events-none" aria-label="Next slide">
             <IconArrow />
           </button>
         </div>
