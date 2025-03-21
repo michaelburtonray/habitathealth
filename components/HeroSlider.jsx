@@ -1,8 +1,8 @@
 'use client'
 
 import Image from "next/image";
-import { useRef } from "react";
-import { Navigation } from "swiper/modules";
+import { useEffect, useRef } from "react";
+import { Keyboard, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import IconArrow from "./IconArrow";
@@ -27,8 +27,12 @@ export default function HeroSlider(props) {
       <div className="hero-slider-slider -ml-[100%]">
         <Swiper
           grabCursor={true}
+          keyboard={{
+            enabled: true,
+            onlyInViewport: true,
+          }}
           loop={true}
-          modules={[Navigation]}
+          modules={[Keyboard, Navigation]}
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,
