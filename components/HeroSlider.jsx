@@ -37,6 +37,12 @@ export default function HeroSlider(props) {
             prevEl: prevRef.current,
             nextEl: nextRef.current,
           }}
+          onInit={(swiper) => {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+            swiper.navigation.init()
+            swiper.navigation.update();
+          }}
           slidesPerView={1}
         >
           {slides.map(({ _key, alt, aspectRatio, assetPath }) => {
