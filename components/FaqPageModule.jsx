@@ -20,7 +20,7 @@ export default function FaqPageModule(props) {
             {sections.map(({ _id, title }, idx) => (
               <li key={_id+idx} className="">
                 <a href={`#${_id}-${idx}`} className="flex items-center gap-2">
-                  {title} {idx+1}
+                  {title}
                 </a>
               </li>
             ))}
@@ -34,7 +34,7 @@ export default function FaqPageModule(props) {
           >
             <option value="">Select</option>
             {sections.map(({ _id, title }, idx) => (
-              <option key={_id+idx} value={`${_id}-${idx}`}>{title} {idx+1}</option>
+              <option key={_id+idx} value={`${_id}-${idx}`}>{title}</option>
             ))}
           </select>
         </div>
@@ -44,7 +44,7 @@ export default function FaqPageModule(props) {
         {sections.map(({ _id, faqQAs, title }, idx) => (
           <div key={_id+idx} id={`${_id}-${idx}`} className="-mt-[12rem] lg:-mt-[calc(var(--header-height)+5.375rem)] pt-[12rem] lg:pt-[calc(var(--header-height)+5.375rem)] pointer-events-none">
             <div className="faq__interior flex flex-col gap-0 max-w-[56.25rem] mx-auto pointer-events-auto">
-              <p className="eyebrow mb-5">{title} {idx+1}</p>
+              <p className="eyebrow mb-5">{title}</p>
 
               {faqQAs.map((faqQA, idx) => (
                 <FaqQa
