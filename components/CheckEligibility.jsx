@@ -71,7 +71,6 @@ export default function CheckEligibility(props) {
   }
 
   const handleIntroSubmit = (e) => {
-    console.log('submitting intro form');
     e.preventDefault();
     setCurrentSection(0);
   };
@@ -114,7 +113,7 @@ export default function CheckEligibility(props) {
           {currentSection === -1 && (
             <>
               <p className="eyebrow !max-w-[30rem]">{intro}</p>
-              <form onSubmit={handleIntroSubmit}>
+              <form className="bg-cream" onSubmit={handleIntroSubmit}>
                 {cta && <Button {...cta} type={'submit'} onClick={handleIntroSubmit} />}
               </form>
             </>
