@@ -16,7 +16,7 @@ export default function HeroSlider(props) {
   const nextRef = useRef(null);
 
   return (
-    <div className="hero-slider bg-green grid grid-cols-2 relative rounded-b-2xl">
+    <div className="hero-slider bg-green grid grid-cols-2 relative overflow-hidden rounded-b-2xl">
       <div className="hero-slider__text flex items-end max-lg:-mr-[100%] p-5 lg:p-10 text-green z-10">
         <div className="bg-cream p-5 lg:p-10 rounded-2xl sticky bottom-10">
           {title && <h3>{title}</h3>}
@@ -40,12 +40,12 @@ export default function HeroSlider(props) {
 
             return (
               <SwiperSlide key={_key}>
-                <figure className="relative max-lg:!aspect-[36/55]" style={{ aspectRatio }}>
+                <figure className="relative max-lg:!aspect-[36/55] lg:w-full lg:max-h-[calc(100svh-9.5rem)]" style={{ aspectRatio }}>
                   <Image
                     src={assetPath}
                     fill={true}
                     alt={alt || 'Habitat Health'}
-                    className="object-cover w-full"
+                    className="object-center object-cover"
                   />
                 </figure>
               </SwiperSlide>
