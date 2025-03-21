@@ -17,8 +17,8 @@ export default function HeroSlider(props) {
 
   return (
     <div className="hero-slider bg-green grid grid-cols-2 relative overflow-hidden rounded-b-2xl">
-      <div className="hero-slider__text flex items-end max-lg:-mr-[100%] p-5 lg:p-10 text-green z-10">
-        <div className="bg-cream p-5 lg:p-10 rounded-2xl sticky bottom-10">
+      <div className="hero-slider__text flex items-end max-lg:-mr-[100%] p-5 lg:p-10 pointer-events-none text-green z-10">
+        <div className="bg-cream p-5 lg:p-10 rounded-2xl sticky bottom-10 pointer-events-auto">
           {title && <h3>{title}</h3>}
           {text && <p className="eyebrow mt-5 lg:mt-[2.125rem]">{text}</p>}
         </div>
