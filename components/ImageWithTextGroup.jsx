@@ -16,7 +16,7 @@ export default function ImageWithTextGroup(props) {
             <div className={`image-with-text__text ${index % 2 === 0 && 'lg:order-2'}`}>
               <div className="flex flex-col gap-6 max-w-[33rem] lg:py-[3.75rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]">
                 {title && <div className="eyebrow">{title}</div>}
-                {text && <h6>{text}</h6>}
+                {text && <h5>{text}</h5>}
               </div>
             </div>
 

@@ -1,9 +1,10 @@
 'use client';
 
 import { AnimatePresence, motion } from "motion/react";
+import { PortableText } from "next-sanity";
 import { useCallback, useState } from "react";
 
-export default function FaqQa({ answer, index, question }: { answer: string, index: number, question: string }) {
+export default function FaqQa({ answer, index, question }) {
   const [isExpanded, setIsExpanded] = useState(index === 0);
 
   const handleClick = useCallback(() => {
@@ -14,12 +15,16 @@ export default function FaqQa({ answer, index, question }: { answer: string, ind
     <div className="faq_qa border-t border-green pt-6">
       <h5 className="cursor-pointer mb-6" onClick={handleClick}>{question}</h5>
       <AnimatePresence>
-        {isExpanded && <motion.p
+        {isExpanded && <motion.div
           animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           initial={{ height: 0, opacity: 0 }}
           className="max-w-[40rem] overflow-hidden"
-        >{answer}</motion.p>}
+        >
+          <div className="rte pb-6">
+            <PortableText value={answer} />
+          </div>
+        </motion.div>}
       </AnimatePresence>
     </div>
   )

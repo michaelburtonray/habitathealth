@@ -22,7 +22,7 @@ export default function Answers({ data, formDataState, handleChange }) {
             return (
               <div key={_key} className="label-select-group mt-10">
                 <label htmlFor={_key} className="body--large">{heading}</label>
-                <select required id={_key} name={schemaName} value={formDataState[schemaName]} onChange={handleChange} className="body--large !py-0">
+                <select required id={_key} name={schemaName} value={formDataState[schemaName]} onChange={handleChange} className="select body--large !py-0">
                   {answers.map(({ _key: key, value }) => (
                     <option key={key} value={value}>{value}</option>
                   ))}

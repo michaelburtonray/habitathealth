@@ -1,5 +1,4 @@
 import Content from "@/components/Content";
-import Faqs from "@/components/Faqs";
 
 import { getPageData } from "@/sanity/lib/fetch";
 
@@ -9,7 +8,6 @@ export default async function Home() {
   return (
     <main>
       {pageData && pageData.content && <Content content={pageData.content} />}
-      <Faqs />
 
       {/* <div className="styleguide p-[--padding]">
         <div className="grid gap-8 grid-cols-2 lg:grid-cols-6 py-[--padding]">

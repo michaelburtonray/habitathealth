@@ -2,13 +2,13 @@ import Link from "next/link";
 import IconArrow from "./IconArrow";
 
 export default function Button(props) {
-  const { hasArrow, modifier, title, type, url } = props;
+  const { formName, hasArrow, modifier, title, type, url } = props;
 
   if (Array.isArray(title) && !url) return null;
 
   if (type === 'submit') {
     return (
-      <button type="submit" className={`button ${hasArrow && 'button--arrow'} ${modifier}`}>
+      <button type="submit" form={formName || undefined} className={`button ${hasArrow ? 'button--arrow' : ''} ${modifier || ''}`}>
         <span>{title || 'Check'}</span>
 
         {hasArrow && <IconArrow />}
