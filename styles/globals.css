@@ -113,6 +113,10 @@ h6 {
   @apply font-semibold leading-[1.4] tracking-normal text-[1.375rem];
 }
 
+.bg-cream > .button {
+  @apply hover:bg-green-tint;
+}
+
 /* Navigation */
 nav a {
   @apply hover:text-green-tint
