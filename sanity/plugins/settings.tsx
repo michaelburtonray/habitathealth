@@ -67,6 +67,6 @@ export const pageStructure = (
 
     return S.list()
       .title("Content")
-      .items([...singletonItems, S.divider(), pages, /* ...defaultListItems */]);
+      .items([...singletonItems, S.divider(), pages, /*... defaultListItems */]);
   };
 };
