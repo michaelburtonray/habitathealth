@@ -20,7 +20,7 @@
   }
 
   .button--slim {
-    @apply h-8 px-4;
+    @apply h-8 !px-3 text-sm;
   }
 
   .button--arrow {
@@ -178,6 +178,10 @@ select {
   @apply !py-0 hover:bg-transparent;
 }
 
+textarea {
+  @apply border border-green mt-4 p-5 rounded-2xl w-full h-[11rem];
+}
+
 .image-with-text__text p.eyebrow,
 .text-with-icons__text p.eyebrow {
   @apply max-lg:!text-lg max-lg:!font-semibold;
@@ -210,6 +214,10 @@ div:not(.hero) .rte a {
 
 .rte:not(.promo-bar) p + p {
   @apply mt-4;
+}
+
+.rte--enroll h3 {
+  @apply mb-6;
 }
 
 .rte--tertiary p:has(strong:only-child) {

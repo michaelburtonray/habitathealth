@@ -7,7 +7,7 @@ export default function Answers({ data, formDataState, handleChange }) {
       switch (_type) {
         case 'answerRadioButtons':
           return (
-            <div key={_key} className="flex max-lg:flex-col gap-6 lg:gap-8 mt-10">
+            <div key={_key} className="flex gap-6 lg:gap-8 mt-10">
               {answers.map(({ _key: key, value }) => (
                 <div key={key} className="label-input-group">
                   <input required type="radio" id={key} name={schemaName} value={value} className="hidden" onChange={handleChange} checked={formDataState[schemaName] === value} />
@@ -52,8 +52,24 @@ export default function Answers({ data, formDataState, handleChange }) {
               </div>
             );
 
+          case 'answerTextarea':
+            return (
+              <div key={_key} className="label-input-group mt-10">
+                <label htmlFor={_key} className="body--large">{heading}</label>
+                <textarea
+                  id={_key}
+                  maxLength={600}
+                  name={schemaName}
+                  value={formDataState[schemaName] || ''}
+                  className="textarea body--large invalid:border-red"
+                  onChange={handleChange}
+                />
+                <p className="body--small invisible peer-invalid:visible mt-2 text-red">*This field is required</p>
+              </div>
+            );
+
         default:
-          return <h2 key={_key}>Missing Component: {a._type}</h2>
+          return <p key={_key}>Missing Component: {a._type}</p>
       }
     })
     : [];
