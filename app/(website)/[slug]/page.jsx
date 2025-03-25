@@ -2,7 +2,7 @@ import Content from "@/components/Content";
 
 import { getPageData } from "@/sanity/lib/fetch";
 
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Page({ params }) {
   const { slug } = await params;
   const pageData = await getPageData({ slug, lang: 'en'});
 
