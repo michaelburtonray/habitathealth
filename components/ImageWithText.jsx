@@ -46,7 +46,7 @@ export default function ImageWithText(props) {
       </div>
 
       <div className={`image-with-text__image w-full lg:max-w-[50%] ${isHero ? 'my-0' : 'max-lg:my-10'}`}>
-        <figure className={`aspect-square relative w-full ${isHero && 'max-lg:aspect-[35.8/55] max-lg:after:absolute max-lg:after:inset-0 max-lg:after:bg-black/30 max-lg:rounded-b-2xl'}`}>
+        <figure className={`aspect-square relative w-full ${isHero && 'max-lg:aspect-[35.8/55] max-lg:after:absolute max-lg:after:inset-0 max-lg:after:bg-black/30 max-lg:overflow-hidden max-lg:rounded-b-2xl'}`}>
           {getImageWithUrl(image)}
         </figure>
       </div>
