@@ -62,7 +62,7 @@ export default function LinkObject(props) {
     : (
       <a href={url || '/'} className={`${modifiers} ${isButton ? 'button button--slim flex gap-2 items-center !px-4' : ''}`} target="_blank" rel="noopener noreferrer">
         {icon}
-        <span className={(icon && !isButton) && 'hidden'}>{title}</span>
+        <span className={(icon && !isButton) ? 'hidden' : ''}>{title}</span>
       </a>
     )
 };

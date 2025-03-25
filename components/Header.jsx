@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import { PortableText } from "next-sanity";
+import { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 
 import IconClose from "./IconClose";
 import IconHamburger from "./IconHamburger";
@@ -19,6 +20,8 @@ export default function Header(props) {
   const { contactList, image, nav, promoBar } = props;
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState('en');
+  const [availableLanguages, setAvailableLanguages] = useState([]);
 
   const components = {
     block: {
@@ -48,7 +51,7 @@ export default function Header(props) {
   // Closes on route change
   useEffect(() => {
     setIsMenuOpen(false);
-  }, [pathname]);
+  }, [currentLang, pathname]);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -63,8 +66,51 @@ export default function Header(props) {
     }
   }, [isMenuOpen]);
 
+  const initWeglot = useCallback(async () => {
+    if (typeof window !== 'undefined' && window.Weglot) {
+      await window.Weglot.initialize({
+        api_key: process.env.NEXT_PUBLIC_WEGLOT_API_KEY,
+        hide_switcher: true,
+      });
+    }
+
+    const Weglot = window.Weglot;
+
+    Weglot?.on('initialized', () => {
+      const availableLangs = Weglot?.options?.languages?.map(({ language_to }) => {
+        return {
+          value: language_to,
+          text: Weglot.getLanguageName(language_to)
+        }
+      }) || [];
+      const lang = Weglot?.options?.language_from;
+      const base = {
+        value: lang,
+        text: Weglot.getLanguageName(lang)
+      }
+      setAvailableLanguages([...availableLangs, base]);
+      setCurrentLang(Weglot?.getCurrentLang() || 'en');
+    });
+  }, [setAvailableLanguages, setCurrentLang]);
+
+  useEffect(() => {
+    initWeglot();
+  }, [initWeglot]);
+
+  const switchLanguage = useCallback(({ target }) => {
+    const Weglot = window.Weglot;
+
+    Weglot?.switchTo(target.value);
+    setCurrentLang(target.value);
+  }, [])
+
   return (
     <header className={`bg-fern-green sticky top-0 z-30 ${isMenuOpen ? 'menu-open' : ''}`}>
+      <Script
+        src="https://cdn.weglot.com/weglot.min.js"
+        onReady={initWeglot}
+      />
+
       {isMenuOpen && <div className="bg-charcoal/70 fixed inset-0" />}
       <div className="promo-bar rte body--small flex max-lg:flex-col lg:gap-2 items-center justify-end lg:justify-center h-[4.75rem] lg:h-10 max-lg:pb-4 relative text-white">
         {promoBar && <PortableText value={promoBar} components={components} />}
@@ -76,16 +122,25 @@ export default function Header(props) {
 
         <nav className="nav-desktop body--large flex justify-center max-xl:hidden">
           <ul className="flex gap-8">
-            <li className={`${pathname === '/how-it-works' ? 'active' : ''}`}><Link href="/how-it-works">How It Works</Link></li>
-            <li className={`${pathname === '/our-locations' ? 'active' : ''}`}><Link href="/our-locations">Our Locations</Link></li>
-            <li className={`${pathname === '/faq' ? 'active' : ''}`}><Link href="/faq">FAQ</Link></li>
+            {nav.map((link) => (
+                <li key={link._key} className={`${pathname === link.slug ? 'active' : ''}`}>
+                  <LinkObject {...link} />
+                </li>
+            ))}
           </ul>
         </nav>
 
         <div className="buttons flex gap-3 max-xl:hidden justify-end">
-          <select name="language-picker" id="languages" className="select select--lang">
-            <option value="en">English</option>
-            <option value="es">Español</option>
+          <select
+            name="language-picker"
+            id="languages"
+            className="select select--lang"
+            value={currentLang}
+            onChange={switchLanguage}
+          >
+            {availableLanguages.map(({ value, text }) => {
+              return <option key={value} value={value}>{text}</option>
+            })}
           </select>
 
           <Link href="/check-eligibility" className="button button--green !h-10 !px-5">Check Eligibility</Link>
@@ -118,9 +173,16 @@ export default function Header(props) {
                   ))}
                 </ul>
 
-                <select name="language-picker" id="languages" className="select select--lang mt-6 mb-3">
-                  <option value="en">English</option>
-                  <option value="es">Español</option>
+                <select
+                  name="language-picker"
+                  id="languages2"
+                  className="select select--lang mt-6 mb-3"
+                  value={currentLang}
+                  onChange={switchLanguage}
+                >
+                  {availableLanguages.map(({ value, text }) => {
+                    return <option key={value} value={value}>{text}</option>
+                  })}
                 </select>
 
                 <Link href="/check-eligibility" className="button button--arrow button--green">

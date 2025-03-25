@@ -279,6 +279,24 @@ export type EnrollmentSection = {
     alt?: string;
     _type: "image";
   };
+  intro?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h3";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   questions?: Array<{
     _key: string;
   } & FormField>;
@@ -1089,6 +1107,24 @@ export type EnrollmentQueryResult = {
       assetPath: string | null;
       aspectRatio: number | null;
     } | null;
+    intro?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "h3" | "normal";
+      listItem?: never;
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
     questions?: Array<{
       _key: string;
     } & FormField>;
@@ -1788,6 +1824,18 @@ export type SettingsQueryResult = {
     }>;
   } | null;
 } | null;
+// Variable: siteUrlsQuery
+// Query: {  "pages": *[_type == "page"] | order(title asc) {    "lastModified": _updatedAt,    "url": select(      slug.current == "homepage" => $baseUrl,      $baseUrl + slug.current    ),  },  "enrollment": *[_type == "enrollment"][0] {    "lastModified": _updatedAt,    "url": $baseUrl + slug.current,  },}
+export type SiteUrlsQueryResult = {
+  pages: Array<{
+    lastModified: string;
+    url: unknown;
+  }>;
+  enrollment: {
+    lastModified: string;
+    url: unknown;
+  } | null;
+};
 
 // Query TypeMap
 import "@sanity/client";
@@ -1796,5 +1844,6 @@ declare module "@sanity/client" {
     "\n  *[_type == \"enrollment\" && slug.current == $slug][0] {\n    ...,\n    cta {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n    sections[] {\n      ...,\n      image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    }\n  }": EnrollmentQueryResult;
     "\n  *[_type == \"page\" && $slug == slug.current][0] {\n    ...,\n    content[]->{\n  ...,\n  _type == 'faq' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  _type == 'faqPageModule' => {\n  ...,\n  sections[]->{\n    _id,\n    faqQAs,\n    title,\n  },\n},\n  _type == 'hero' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  mobileImage {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'heroSlider' => {\n  ...,\n  slides[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n},\n  _type == 'imageWithText' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  'isImageOnLeft': isImageOnLeft,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'imageWithTextGroup' => {\n  ...,\n  content[]-> {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  'isImageOnLeft': isImageOnLeft,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'leadership' => {\n  ...,\n  leaders[] {\n    ...,\n    image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  },\n},\n  _type == 'logoWithIcons' => {\n  ...,\n  icons[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n},\n  _type == 'tertiaryPageModule' => {\n  ...,\n  content[] {\n    ...,\n    _type == 'file' => {\n      ...,\n      'url': asset->url,\n    }\n  }\n},\n  _type == 'testimonials' => {\n  ...,\n  testimonials[] {\n  ...,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'textWithChart' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  _type == 'textWithIcons' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  icons[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'textWithList' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  _type == 'textWithPercentages' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n},\n  }\n": PageQueryResult;
     "\n  *[_type == \"settings\"][0] {\n    ...,\n    footer {\n      ...,\n      contactInfo,\n      linkLists[] {\n        ...,\n        links[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n      },\n      regulatoryLinks[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n      socialLinks[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n    },\n    header {\n      ...,\n      contactList[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n      image {\n        ...,\n        'assetPath': asset->path,\n        'aspectRatio': asset->metadata.dimensions.aspectRatio,\n      },\n      nav[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n    }\n  }\n": SettingsQueryResult;
+    "{\n  \"pages\": *[_type == \"page\"] | order(title asc) {\n    \"lastModified\": _updatedAt,\n    \"url\": select(\n      slug.current == \"homepage\" => $baseUrl,\n      $baseUrl + slug.current\n    ),\n  },\n  \"enrollment\": *[_type == \"enrollment\"][0] {\n    \"lastModified\": _updatedAt,\n    \"url\": $baseUrl + slug.current,\n  },\n}": SiteUrlsQueryResult;
   }
 }
