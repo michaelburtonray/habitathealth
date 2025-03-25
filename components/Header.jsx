@@ -66,7 +66,7 @@ export default function Header(props) {
   return (
     <header className={`bg-fern-green sticky top-0 z-30 ${isMenuOpen ? 'menu-open' : ''}`}>
       {isMenuOpen && <div className="bg-charcoal/70 fixed inset-0" />}
-      <div className="promo-bar rte body--small flex max-lg:flex-col lg:gap-2 items-center justify-end lg:justify-center h-20 lg:h-10 max-lg:pb-5 relative text-white">
+      <div className="promo-bar rte body--small flex max-lg:flex-col lg:gap-2 items-center justify-end lg:justify-center h-[4.75rem] lg:h-10 max-lg:pb-4 relative text-white">
         {promoBar && <PortableText value={promoBar} components={components} />}
       </div>
       <div className="bg-white flex xl:grid gap-8 xl:grid-cols-3 items-center justify-between h-20 px-5 lg:px-10 py-5 relative rounded-t-2xl text-green z-30">
