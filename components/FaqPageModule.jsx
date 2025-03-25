@@ -6,7 +6,6 @@ export default function FaqPageModule(props) {
   const { sections, title } = props;
   const router = useRouter();
   const handleChange = ({ target }) => {
-    console.log(target.value);
     router.push(`#${target.value}`);
   }
 

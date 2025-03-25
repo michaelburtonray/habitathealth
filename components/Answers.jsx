@@ -2,7 +2,6 @@ export default function Answers({ data, formDataState, handleChange }) {
   const answers = data
     ? data.map((a) => {
       const { _key, _type, answers, heading, schemaName } = a;
-      // console.log(a)
 
       switch (_type) {
         case 'answerRadioButtons':

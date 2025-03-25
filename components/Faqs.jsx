@@ -2,7 +2,6 @@ import FaqQa from "./FaqQa";
 import Button from "./Button";
 
 export default function Faqs(props) {
-  console.log(props);
   const { button, faqQAs, title } = props;
 
   return (
