@@ -6,6 +6,7 @@ import ImageWithText from "./ImageWithText";
 import ImageWithTextGroup from "./ImageWithTextGroup";
 import Leadership from "./Leadership";
 import LogoWithIcons from "./LogoWithIcons";
+import TertiaryPageModule from "./TertiaryPageModule";
 import Testimonials from "./Testimonials";
 import TextWithBubbles from "./TextWithBubbles";
 import TextWithChart from "./TextWithChart";
@@ -13,7 +14,7 @@ import TextWithIcons from "./TextWithIcons";
 import TextWithList from "./TextWithList";
 import TextWithPercentages from "./TextWithPercentages";
 
-export default function Content({ content }) {
+export default function Content({ content, title }) {
   const components = content
     ? content.map((c, idx) => {
       const { _type, _id } = c;
@@ -57,6 +58,11 @@ export default function Content({ content }) {
         case 'logoWithIcons':
           return (
             <LogoWithIcons key={_id} {...c} />
+          );
+
+        case 'tertiaryPageModule':
+          return (
+            <TertiaryPageModule key={_id} {...c} title={title} />
           );
 
         case 'testimonials':

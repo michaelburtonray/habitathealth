@@ -212,6 +212,18 @@ div:not(.hero) .rte a {
   @apply mt-4;
 }
 
+.rte--tertiary p:has(strong:only-child) {
+  @apply font-semibold my-10 lg:my-14 text-lg;
+}
+
+.rte--tertiary ul {
+  @apply list-disc list-inside my-4 table;
+}
+
+.rte--tertiary ul > li {
+  @apply table-row before:content-['•'] before:pr-2 before:table-cell;
+}
+
 footer .rte p.button + p.button {
   @apply mt-0;
 }
