@@ -43,7 +43,7 @@ export default function Footer(props) {
 
         {linkLists.map(({ _key, links, title }, idx) => {
           return (
-            <ul key={_key} className="flex flex-col gap-7">
+            <ul key={_key} className="flex flex-col gap-6">
               <li className="body--large-semibold">{title}</li>
               {links.map((link) => (
                 <li key={link._key}><LinkObject {...link} /></li>
@@ -52,7 +52,7 @@ export default function Footer(props) {
           )
         })}
 
-        <ul className="flex flex-col gap-7">
+        <ul className="flex flex-col gap-6">
           <li className="body--large-semibold">Contact</li>
           <li className="rte flex flex-col gap-3">
             <PortableText value={contactInfo} components={components} />
