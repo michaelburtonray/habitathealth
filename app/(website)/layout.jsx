@@ -4,7 +4,6 @@ import "../../styles/globals.css";
 import { gellix } from "@/styles/font";
 import Footer from "@/components/Footer";
 import { getSettingsData } from "@/sanity/lib/fetch";
-import { SettingsQueryResult } from "@/sanity.types";
 
 export const metadata ={
   title: "Habitat Health",
