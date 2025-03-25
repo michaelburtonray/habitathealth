@@ -1,7 +1,6 @@
-import { MetadataRoute } from 'next'
 import { getSiteUrls } from '@/sanity/lib/fetch'
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default async function sitemap() {
   const data = await getSiteUrls()
   const { enrollment, pages } = data
 
