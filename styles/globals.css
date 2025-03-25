@@ -216,6 +216,18 @@ div:not(.hero) .rte a {
   @apply font-semibold my-10 lg:my-14 text-lg;
 }
 
+.rte--tertiary p:first-child {
+  @apply !mt-0;
+}
+
+.regulatory-notices .rte--tertiary p:has(strong:only-child) {
+  @apply mb-6;
+}
+
+.regulatory-notices .rte--tertiary a + a {
+  @apply before:content-['_/_'] before:absolute before:left-2 before:-translate-x-1/2 inline-block pl-4 relative;
+}
+
 .rte--tertiary ul {
   @apply list-disc list-inside my-4 table;
 }

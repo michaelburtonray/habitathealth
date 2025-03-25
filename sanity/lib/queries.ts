@@ -105,6 +105,17 @@ const logoWithIconsData = /* groq */`{
   icons[] ${imageData},
 }`;
 
+const tertiaryPageModuleData = /* groq */`{
+  ...,
+  content[] {
+    ...,
+    _type == 'file' => {
+      ...,
+      'url': asset->url,
+    }
+  }
+}`
+
 const testimonialData = /* groq */`{
   ...,
   image ${imageData},
@@ -153,6 +164,7 @@ const contentData = /* groq */`{
   _type == 'imageWithTextGroup' => ${imageWithTextGroupData},
   _type == 'leadership' => ${leadershipData},
   _type == 'logoWithIcons' => ${logoWithIconsData},
+  _type == 'tertiaryPageModule' => ${tertiaryPageModuleData},
   _type == 'testimonials' => ${testimonialsData},
   _type == 'textWithChart' => ${textWithChartData},
   _type == 'textWithIcons' => ${textWithIconsData},
