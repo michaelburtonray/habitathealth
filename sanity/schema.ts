@@ -5,9 +5,9 @@ import category from './schemas/category'
 import post from './schemas/post'
 import author from './schemas/author'
 
+import enrollment from './schemas/singletons/enrollment'
 import settings from './schemas/singletons/settings'
 
-import enrollment from './schemas/documents/enrollment'
 import faq from './schemas/documents/faq'
 import faqPageModule from './schemas/documents/faqPageModule'
 import hero from './schemas/documents/hero'

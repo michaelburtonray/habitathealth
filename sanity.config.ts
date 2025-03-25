@@ -13,6 +13,7 @@ import { vercelDeployTool } from 'sanity-plugin-vercel-deploy'
 // import { linkField } from "sanity-plugin-link-field";
 import { structureTool } from 'sanity/structure'
 import { pageStructure, singletonPlugin } from './sanity/plugins/settings'
+import enrollment from './sanity/schemas/singletons/enrollment'
 import settings from './sanity/schemas/singletons/settings'
 
 export default defineConfig({
@@ -22,7 +23,7 @@ export default defineConfig({
   // Add and edit the content schema in the './sanity/schema' folder
   schema,
   plugins: [
-    structureTool({ structure: pageStructure([settings]) }),
+    structureTool({ structure: pageStructure([settings, enrollment]) }),
     // Vision is a tool that lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     ...(process.env.NODE_ENV === "development" ? [visionTool({defaultApiVersion: apiVersion})] : []),
