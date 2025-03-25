@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <main>
-      {pageData && pageData.content && <Content content={pageData.content} />}
+      {pageData && pageData.content && <Content content={pageData.content} title={''} />}
 
       {/* <div className="styleguide p-[--padding]">
         <div className="grid gap-8 grid-cols-2 lg:grid-cols-6 py-[--padding]">

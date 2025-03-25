@@ -17,6 +17,7 @@ import imageWithTextGroup from './schemas/documents/imageWithTextGroup'
 import leadership from './schemas/documents/leadership'
 import logoWithIcons from './schemas/documents/logoWithIcons'
 import page from './schemas/documents/page'
+import tertiaryPageModule from './schemas/documents/tertiaryPageModule'
 import testimonials from './schemas/documents/testimonials'
 import textWithBubbles from './schemas/documents/textWithBubbles'
 import textWithChart from './schemas/documents/textWithChart'
@@ -54,6 +55,7 @@ const documents = [
   leadership,
   logoWithIcons,
   page,
+  tertiaryPageModule,
   testimonials,
   textWithBubbles,
   textWithChart,
