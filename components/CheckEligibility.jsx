@@ -220,7 +220,7 @@ export default function CheckEligibility(props) {
               )}
 
               <div className="flex gap-6 justify-end mt-10">
-                {currentSection >= 1 && !hasFailed && <button type="button" name="back" className="button button--green" onClick={() => setCurrentSection(currentSection - 1)}>Back</button>}
+                {currentSection >= 1 && currentSection !== steps.length && !hasFailed && <button type="button" name="back" className="button button--green" onClick={() => setCurrentSection(currentSection - 1)}>Back</button>}
 
                 {currentSection <= steps.length - 2 && !hasFailed && <button type="submit" name="next" form="elligibility-form" className="button button--green">Next</button>}
               </div>
