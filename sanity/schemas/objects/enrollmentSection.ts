@@ -41,6 +41,28 @@ export default defineType({
     }),
 
     defineField({
+      name: 'intro',
+      title: 'Intro Copy',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [
+            { title: 'Normal', value: 'normal' },
+            { title: 'H3', value: 'h3' },
+          ],
+          lists: [],
+          marks: {
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+            ],
+          },
+        }),
+      ],
+    }),
+
+    defineField({
       name: 'questions',
       title: 'Questions',
       type: 'array',

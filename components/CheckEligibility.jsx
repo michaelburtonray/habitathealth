@@ -97,7 +97,7 @@ export default function CheckEligibility(props) {
             }
           }
 
-          return <p className="button button--green flex gap-2 items-center !px-4 text-white">{icon}{children}</p>
+          return <p className="button button--green button--slim flex gap-2 items-center !px-4 text-white">{icon}{children}</p>
         }
 
         return <p>{children}</p>
@@ -125,7 +125,7 @@ export default function CheckEligibility(props) {
         </div>
       </div>
 
-      <div className={`bg-white flex flex-col gap-10 max-lg:mt-10 px-5 lg:px-10 py-10 lg:py-14 rounded-2xl ${currentSection === -1 && 'lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-14'}`}>
+      <div className={`bg-white flex flex-col gap-10 max-lg:mt-10 px-5 lg:px-10 py-10 lg:py-14 rounded-2xl ${currentSection === -1 && 'md:grid md:grid-cols-2 md:gap-x-10 md:gap-y-14'}`}>
         {currentSection === -1 && (
           <>
             {sections.map(({ _key, copy, image, subtitle }) => (
@@ -185,7 +185,7 @@ export default function CheckEligibility(props) {
             </div>
 
             <div>
-              {steps?.map(({ _key, failureCopy, questions }, idx) => {
+              {steps?.map(({ _key, failureCopy, intro, questions }, idx) => {
                 return idx === currentSection && (
                   <form key={_key} id="elligibility-form" onSubmit={handleSubmit}>
                     {hasFailed ? (
@@ -194,11 +194,14 @@ export default function CheckEligibility(props) {
                     </div>
                   )
                   : (
-                    <fieldset className={`mt-10`}>
+                    <fieldset className={`lg:mt-10`}>
+                      {intro && <div className="rte rte--enroll body--large">
+                        <PortableText value={intro} components={components} />
+                      </div>}
                       {questions.map(({ _key, _type, answers, info, question }, idx) => {
                         return (
                           <React.Fragment key={_key}>
-                            {question && idx === 0 && <h3>{question}</h3>}
+                            {question && questions.length === 1 && <h3>{question}</h3>}
                             {info && <p className="body--large mt-6">{info}</p>}
                             <Answers data={answers} formDataState={formDataState} handleChange={handleChange} />
                           </React.Fragment>
@@ -216,9 +219,13 @@ export default function CheckEligibility(props) {
                 </div>
               )}
 
-             {currentSection <= steps.length - 2 && !hasFailed && <div className="flex justify-end mt-10">
-                <button type="submit" form="elligibility-form" className="button button--green">Next</button>
-              </div>}
+              <div className="flex gap-6 justify-end mt-10">
+                {currentSection >= 1 && currentSection !== steps.length && !hasFailed && <button type="button" name="back" className="button button--green" onClick={() => setCurrentSection(currentSection - 1)}>Back</button>}
+
+                {currentSection <= steps.length - 2 && !hasFailed && <button type="submit" name="next" form="elligibility-form" className="button button--green">Next</button>}
+              </div>
+
+
 
               {currentSection === steps.length - 1 && <div className="flex lg:justify-center mt-10">
                 <Button

@@ -2,7 +2,6 @@ import { PortableText } from "next-sanity";
 
 export default function TertiaryPageModule(props) {
   const { content, title } = props;
-  console.log(content);
 
   const components = {
     types: {

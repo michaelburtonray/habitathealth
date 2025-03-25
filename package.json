@@ -12,6 +12,7 @@
     "typegen": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {
+    "@sanity/cli": "^3.80.1",
     "@sanity/icons": "^2.0.0",
     "@sanity/image-url": "1",
     "@sanity/types": "^3.0.0",
