@@ -52,14 +52,21 @@ export const pageStructure = (
         );
     });
 
+    const pages = S.listItem()
+      .title('Pages')
+      .child(
+        S.documentTypeList('page')
+          .defaultOrdering([{ field: 'title', direction: 'asc' }])
+      )
+
     // The default root list items (except custom ones)
-    const defaultListItems = S.documentTypeListItems().filter(
+    /* const defaultListItems = S.documentTypeListItems().filter(
       (listItem) =>
         !typeDefArray.find((singleton) => singleton.name === listItem.getId()),
-    );
+    ); */
 
     return S.list()
       .title("Content")
-      .items([...singletonItems, S.divider(), ...defaultListItems]);
+      .items([...singletonItems, S.divider(), pages, /* ...defaultListItems */]);
   };
 };

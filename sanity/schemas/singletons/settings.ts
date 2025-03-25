@@ -6,6 +6,10 @@ export default defineType({
   title: 'Settings',
   type: 'document',
   icon: CogIcon,
+  groups: [
+    { name: 'header', title: 'Header'},
+    { name: 'footer', title: 'Footer'},
+  ],
   fields: [
     defineField({
       name: 'title',
@@ -35,6 +39,7 @@ export default defineType({
       name: 'header',
       title: 'Header',
       type: 'header',
+      group: 'header',
       description: 'The header of the site',
     }),
 
@@ -42,6 +47,7 @@ export default defineType({
       name: 'footer',
       title: 'Footer',
       type: 'footer',
+      group: 'footer',
       description: 'The footer of the site',
     }),
   ],
