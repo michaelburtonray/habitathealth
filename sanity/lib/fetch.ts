@@ -15,3 +15,11 @@ export const getSettingsData = () => {
   const res = client.fetch(queries.settingsQuery);
   return res;
 }
+
+export const getSiteUrls = async () => {
+  const res = await client.fetch(queries.siteUrlsQuery, {
+    baseUrl: 'https://www.habitathealth.com/',
+  })
+
+  return res
+}

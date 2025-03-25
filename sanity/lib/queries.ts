@@ -214,3 +214,17 @@ export const settingsQuery = defineQuery(`
     }
   }
 `);
+
+export const siteUrlsQuery = defineQuery(`{
+  "pages": *[_type == "page"] | order(title asc) {
+    "lastModified": _updatedAt,
+    "url": select(
+      slug.current == "homepage" => $baseUrl,
+      $baseUrl + slug.current
+    ),
+  },
+  "enrollment": *[_type == "enrollment"][0] {
+    "lastModified": _updatedAt,
+    "url": $baseUrl + slug.current,
+  },
+}`);
