@@ -8,7 +8,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   return (
     <main className={`${slug}`}>
-      {pageData && pageData.content && <Content content={pageData.content} title={pageData.title} />}
+      {pageData && pageData.content && <Content content={pageData.content} title={pageData?.title || ''} />}
     </main>
   );
 }
