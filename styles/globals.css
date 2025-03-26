@@ -145,11 +145,11 @@ footer a {
 
 /* Select */
 select {
-  @apply hover:bg-cream border border-green-tint hover:border-green box-border cursor-pointer bg-no-repeat px-5 h-10 rounded-[2rem] text-green text-lg transition-colors;
+  @apply bg-transparent hover:bg-cream bg-no-repeat border border-green-tint hover:border-green box-border cursor-pointer h-10 w-fit max-w-full px-5 rounded-[2rem] text-green text-lg transition-colors;
 }
 
 .select {
-  @apply h-14 pr-10;
+  @apply h-14 pr-[3.125rem];
 
   -webkit-appearance: none;
   -moz-appearance: none;
