@@ -9,7 +9,6 @@ import Button from "@/components/Button";
 import IconPhone from "@/components/IconPhone";
 import IconEmail from "@/components/IconEmail";
 
-
 export default function CheckEligibility(props) {
   const {
     copy,
@@ -77,8 +76,24 @@ export default function CheckEligibility(props) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log(currentSection, formDataState);
   }, [currentSection, hasFailed]);
+
+  useEffect(() => {
+    const buttons = document.querySelectorAll('header .js-ce-button');
+    const hardRefresh = () => {
+      window.location.reload();
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', hardRefresh);
+    });
+
+    return () => {
+      buttons.forEach((button) => {
+        button.removeEventListener('click', hardRefresh);
+      });
+    }
+  }, [])
 
   const components = {
     block: {
@@ -114,7 +129,7 @@ export default function CheckEligibility(props) {
             <>
               <p className="eyebrow !max-w-[30rem]">{intro}</p>
               <form className="bg-cream" onSubmit={handleIntroSubmit}>
-                {cta && <Button {...cta} type={'submit'} onClick={handleIntroSubmit} />}
+                {cta && <Button {...cta} type={'submit'} />}
               </form>
             </>
           )}
@@ -184,59 +199,56 @@ export default function CheckEligibility(props) {
               })}
             </div>
 
-            <div>
-              {steps?.map(({ _key, failureCopy, intro, questions }, idx) => {
-                return idx === currentSection && (
-                  <form key={_key} id="elligibility-form" onSubmit={handleSubmit}>
-                    {hasFailed ? (
-                    <div className={`rte bg-orange p-5 rounded-2xl`}>
-                      <PortableText value={failureCopy} components={components} />
-                    </div>
-                  )
-                  : (
-                    <fieldset className={`lg:mt-10`}>
-                      {intro && <div className="rte rte--enroll body--large">
-                        <PortableText value={intro} components={components} />
-                      </div>}
-                      {questions.map(({ _key, _type, answers, info, question }, idx) => {
-                        return (
-                          <React.Fragment key={_key}>
-                            {question && questions.length === 1 && <h3>{question}</h3>}
-                            {info && <p className="body--large mt-6">{info}</p>}
-                            <Answers data={answers} formDataState={formDataState} handleChange={handleChange} />
-                          </React.Fragment>
-                        )
-                      })}
-                    </fieldset>
-                  )}
-                  </form>
-                )
-              })}
+            {steps?.map(({ _key, failureCopy, intro, questions }, idx) => {
+              return idx === currentSection && (
+                <form key={_key} onSubmit={handleSubmit}>
+                  {hasFailed
+                    ? (
+                      <div className={`rte bg-orange p-5 rounded-2xl`}>
+                        <PortableText value={failureCopy} components={components} />
+                      </div>
+                    )
+                    : (
+                      <fieldset className={`lg:mt-10`}>
+                        {intro && <div className="rte rte--enroll body--large">
+                          <PortableText value={intro} components={components} />
+                        </div>}
+                        {questions.map(({ _key, _type, answers, info, question }, idx) => {
+                          return (
+                            <React.Fragment key={_key}>
+                              {question && questions.length === 1 && <h3>{question}</h3>}
+                              {info && <p className="body--large mt-6">{info}</p>}
+                              <Answers data={answers} formDataState={formDataState} handleChange={handleChange} index={idx} />
+                            </React.Fragment>
+                          )
+                        })}
+                      </fieldset>
+                    )
+                  }
 
-              {currentSection === steps.length && (
-                <div className={`rte bg-sky-blue p-5 rounded-2xl`}>
-                  <PortableText value={successCopy} components={components} />
-                </div>
-              )}
+                  <div className="flex gap-6 justify-between mt-10">
+                    {currentSection >= 0 && currentSection !== steps.length && !hasFailed && <button type="button" name="back" className="button button--green" onClick={() => setCurrentSection(currentSection - 1)}>Back</button>}
 
-              <div className="flex gap-6 justify-end mt-10">
-                {currentSection >= 1 && currentSection !== steps.length && !hasFailed && <button type="button" name="back" className="button button--green" onClick={() => setCurrentSection(currentSection - 1)}>Back</button>}
+                    {currentSection <= steps.length - 2 && !hasFailed && <button type="submit" name="next" className="button button--green">Next</button>}
+                  </div>
 
-                {currentSection <= steps.length - 2 && !hasFailed && <button type="submit" name="next" form="elligibility-form" className="button button--green">Next</button>}
+                  {currentSection === steps.length - 1 && <div className="flex lg:justify-center mt-10">
+                    <Button
+                      hasArrow={true}
+                      modifier={'!w-[15rem]'}
+                      title={'Submit'}
+                      type="submit"
+                    />
+                  </div>}
+                </form>
+              )
+            })}
+
+            {currentSection === steps.length && (
+              <div className={`rte bg-sky-blue p-5 rounded-2xl`}>
+                <PortableText value={successCopy} components={components} />
               </div>
-
-
-
-              {currentSection === steps.length - 1 && <div className="flex lg:justify-center mt-10">
-                <Button
-                  formName={'elligibility-form'}
-                  hasArrow={true}
-                  modifier={'!w-[15rem]'}
-                  title={'Submit'}
-                  type="submit"
-                />
-              </div>}
-            </div>
+            )}
           </>
         )}
       </div>
