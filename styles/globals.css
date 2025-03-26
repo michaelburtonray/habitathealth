@@ -149,7 +149,7 @@ select {
 }
 
 .select {
-  @apply h-14 pr-10;
+  @apply h-14 pr-[3.125rem];
 
   -webkit-appearance: none;
   -moz-appearance: none;
