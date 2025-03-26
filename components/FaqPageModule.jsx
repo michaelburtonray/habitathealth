@@ -15,7 +15,7 @@ export default function FaqPageModule(props) {
         <div className="lg:sticky lg:top-[calc(var(--header-height)+5.375rem)]">
           <div className="eyebrow">{title}</div>
 
-          <ul className="flex flex-col gap-5 mt-12 max-lg:hidden">
+          <ul className="body--semibold flex flex-col gap-5 mt-12 max-lg:hidden">
             {sections.map(({ _id, title }, idx) => (
               <li key={_id+idx} className="">
                 <a href={`#${_id}-${idx}`} className="flex items-center gap-2">

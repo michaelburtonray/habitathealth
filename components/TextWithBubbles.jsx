@@ -11,7 +11,7 @@ export default function TextWithBubbles(props) {
         </div>
       </div>
 
-      <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 lg:gap-x-8 lg:gap-y-10 max-lg:mt-6">
+      <div className="body--semibold lg:body--large-semibold flex flex-col lg:grid lg:grid-cols-2 gap-4 lg:gap-x-8 lg:gap-y-10 max-lg:mt-6">
         {bubbles.map((text, idx) => (
           <div key={'bubble'+idx} className="bg-fern-green p-5 rounded-2xl">
             {text}

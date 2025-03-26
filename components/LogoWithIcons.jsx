@@ -74,7 +74,7 @@ export default function LogoWithIcons({ icons }) {
                   className={`object-cover w-full ${idx === 0 ? 'rounded-full' : ''}`}
                 />
               </figure>
-              {alt && <span>{alt}</span>}
+              {alt && <span className="body--semibold">{alt}</span>}
               {text && <PortableText value={text} />}
             </>}
           </div>
