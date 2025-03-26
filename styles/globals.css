@@ -135,6 +135,10 @@ footer .logo {
   @apply max-w-full h-auto;
 }
 
+footer a {
+  @apply hover:text-cream/40;
+}
+
 /* Select */
 select {
   @apply hover:bg-cream border border-green-tint hover:border-green box-border cursor-pointer bg-no-repeat px-5 h-10 rounded-[2rem] text-green text-lg transition-colors;
