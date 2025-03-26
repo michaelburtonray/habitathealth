@@ -143,7 +143,7 @@ export default function Header(props) {
             })}
           </select>
 
-          <Link href="/check-eligibility" className="button button--green !h-10 !px-5">Check Eligibility</Link>
+          <Link href="/check-eligibility" className="js-ce-button button button--green !h-10 !px-5">Check Eligibility</Link>
         </div>
 
         <div className="menu flex items-center xl:hidden">
@@ -185,7 +185,7 @@ export default function Header(props) {
                   })}
                 </select>
 
-                <Link href="/check-eligibility" className="button button--arrow button--green">
+                <Link href="/check-eligibility" className="js-ce-button button button--arrow button--green">
                   <span>Check Eligibility</span>
                   <IconArrow />
                 </Link>
