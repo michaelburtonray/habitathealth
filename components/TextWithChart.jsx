@@ -9,7 +9,7 @@ export default function TextWithChart(props) {
       <div className="text-with-chart__text">
         <div className="flex flex-col gap-6 max-w-[33rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]">
           {title && <h3>{title}</h3>}
-          {text && <p className="eyebrow">{text}</p>}
+          {text && <p className="body--large-semibold">{text}</p>}
           <Button {...button} modifier="" />
         </div>
       </div>

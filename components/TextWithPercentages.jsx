@@ -18,7 +18,7 @@ export default function TextWithPercentages(props) {
     <div className="text-with-percentages bg-green lg:gap-6 lg:grid lg:grid-cols-2 my-[--padding] px-5 lg:px-10 py-10 lg:py-20 rounded-2xl">
       <div className="text-with-percentages__text">
         <div className="flex flex-col gap-6 max-w-[33rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]">
-          {title && <h2>{title}</h2>}
+          {title && <h3>{title}</h3>}
           <Button {...button} modifier="max-lg:hidden" />
         </div>
       </div>
@@ -27,7 +27,7 @@ export default function TextWithPercentages(props) {
         {percentages.map(({ _key, annotation, text, value }, i) => (
           <div key={_key} className="border-b border-cream/50 flex lg:grid lg:grid-cols-[11.125rem_1fr] max-lg:flex-col gap-6 first:pt-0 py-10 lg:py-14">
             <div className="bg-fern-green flex items-center justify-center rounded-2xl w-[11.125rem] h-[7.375rem]">
-              <h3>{value}</h3>
+              <span className="percentage">{value}</span>
             </div>
 
             <div className="eyebrow">{text}{getAnnotationNum(_key)}</div>

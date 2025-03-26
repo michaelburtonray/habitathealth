@@ -11,9 +11,9 @@ export default function TextWithIcons(props) {
     <div className={`text-with-icons my-[--padding] px-5 py-10 lg:py-20 rounded-2xl ${isStacked ? `lg:px-20` : 'lg:grid lg:grid-cols-2 lg:px-10'} ${getBackgroundColor(bgColor)}`}>
       <div className="text-with-icons__text">
         <div className={`flex flex-col gap-6 ${isStacked ? 'lg:gap-8 lg:items-center lg:text-center' : 'max-w-[33rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]'}`}>
-          {sanitizedString(title) && isStacked ? <h3>{title}</h3> : <div className="eyebrow">{title}</div>}
+          {sanitizedString(title) && isStacked ? <h3 className={`${isStacked ? 'max-w-[43.5rem]' : ''}`}>{title}</h3> : <div className="eyebrow">{title}</div>}
           {sanitizedString(text) && <h3>{text}</h3>}
-          {sanitizedString(copy) && <p className={`${isStacked ? 'eyebrow max-w-[43.5rem]' : 'body--large max-w-[30rem]'}`}>{copy}</p>}
+          {sanitizedString(copy) && <p className={`${isStacked ? 'body--large-semibold max-w-[43.5rem]' : 'body--large max-w-[30rem]'}`}>{copy}</p>}
 
           {!isStacked && <Button {...button} modifier="max-lg:hidden mt-4" />}
         </div>
