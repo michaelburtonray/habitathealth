@@ -14,6 +14,8 @@ export default defineType({
       name: 'schemaName',
       title: 'Schema Name',
       type: 'string',
+      description: 'Please use camelCase and no spaces',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'placeholder',

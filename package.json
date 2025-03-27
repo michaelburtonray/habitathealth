@@ -23,6 +23,7 @@
     "next-sanity": "^9.8.42",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "resend": "^4.2.0",
     "sanity": "^3.77.2",
     "sanity-plugin-internationalized-array": "^3.1.1",
     "sanity-plugin-link-field": "^1.4.0",

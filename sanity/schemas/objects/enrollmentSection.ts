@@ -60,6 +60,7 @@ export default defineType({
           },
         }),
       ],
+      description: 'This is the copy that appears above the form when there are multiple form fields.',
     }),
 
     defineField({
