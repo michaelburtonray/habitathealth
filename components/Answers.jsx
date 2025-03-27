@@ -21,7 +21,15 @@ export default function Answers({ data, formDataState, handleChange, index }) {
             return (
               <div key={_key} className="label-select-group mt-10 relative">
                 <label htmlFor={_key} className="body--large">{heading}</label>
-                <select required id={_key} name={schemaName} value={formDataState[schemaName]} onChange={handleChange} className="select body--large !py-0">
+                <select
+                  required
+                  id={_key}
+                  name={schemaName}
+                  value={formDataState[schemaName] || ''}
+                  onChange={handleChange}
+                  className="select body--large !py-0"
+                >
+                  <option value="">Select</option>
                   {answers.map(({ _key: key, title, value }) => (
                     <option key={key} value={value}>{title}</option>
                   ))}

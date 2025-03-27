@@ -4,16 +4,21 @@ import React, { useActionState, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 
+import { sendEmail } from "@/app/actions";
+
 import Answers from "@/components/Answers";
 import Button from "@/components/Button";
 import IconPhone from "@/components/IconPhone";
 import IconEmail from "@/components/IconEmail";
+import { form } from "sanity/structure";
 
 export default function CheckEligibility(props) {
   const {
     copy,
     cta,
     disclaimer,
+    emailFrom,
+    emailTo,
     intro,
     sections,
     successCopy,
@@ -22,15 +27,15 @@ export default function CheckEligibility(props) {
   } = props;
 
   const [currentSection, setCurrentSection] = useState(-1);
-
+  const [failureMessage, setFailureMessage] = useState('');
+  const [formDataState, setFormDataState] = useState({});
+  const [hasFailed, setHasFailed] = useState(false);
   const [steps, setSteps] = useState(
     sections.filter(({ questions }) => questions && questions.length > 0)
   );
 
-  const [formDataState, setFormDataState] = useState({});
-  const [hasFailed, setHasFailed] = useState(false);
-
   const initialState = {
+    hasSent: false,
     message: '',
   }
 
@@ -47,9 +52,10 @@ export default function CheckEligibility(props) {
 
       setCurrentSection(currentSection + 1);
     }
+
   }, [currentSection, formDataState, setFormDataState]);
 
-  const handleSubmit = (e) => {
+  const submitSection = (e) => {
     e.preventDefault();
 
     if (currentSection < steps.length - 1) {
@@ -73,6 +79,24 @@ export default function CheckEligibility(props) {
     e.preventDefault();
     setCurrentSection(0);
   };
+
+  const submitForm = async () => {
+    const { message } = initialState;
+    const formData = { ...formDataState, message };
+    const res = await sendEmail(initialState, formData, { emailFrom, emailTo });
+
+    window.scrollTo(0, 0);
+
+    if (res.hasSent) {
+      setCurrentSection(currentSection + 1);
+    } else {
+      setHasFailed(true);
+      setFailureMessage(res.message);
+    }
+
+  }
+
+  const [actionState, formAction, isPending] = useActionState(submitForm, initialState)
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -183,7 +207,7 @@ export default function CheckEligibility(props) {
                     <button
                       key={_key}
                       onClick={() => setCurrentSection(idx)}
-                      className={`body--large flex gap-3 items-center ${!isActive && 'max-lg:hidden'} ${!isCompleted && 'pointer-events-none'}`}
+                      className={`body--large flex gap-3 items-center ${!isActive && 'max-lg:hidden'} ${(!isCompleted || hasFailed) && 'pointer-events-none'}`}
                     >
                       <span className={`box-border border border-green inline-flex items-center justify-center w-10 h-10 rounded-full transition-colors ${isActive? 'bg-green text-white' : colors} `}>
                         {isCompleted ? (
@@ -201,11 +225,12 @@ export default function CheckEligibility(props) {
 
             {steps?.map(({ _key, failureCopy, intro, questions }, idx) => {
               return idx === currentSection && (
-                <form key={_key} onSubmit={handleSubmit}>
+                <form key={_key} {...(currentSection === steps.length - 1 ? { action: formAction } : { onSubmit: submitSection })}>
                   {hasFailed
                     ? (
                       <div className={`rte bg-orange p-5 rounded-2xl`}>
                         <PortableText value={failureCopy} components={components} />
+                        {failureMessage !== '' && <p>{failureMessage}</p>}
                       </div>
                     )
                     : (
@@ -232,11 +257,11 @@ export default function CheckEligibility(props) {
                     {currentSection <= steps.length - 2 && !hasFailed && <button type="submit" name="next" className="button button--green">Next</button>}
                   </div>
 
-                  {currentSection === steps.length - 1 && <div className="flex lg:justify-center mt-10">
+                  {currentSection === steps.length - 1 && !hasFailed && <div className="flex lg:justify-center mt-10">
                     <Button
                       hasArrow={true}
-                      modifier={'!w-[15rem]'}
-                      title={'Submit'}
+                      modifier={`!w-[15rem] ${isPending ? 'pointer-events-none' : ''}`}
+                      title={isPending ? 'Submitting…' : 'Submit'}
                       type="submit"
                     />
                   </div>}

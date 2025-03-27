@@ -24,6 +24,22 @@ export default defineType({
     }),
 
     defineField({
+      name: 'emailFrom',
+      title: 'Email From',
+      type: 'string',
+      description: 'The email address that will appear in the "From" field of the email.',
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
+      name: 'emailTo',
+      title: 'Email To',
+      type: 'string',
+      description: 'The email address that will receive the form submissions.',
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
       name: 'intro',
       title: 'Intro',
       type: 'text',
