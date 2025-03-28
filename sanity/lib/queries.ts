@@ -172,6 +172,39 @@ const contentData = /* groq */`{
   _type == 'textWithPercentages' => ${textWithPercentagesData},
 }`;
 
+const metadataFields = /* groq */ `
+metadata {
+  title,
+  description,
+  'metadataBase': 'https://www.habitatihealth.com',
+  openGraph {
+    ...,
+    images[] {
+      'url': asset->url,
+      'width': asset->metadata.dimensions.width,
+      'height': asset->metadata.dimensions.height,
+      'alt': asset->altText,
+    }
+  },
+  twitter {
+    ...,
+    images[] {
+      'url': asset->url,
+      'width': asset->metadata.dimensions.width,
+      'height': asset->metadata.dimensions.height,
+      'alt': asset->altText,
+    }
+  },
+  allowRobots == false => {
+    'robots': {
+      'index': false,
+      'follow': false,
+    }
+  }
+},
+`;
+
+
 export const enrollmentQuery = defineQuery(`
   *[_type == "enrollment" && slug.current == $slug][0] {
     ...,
@@ -185,9 +218,14 @@ export const enrollmentQuery = defineQuery(`
 export const pageQuery = defineQuery(`
   *[_type == "page" && $slug == slug.current][0] {
     ...,
+    ${metadataFields}
     content[]->${contentData},
   }
 `);
+
+export const pageSlugsQuery = defineQuery(
+  `*[_type == "page" && defined(slug.current)]{"slug": slug.current}`
+);
 
 export const settingsQuery = defineQuery(`
   *[_type == "settings"][0] {
@@ -216,7 +254,7 @@ export const settingsQuery = defineQuery(`
 `);
 
 export const siteUrlsQuery = defineQuery(`{
-  "pages": *[_type == "page"] | order(title asc) {
+  "pages": *[_type == "page"][metadata.includeInSitemap] | order(title asc) {
     "lastModified": _updatedAt,
     "url": select(
       slug.current == "homepage" => $baseUrl,

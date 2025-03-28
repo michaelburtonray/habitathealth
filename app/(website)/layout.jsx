@@ -10,6 +10,32 @@ export const metadata ={
   description: "lorem ipsum",
 };
 
+// export async function generateMetadata() {
+//   const settings = await getSettingsData();
+
+//   const title = settings?.title || demo.title;
+//   const defaultTitle = settings?.defaultTitle || demo.defaultTitle;
+//   const description = settings?.description || demo.description;
+
+//   const ogImage = resolveOpenGraphImage(settings?.ogImage);
+
+//   return {
+//     metadataBase: new URL("https://www.habitathealth.com/"),
+//     title: {
+//       template: `%s | ${title}`,
+//       default: defaultTitle,
+//     },
+//     description: toPlainText(description),
+//     openGraph: {
+//       images: ogImage ? [ogImage] : [],
+//     },
+//     alternates: {
+//       canonical: "./",
+//     }
+//   };
+// }
+
+
 export default async function RootLayout({
   children,
 }) {
