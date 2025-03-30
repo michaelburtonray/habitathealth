@@ -130,4 +130,18 @@ export default defineType({
       initialValue: true,
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      description: 'description',
+      openGraphTitle: 'openGraph.title',
+      twitterTitle: 'twitter.title',
+    },
+    prepare({ title, description, openGraphTitle, twitterTitle }) {
+      return {
+        title: title || openGraphTitle || twitterTitle || 'No title',
+        subtitle: description || 'No description',
+      }
+    },
+  }
 })

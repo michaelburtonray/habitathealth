@@ -5,36 +5,25 @@ import { gellix } from "@/styles/font";
 import Footer from "@/components/Footer";
 import { getSettingsData } from "@/sanity/lib/fetch";
 
-export const metadata ={
-  title: "Habitat Health",
-  description: "lorem ipsum",
-};
+// export const metadata ={
+//   title: "Habitat Health",
+//   description: "lorem ipsum",
+// };
 
-// export async function generateMetadata() {
-//   const settings = await getSettingsData();
+export async function generateMetadata() {
+  const data = await getSettingsData()
+  const { metadata } = data
+  const { title } = metadata
 
-//   const title = settings?.title || demo.title;
-//   const defaultTitle = settings?.defaultTitle || demo.defaultTitle;
-//   const description = settings?.description || demo.description;
+  metadata.title = {
+    template: `%s | ${title}`,
+    default: title,
+  }
 
-//   const ogImage = resolveOpenGraphImage(settings?.ogImage);
+  metadata.metadataBase = new URL('https://www.habitathealth.com/')
 
-//   return {
-//     metadataBase: new URL("https://www.habitathealth.com/"),
-//     title: {
-//       template: `%s | ${title}`,
-//       default: defaultTitle,
-//     },
-//     description: toPlainText(description),
-//     openGraph: {
-//       images: ogImage ? [ogImage] : [],
-//     },
-//     alternates: {
-//       canonical: "./",
-//     }
-//   };
-// }
-
+  return metadata
+}
 
 export default async function RootLayout({
   children,

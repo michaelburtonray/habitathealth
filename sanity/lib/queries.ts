@@ -176,7 +176,7 @@ const metadataFields = /* groq */ `
 metadata {
   title,
   description,
-  'metadataBase': 'https://www.habitatihealth.com',
+  'metadataBase': 'https://www.habitathealth.com/',
   openGraph {
     ...,
     images[] {
@@ -229,6 +229,7 @@ export const pageSlugsQuery = defineQuery(
 
 export const settingsQuery = defineQuery(`
   *[_type == "settings"][0] {
+    ${metadataFields}
     ...,
     footer {
       ...,
