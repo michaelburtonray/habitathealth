@@ -37,6 +37,7 @@ import formField from './schemas/objects/formField'
 import header from './schemas/objects/header'
 import linkList from './schemas/objects/linkList'
 import linkObject from './schemas/objects/linkObject'
+import metadata from './schemas/objects/metadata'
 import testimonial from './schemas/objects/testimonial'
 
 const singletons = [
@@ -77,6 +78,7 @@ const objects = [
   header,
   linkList,
   linkObject,
+  metadata,
   testimonial
 ]
 

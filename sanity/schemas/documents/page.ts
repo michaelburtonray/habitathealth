@@ -22,6 +22,14 @@ export default defineType({
         maxLength: 96,
       },
     }),
+    defineField({
+      type: 'metadata',
+      name: 'metadata',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+    }),
 
     defineField({
       name: 'content',

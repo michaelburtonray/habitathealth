@@ -7,32 +7,29 @@ export default defineType({
   type: 'document',
   icon: CogIcon,
   groups: [
+    { name: 'metadata', title: 'Metadata'},
     { name: 'header', title: 'Header'},
     { name: 'footer', title: 'Footer'},
   ],
+  __experimental_formPreviewTitle: false,
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      description: 'The title of the site',
-      validation: (Rule) => Rule.required(),
-    }),
-
-    defineField({
-      name: 'defaultTitle',
-      title: 'Default Title',
-      type: 'string',
-      description: 'The default title as seen on the homepage',
-      validation: (Rule) => Rule.required(),
-    }),
-
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-      description: 'The description of the site used for the <meta> description tag for SEO.',
-      validation: (Rule) => Rule.required(),
+      type: 'metadata',
+      name: 'metadata',
+      group: 'metadata',
+      description: 'The metadata of the site used for SEO.',
+      preview: {
+        select: {
+          title: 'metadata.title',
+          description: 'metadata.description',
+        },
+        prepare({ title, description }) {
+          return {
+            title: title || 'No Title',
+            subtitle: description || 'No Description',
+          };
+        }
+      },
     }),
 
     defineField({

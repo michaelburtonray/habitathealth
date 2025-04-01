@@ -5,10 +5,25 @@ import { gellix } from "@/styles/font";
 import Footer from "@/components/Footer";
 import { getSettingsData } from "@/sanity/lib/fetch";
 
-export const metadata ={
-  title: "Habitat Health",
-  description: "lorem ipsum",
-};
+// export const metadata ={
+//   title: "Habitat Health",
+//   description: "lorem ipsum",
+// };
+
+export async function generateMetadata() {
+  const data = await getSettingsData()
+  const { metadata } = data
+  const { title } = metadata
+
+  metadata.title = {
+    template: `%s | ${title}`,
+    default: title,
+  }
+
+  metadata.metadataBase = new URL('https://www.habitathealth.com/')
+
+  return metadata
+}
 
 export default async function RootLayout({
   children,

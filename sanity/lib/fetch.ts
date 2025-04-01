@@ -11,6 +11,11 @@ export const getPageData = ({ slug, lang }: { slug: string, lang: string }) => {
   return res;
 }
 
+export const getPageSlugs = async () => {
+  // Fetch all slugs for pages in the specified language
+  const res = await client.fetch(queries.pageSlugsQuery);
+  return res;
+}
 export const getSettingsData = () => {
   const res = client.fetch(queries.settingsQuery);
   return res;

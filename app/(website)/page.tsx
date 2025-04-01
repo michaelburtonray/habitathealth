@@ -2,6 +2,15 @@ import Content from "@/components/Content";
 
 import { getPageData } from "@/sanity/lib/fetch";
 
+export async function generateMetadata() {
+  const page = await getPageData({ slug: 'homepage', lang: 'en'});
+
+  const metadata = page?.metadata || {}
+
+  return metadata
+}
+
+
 export default async function Home() {
   const pageData = await getPageData({slug: 'homepage', lang: 'en'});
 
