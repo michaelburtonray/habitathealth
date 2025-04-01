@@ -611,52 +611,6 @@ export type Page = {
   }>;
 };
 
-export type Metadata = {
-  _type: "metadata";
-  title?: string;
-  description?: string;
-  openGraph?: {
-    title?: string;
-    description?: string;
-    url?: string;
-    siteName?: string;
-    images?: Array<{
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-      _key: string;
-    }>;
-  };
-  twitter?: {
-    card?: string;
-    title?: string;
-    description?: string;
-    siteId?: string;
-    creator?: string;
-    creatorId?: string;
-    images?: Array<{
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-      _key: string;
-    }>;
-  };
-  allowRobots?: boolean;
-  includeInSitemap?: boolean;
-};
-
 export type LogoWithIcons = {
   _id: string;
   _type: "logoWithIcons";
@@ -926,9 +880,7 @@ export type Settings = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
-  defaultTitle?: string;
-  description?: string;
+  metadata?: Metadata;
   header?: Header;
   footer?: Footer;
 };
@@ -980,6 +932,46 @@ export type Footer = {
     _type: "block";
     _key: string;
   }>;
+};
+
+export type Header = {
+  _type: "header";
+  promoBar?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  nav?: Array<{
+    _key: string;
+  } & LinkObject>;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  contactList?: Array<{
+    _key: string;
+  } & LinkObject>;
 };
 
 export type SanityImageCrop = {
@@ -1039,44 +1031,50 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type Header = {
-  _type: "header";
-  promoBar?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
+export type Metadata = {
+  _type: "metadata";
+  title?: string;
+  description?: string;
+  openGraph?: {
+    title?: string;
+    description?: string;
+    url?: string;
+    siteName?: string;
+    images?: Array<{
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
       _key: string;
     }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  nav?: Array<{
-    _key: string;
-  } & LinkObject>;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
   };
-  contactList?: Array<{
-    _key: string;
-  } & LinkObject>;
+  twitter?: {
+    card?: string;
+    title?: string;
+    description?: string;
+    siteId?: string;
+    creator?: string;
+    creatorId?: string;
+    images?: Array<{
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+      _key: string;
+    }>;
+  };
+  allowRobots?: boolean;
+  includeInSitemap?: boolean;
 };
 
 export type InternationalizedArrayTextValue = {
@@ -1112,7 +1110,7 @@ export type InternationalizedArraySlug = Array<{
   _key: string;
 } & InternationalizedArraySlugValue>;
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | Geopoint | BlockContent | Category | Post | Author | Testimonial | LinkObject | LinkList | FormField | FaqQA | EnrollmentSection | AnswerTextarea | AnswerText | AnswerSelectDropdown | AnswerRadioButtons | TextWithPercentages | TextWithList | TextWithIcons | TextWithChart | TextWithBubbles | Testimonials | TertiaryPageModule | SanityFileAsset | Page | Metadata | LogoWithIcons | Leadership | ImageWithTextGroup | ImageWithText | HeroSlider | Hero | FaqPageModule | Faq | Enrollment | Button | Settings | Footer | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Header | InternationalizedArrayTextValue | InternationalizedArrayStringValue | InternationalizedArraySlugValue | Slug | InternationalizedArrayText | InternationalizedArrayString | InternationalizedArraySlug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | Geopoint | BlockContent | Category | Post | Author | Testimonial | LinkObject | LinkList | FormField | FaqQA | EnrollmentSection | AnswerTextarea | AnswerText | AnswerSelectDropdown | AnswerRadioButtons | TextWithPercentages | TextWithList | TextWithIcons | TextWithChart | TextWithBubbles | Testimonials | TertiaryPageModule | SanityFileAsset | Page | LogoWithIcons | Leadership | ImageWithTextGroup | ImageWithText | HeroSlider | Hero | FaqPageModule | Faq | Enrollment | Button | Settings | Footer | Header | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Metadata | InternationalizedArrayTextValue | InternationalizedArrayStringValue | InternationalizedArraySlugValue | Slug | InternationalizedArrayText | InternationalizedArrayString | InternationalizedArraySlug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: enrollmentQuery
@@ -1220,7 +1218,7 @@ export type EnrollmentQueryResult = {
   }>;
 } | null;
 // Variable: pageQuery
-// Query: *[_type == "page" && $slug == slug.current][0] {    ...,    metadata {  title,  description,  'metadataBase': 'https://www.habitatihealth.com',  openGraph {    ...,    images[] {      'url': asset->url,      'width': asset->metadata.dimensions.width,      'height': asset->metadata.dimensions.height,      'alt': asset->altText,    }  },  twitter {    ...,    images[] {      'url': asset->url,      'width': asset->metadata.dimensions.width,      'height': asset->metadata.dimensions.height,      'alt': asset->altText,    }  },  allowRobots == false => {    'robots': {      'index': false,      'follow': false,    }  }},    content[]->{  ...,  _type == 'faq' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},  _type == 'faqPageModule' => {  ...,  sections[]->{    _id,    faqQAs,    title,  },},  _type == 'hero' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  mobileImage {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'heroSlider' => {  ...,  slides[] {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},},  _type == 'imageWithText' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  'isImageOnLeft': isImageOnLeft,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'imageWithTextGroup' => {  ...,  content[]-> {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  'isImageOnLeft': isImageOnLeft,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'leadership' => {  ...,  leaders[] {    ...,    image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  },},  _type == 'logoWithIcons' => {  ...,  icons[] {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},},  _type == 'tertiaryPageModule' => {  ...,  content[] {    ...,    _type == 'file' => {      ...,      'url': asset->url,    }  }},  _type == 'testimonials' => {  ...,  testimonials[] {  ...,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'textWithChart' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},  _type == 'textWithIcons' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  icons[] {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'textWithList' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},  _type == 'textWithPercentages' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},},  }
+// Query: *[_type == "page" && $slug == slug.current][0] {    ...,    metadata {  title,  description,  'metadataBase': 'https://www.habitathealth.com/',  openGraph {    ...,    images[] {      'url': asset->url,      'width': asset->metadata.dimensions.width,      'height': asset->metadata.dimensions.height,      'alt': asset->altText,    }  },  twitter {    ...,    images[] {      'url': asset->url,      'width': asset->metadata.dimensions.width,      'height': asset->metadata.dimensions.height,      'alt': asset->altText,    }  },  allowRobots == false => {    'robots': {      'index': false,      'follow': false,    }  }},    content[]->{  ...,  _type == 'faq' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},  _type == 'faqPageModule' => {  ...,  sections[]->{    _id,    faqQAs,    title,  },},  _type == 'hero' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  mobileImage {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'heroSlider' => {  ...,  slides[] {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},},  _type == 'imageWithText' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  'isImageOnLeft': isImageOnLeft,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'imageWithTextGroup' => {  ...,  content[]-> {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  'isImageOnLeft': isImageOnLeft,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'leadership' => {  ...,  leaders[] {    ...,    image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  },},  _type == 'logoWithIcons' => {  ...,  icons[] {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},},  _type == 'tertiaryPageModule' => {  ...,  content[] {    ...,    _type == 'file' => {      ...,      'url': asset->url,    }  }},  _type == 'testimonials' => {  ...,  testimonials[] {  ...,  image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'textWithChart' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},  _type == 'textWithIcons' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  'copy': coalesce(  copy[_key == $lang][0].value,  copy[_key == "en"][0].value,  copy,  "Missing translation",),  icons[] {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,},  'text': coalesce(  text[_key == $lang][0].value,  text[_key == "en"][0].value,  text,  "Missing translation",),  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},  _type == 'textWithList' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},  _type == 'textWithPercentages' => {  ...,  button {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},},},  }
 export type PageQueryResult = {
   _id: string;
   _type: "page";
@@ -1232,7 +1230,7 @@ export type PageQueryResult = {
   metadata: {
     title: string | null;
     description: string | null;
-    metadataBase: "https://www.habitatihealth.com";
+    metadataBase: "https://www.habitathealth.com/";
     openGraph: {
       title?: string;
       description?: string;
@@ -1266,7 +1264,7 @@ export type PageQueryResult = {
   } | {
     title: string | null;
     description: string | null;
-    metadataBase: "https://www.habitatihealth.com";
+    metadataBase: "https://www.habitathealth.com/";
     openGraph: {
       title?: string;
       description?: string;
@@ -1805,16 +1803,14 @@ export type PageSlugsQueryResult = Array<{
   slug: string | null;
 }>;
 // Variable: settingsQuery
-// Query: *[_type == "settings"][0] {    ...,    footer {      ...,      contactInfo,      linkLists[] {        ...,        links[] {  ...,  internalLink->{    'slug': slug.current,    title,  },},      },      regulatoryLinks[] {  ...,  internalLink->{    'slug': slug.current,    title,  },},      socialLinks[] {  ...,  internalLink->{    'slug': slug.current,    title,  },},    },    header {      ...,      contactList[] {  ...,  internalLink->{    'slug': slug.current,    title,  },},      image {        ...,        'assetPath': asset->path,        'aspectRatio': asset->metadata.dimensions.aspectRatio,      },      nav[] {  ...,  internalLink->{    'slug': slug.current,    title,  },},    }  }
+// Query: *[_type == "settings"][0] {    metadata {  title,  description,  'metadataBase': 'https://www.habitathealth.com/',  openGraph {    ...,    images[] {      'url': asset->url,      'width': asset->metadata.dimensions.width,      'height': asset->metadata.dimensions.height,      'alt': asset->altText,    }  },  twitter {    ...,    images[] {      'url': asset->url,      'width': asset->metadata.dimensions.width,      'height': asset->metadata.dimensions.height,      'alt': asset->altText,    }  },  allowRobots == false => {    'robots': {      'index': false,      'follow': false,    }  }},    ...,    footer {      ...,      contactInfo,      linkLists[] {        ...,        links[] {  ...,  internalLink->{    'slug': slug.current,    title,  },},      },      regulatoryLinks[] {  ...,  internalLink->{    'slug': slug.current,    title,  },},      socialLinks[] {  ...,  internalLink->{    'slug': slug.current,    title,  },},    },    header {      ...,      contactList[] {  ...,  internalLink->{    'slug': slug.current,    title,  },},      image {        ...,        'assetPath': asset->path,        'aspectRatio': asset->metadata.dimensions.aspectRatio,      },      nav[] {  ...,  internalLink->{    'slug': slug.current,    title,  },},    }  }
 export type SettingsQueryResult = {
+  metadata?: Metadata;
   _id: string;
   _type: "settings";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
-  defaultTitle?: string;
-  description?: string;
   header: {
     _type: "header";
     promoBar?: Array<{
@@ -1963,9 +1959,9 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n  *[_type == \"enrollment\" && slug.current == $slug][0] {\n    ...,\n    cta {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n    sections[] {\n      ...,\n      image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    }\n  }": EnrollmentQueryResult;
-    "\n  *[_type == \"page\" && $slug == slug.current][0] {\n    ...,\n    \nmetadata {\n  title,\n  description,\n  'metadataBase': 'https://www.habitatihealth.com',\n  openGraph {\n    ...,\n    images[] {\n      'url': asset->url,\n      'width': asset->metadata.dimensions.width,\n      'height': asset->metadata.dimensions.height,\n      'alt': asset->altText,\n    }\n  },\n  twitter {\n    ...,\n    images[] {\n      'url': asset->url,\n      'width': asset->metadata.dimensions.width,\n      'height': asset->metadata.dimensions.height,\n      'alt': asset->altText,\n    }\n  },\n  allowRobots == false => {\n    'robots': {\n      'index': false,\n      'follow': false,\n    }\n  }\n},\n\n    content[]->{\n  ...,\n  _type == 'faq' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  _type == 'faqPageModule' => {\n  ...,\n  sections[]->{\n    _id,\n    faqQAs,\n    title,\n  },\n},\n  _type == 'hero' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  mobileImage {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'heroSlider' => {\n  ...,\n  slides[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n},\n  _type == 'imageWithText' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  'isImageOnLeft': isImageOnLeft,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'imageWithTextGroup' => {\n  ...,\n  content[]-> {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  'isImageOnLeft': isImageOnLeft,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'leadership' => {\n  ...,\n  leaders[] {\n    ...,\n    image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  },\n},\n  _type == 'logoWithIcons' => {\n  ...,\n  icons[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n},\n  _type == 'tertiaryPageModule' => {\n  ...,\n  content[] {\n    ...,\n    _type == 'file' => {\n      ...,\n      'url': asset->url,\n    }\n  }\n},\n  _type == 'testimonials' => {\n  ...,\n  testimonials[] {\n  ...,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'textWithChart' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  _type == 'textWithIcons' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  icons[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'textWithList' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  _type == 'textWithPercentages' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n},\n  }\n": PageQueryResult;
+    "\n  *[_type == \"page\" && $slug == slug.current][0] {\n    ...,\n    \nmetadata {\n  title,\n  description,\n  'metadataBase': 'https://www.habitathealth.com/',\n  openGraph {\n    ...,\n    images[] {\n      'url': asset->url,\n      'width': asset->metadata.dimensions.width,\n      'height': asset->metadata.dimensions.height,\n      'alt': asset->altText,\n    }\n  },\n  twitter {\n    ...,\n    images[] {\n      'url': asset->url,\n      'width': asset->metadata.dimensions.width,\n      'height': asset->metadata.dimensions.height,\n      'alt': asset->altText,\n    }\n  },\n  allowRobots == false => {\n    'robots': {\n      'index': false,\n      'follow': false,\n    }\n  }\n},\n\n    content[]->{\n  ...,\n  _type == 'faq' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  _type == 'faqPageModule' => {\n  ...,\n  sections[]->{\n    _id,\n    faqQAs,\n    title,\n  },\n},\n  _type == 'hero' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  mobileImage {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'heroSlider' => {\n  ...,\n  slides[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n},\n  _type == 'imageWithText' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  'isImageOnLeft': isImageOnLeft,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'imageWithTextGroup' => {\n  ...,\n  content[]-> {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  'isImageOnLeft': isImageOnLeft,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'leadership' => {\n  ...,\n  leaders[] {\n    ...,\n    image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  },\n},\n  _type == 'logoWithIcons' => {\n  ...,\n  icons[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n},\n  _type == 'tertiaryPageModule' => {\n  ...,\n  content[] {\n    ...,\n    _type == 'file' => {\n      ...,\n      'url': asset->url,\n    }\n  }\n},\n  _type == 'testimonials' => {\n  ...,\n  testimonials[] {\n  ...,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'textWithChart' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  _type == 'textWithIcons' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  icons[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'textWithList' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  _type == 'textWithPercentages' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n},\n  }\n": PageQueryResult;
     "*[_type == \"page\" && defined(slug.current)]{\"slug\": slug.current}": PageSlugsQueryResult;
-    "\n  *[_type == \"settings\"][0] {\n    ...,\n    footer {\n      ...,\n      contactInfo,\n      linkLists[] {\n        ...,\n        links[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n      },\n      regulatoryLinks[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n      socialLinks[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n    },\n    header {\n      ...,\n      contactList[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n      image {\n        ...,\n        'assetPath': asset->path,\n        'aspectRatio': asset->metadata.dimensions.aspectRatio,\n      },\n      nav[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n    }\n  }\n": SettingsQueryResult;
+    "\n  *[_type == \"settings\"][0] {\n    \nmetadata {\n  title,\n  description,\n  'metadataBase': 'https://www.habitathealth.com/',\n  openGraph {\n    ...,\n    images[] {\n      'url': asset->url,\n      'width': asset->metadata.dimensions.width,\n      'height': asset->metadata.dimensions.height,\n      'alt': asset->altText,\n    }\n  },\n  twitter {\n    ...,\n    images[] {\n      'url': asset->url,\n      'width': asset->metadata.dimensions.width,\n      'height': asset->metadata.dimensions.height,\n      'alt': asset->altText,\n    }\n  },\n  allowRobots == false => {\n    'robots': {\n      'index': false,\n      'follow': false,\n    }\n  }\n},\n\n    ...,\n    footer {\n      ...,\n      contactInfo,\n      linkLists[] {\n        ...,\n        links[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n      },\n      regulatoryLinks[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n      socialLinks[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n    },\n    header {\n      ...,\n      contactList[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n      image {\n        ...,\n        'assetPath': asset->path,\n        'aspectRatio': asset->metadata.dimensions.aspectRatio,\n      },\n      nav[] {\n  ...,\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n    }\n  }\n": SettingsQueryResult;
     "{\n  \"pages\": *[_type == \"page\"][metadata.includeInSitemap] | order(title asc) {\n    \"lastModified\": _updatedAt,\n    \"url\": select(\n      slug.current == \"homepage\" => $baseUrl,\n      $baseUrl + slug.current\n    ),\n  },\n  \"enrollment\": *[_type == \"enrollment\"][0] {\n    \"lastModified\": _updatedAt,\n    \"url\": $baseUrl + slug.current,\n  },\n}": SiteUrlsQueryResult;
   }
 }
