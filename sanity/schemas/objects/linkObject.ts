@@ -19,6 +19,17 @@ export default defineType({
         allowRelative: true,
         scheme: ['http', 'https', 'mailto', 'tel'],
       }),
+
+    }),
+
+    defineField({
+      name: 'file',
+      title: 'File',
+      type: 'file',
+      options: {
+        accept: 'application/pdf',
+      },
+      hidden: ({ parent }) => parent?.url || parent?.internalLink?._ref,
     }),
 
     defineField({
@@ -29,7 +40,7 @@ export default defineType({
         { type: 'page' },
         { type: 'enrollment' },
       ],
-      hidden: ({ parent }) => parent?.url,
+      hidden: ({ parent }) => parent?.url || parent?.file?._ref,
     }),
   ],
 
@@ -37,12 +48,15 @@ export default defineType({
     select: {
       title: 'title',
       altTitle: 'internalLink.title',
+      file: 'file',
     },
 
-    prepare({ title, altTitle }) {
+    prepare({ title, altTitle, file }) {
+      const name = Boolean(file) ? 'Internal Link (File)' : 'External Link';
+
       return {
         title: title || altTitle || 'No title',
-        subtitle: altTitle ? 'Internal Link' : 'External Link',
+        subtitle: altTitle ? 'Internal Link' : name,
       };
     },
   }

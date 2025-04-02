@@ -41,6 +41,10 @@ const imageData = /* groq */`{
 
 const linkObjectData = /* groq */`{
   ...,
+  file {
+    ...,
+    'url': asset->url,
+  },
   internalLink->{
     'slug': slug.current,
     title,
