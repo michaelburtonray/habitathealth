@@ -56,7 +56,7 @@ export default defineType({
 
       return {
         title: title || altTitle || 'No title',
-        subtitle: altTitle ? `Internal Link` : name,
+        subtitle: altTitle ? 'Internal Link' : name,
       };
     },
   }
