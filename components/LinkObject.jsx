@@ -55,8 +55,6 @@ export default function LinkObject(props) {
     }
   }
 
-  console.log(file)
-
   return internalLink
     ? (
       <Link href={`/${internalLink.slug}`} className={modifiers}>{title || internalLink.title}</Link>

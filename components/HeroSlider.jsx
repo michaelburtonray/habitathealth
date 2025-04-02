@@ -20,7 +20,7 @@ export default function HeroSlider(props) {
       <div className="hero-slider__text flex items-end max-lg:-mr-[100%] p-5 lg:p-10 pointer-events-none text-green z-10">
         <div className="bg-cream p-5 lg:p-10 rounded-2xl sticky bottom-10 pointer-events-auto">
           {title && <h4>{title}</h4>}
-          {text && <p className="eyebrow mt-5 lg:mt-[2.125rem]">{text}</p>}
+          {text && <p className="mt-5 lg:mt-[2.125rem]">{text}</p>}
         </div>
       </div>
 
@@ -33,10 +33,7 @@ export default function HeroSlider(props) {
           }}
           loop={true}
           modules={[Keyboard, Navigation]}
-          navigation={{
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
-          }}
+          navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
           onInit={(swiper) => {
             swiper.params.navigation.prevEl = prevRef.current;
             swiper.params.navigation.nextEl = nextRef.current;
@@ -45,7 +42,7 @@ export default function HeroSlider(props) {
           }}
           slidesPerView={1}
         >
-          {slides.map(({ _key, alt, aspectRatio, assetPath }) => {
+          {slides.map(({ _key, alt, aspectRatio, assetPath }, idx) => {
             if (!assetPath) return '';
 
             return (
@@ -54,6 +51,7 @@ export default function HeroSlider(props) {
                   <Image
                     src={assetPath}
                     fill={true}
+                    loading={idx === 0 ? 'eager' : 'lazy'}
                     alt={alt || 'Habitat Health'}
                     className="object-center object-cover"
                   />
@@ -61,19 +59,19 @@ export default function HeroSlider(props) {
               </SwiperSlide>
             )
           })}
+
+          <div className="hero-slider__controls absolute inset-0 flex lg:items-end lg:justify-end z-10 pointer-events-none">
+            <div className="flex gap-3 p-5 lg:p-10 sticky bottom-0 pointer-events-auto">
+              <button ref={prevRef} className="button *:pointer-events-none rotate-180" aria-label="Previous slide">
+                <IconArrow />
+              </button>
+
+              <button ref={nextRef} className="button *:pointer-events-none" aria-label="Next slide">
+                <IconArrow />
+              </button>
+            </div>
+          </div>
         </Swiper>
-      </div>
-
-      <div className="hero-slider__controls absolute inset-0 flex lg:items-end lg:justify-end z-10 pointer-events-none">
-        <div className="flex gap-3 p-5 lg:p-10 sticky bottom-0 pointer-events-auto">
-          <button ref={prevRef} className="button *:pointer-events-none rotate-180" aria-label="Previous slide">
-            <IconArrow />
-          </button>
-
-          <button ref={nextRef} className="button *:pointer-events-none" aria-label="Next slide">
-            <IconArrow />
-          </button>
-        </div>
       </div>
     </div>
   )

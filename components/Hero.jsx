@@ -10,12 +10,14 @@ export default function Hero(props) {
         {image && image.assetPath && <Image
           src={image.assetPath}
           fill={true}
+          loading="eager"
           alt="Habitat Health"
           className="object-cover w-full max-lg:hidden"
         />}
         {mobileImage && mobileImage.assetPath && <Image
           src={mobileImage.assetPath}
           fill={true}
+          loading="eager"
           alt="Habitat Health"
           className="object-cover w-full lg:hidden" />}
       </figure>
