@@ -48,4 +48,12 @@ export default defineType({
       description: 'The footer of the site',
     }),
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Settings',
+        subtitle: 'Site settings, Metadata, Header and Footer',
+      };
+    },
+  }
 });
