@@ -14,6 +14,7 @@ export default function ImageWithText(props) {
           src={assetPath}
           alt={alt}
           fill={true}
+          loading={isHero ? 'eager' : 'lazy'}
           className={`object-cover rounded-2xl w-full ${isHero && 'max-lg:rounded-t-none'}`}
         />
       </a>
@@ -21,6 +22,7 @@ export default function ImageWithText(props) {
         src={assetPath}
         alt={alt}
         fill={true}
+        loading={isHero ? 'eager' : 'lazy'}
         className={`object-cover rounded-[--radius] w-full ${isHero && 'max-lg:rounded-t-none'}`}
       />;
   };
