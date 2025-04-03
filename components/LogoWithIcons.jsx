@@ -2,6 +2,20 @@ import Image from "next/image";
 import { PortableText } from "next-sanity";
 
 export default function LogoWithIcons({ icons }) {
+  const getBasis = () => {
+    switch (icons.length) {
+     case 2:
+        return '*:lg:basis-1/2';
+      case 3:
+        return '*:lg:basis-1/3';
+      case 4:
+        return '*:lg:basis-1/4';
+      case 5:
+        return '*:lg:basis-1/5';
+      default:
+        return '';
+    }
+  }
 
   return (
     <div className="logo-with-icons bg-cream my-[--padding] px-5 md:px-[5rem] xl:px-[11.25rem] py-10 lg:py-20 rounded-2xl text-green">
@@ -62,7 +76,7 @@ export default function LogoWithIcons({ icons }) {
         </svg>
       </div>
 
-      <div className="flex max-lg:grid max-sm:grid-cols-1 max-lg:grid-cols-2 max gap-10 justify-between max-sm:mt-5 mt-10 lg:mt-14">
+      <div className={`flex max-lg:grid max-sm:grid-cols-1 max-lg:grid-cols-2 max gap-10 justify-between max-sm:mt-5 mt-10 lg:mt-14 ${getBasis()}`}>
         {icons.map(({ _key, alt, assetPath, text }, idx) => (
           <div key={_key} className="flex flex-col gap-6 max-w-[12.5rem] rte">
             {assetPath && <>
