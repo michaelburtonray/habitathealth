@@ -115,12 +115,12 @@ export default function Header(props) {
       <div className="promo-bar rte body--small flex max-lg:flex-col lg:gap-2 items-center justify-end lg:justify-center h-[4.75rem] lg:h-10 max-lg:pb-4 relative text-white">
         {promoBar && <PortableText value={promoBar} components={components} />}
       </div>
-      <div className="bg-white flex xl:grid gap-8 xl:grid-cols-3 items-center justify-between h-20 px-5 lg:px-10 py-5 relative rounded-t-2xl text-green z-30">
+      <div className="bg-white flex xl:grid gap-8 xl:grid-cols-3 items-center justify-between min-h-20 px-5 lg:px-10 py-5 relative rounded-t-2xl text-green z-30">
         <Link href="/" className="h-8">
           <Logo />
         </Link>
 
-        <nav className="nav-desktop body--large flex justify-center max-xl:hidden">
+        <nav className="nav-desktop body--large flex items-center justify-center max-xl:hidden">
           <ul className="flex gap-8">
             {nav.map((link) => (
                 <li key={link._key} className={`${pathname === link.slug ? 'active' : ''}`}>
@@ -130,7 +130,7 @@ export default function Header(props) {
           </ul>
         </nav>
 
-        <div className="buttons flex gap-3 max-xl:hidden justify-end">
+        <div className="buttons flex gap-3 max-xl:hidden  items-center justify-end">
           <select
             name="language-picker"
             id="languages"
@@ -143,7 +143,7 @@ export default function Header(props) {
             })}
           </select>
 
-          <Link href="/check-eligibility" className="js-ce-button button button--green !h-10 !px-5">Check Eligibility</Link>
+          <Link href="/check-eligibility" className="button button--green !min-h-10 !px-5">Check Eligibility</Link>
         </div>
 
         <div className="menu flex items-center xl:hidden">
@@ -185,7 +185,7 @@ export default function Header(props) {
                   })}
                 </select>
 
-                <Link href="/check-eligibility" className="js-ce-button button button--arrow button--green">
+                <Link href="/check-eligibility" className="button button--arrow button--green">
                   <span>Check Eligibility</span>
                   <IconArrow />
                 </Link>

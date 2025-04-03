@@ -16,11 +16,11 @@
 
   /* Buttons */
   .button {
-    @apply bg-orange cursor-pointer hover:bg-cream flex items-center justify-center px-8 h-[3.25rem] rounded-[2rem] text-lg text-green transition-colors w-max;
+    @apply bg-orange box-border cursor-pointer hover:bg-cream flex items-center justify-center leading-[1.1] px-8 py-2 min-h-[3.25rem] rounded-[2rem] text-center text-green text-lg transition-colors w-max;
   }
 
   .button--slim {
-    @apply h-8 !px-3 text-sm;
+    @apply !min-h-0 h-8 !px-3 !py-1 text-sm;
   }
 
   .button--arrow {
