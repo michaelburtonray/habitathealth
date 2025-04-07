@@ -4,7 +4,7 @@ import IconPhone from "./IconPhone";
 import IconEmail from "./IconEmail";
 
 export default function LinkObject(props) {
-  const { file, internalLink, isButton, modifiers, title, url } = props;
+  const { file, internalLink, isButton, modifiers, title, url, onNavigate } = props;
   let icon = null;
 
   switch (title) {
@@ -57,10 +57,22 @@ export default function LinkObject(props) {
 
   return internalLink
     ? (
-      <Link href={`/${internalLink.slug}`} className={modifiers}>{title || internalLink.title}</Link>
+      <Link
+        href={`/${internalLink.slug}`}
+        className={modifiers}
+        onNavigate={onNavigate}
+      >
+        {title || internalLink.title}
+      </Link>
     )
     : (
-      <a href={url || file.url || '/'} className={`${modifiers} ${isButton ? 'button button--slim flex gap-2 items-center !px-4' : ''}`} target="_blank" rel="noopener noreferrer">
+      <a
+        href={url || file.url || '/'}
+        className={`${modifiers} ${isButton ? 'button button--slim flex gap-2 items-center !px-4' : ''}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        onNavigate={onNavigate}
+      >
         {icon}
         <span className={(icon && !isButton) ? 'hidden' : ''}>{title}</span>
       </a>

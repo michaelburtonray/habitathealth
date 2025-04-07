@@ -5,11 +5,6 @@ import { gellix } from "@/styles/font";
 import Footer from "@/components/Footer";
 import { getSettingsData } from "@/sanity/lib/fetch";
 
-// export const metadata ={
-//   title: "Habitat Health",
-//   description: "lorem ipsum",
-// };
-
 export async function generateMetadata() {
   const data = await getSettingsData()
   const { metadata } = data
