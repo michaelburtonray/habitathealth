@@ -16,7 +16,12 @@
 
   /* Buttons */
   .button {
-    @apply bg-orange box-border cursor-pointer hover:bg-cream flex items-center justify-center leading-[1.1] px-8 py-2 min-h-[3.25rem] rounded-[2rem] text-center text-green text-lg transition-colors w-max;
+    @apply bg-orange box-border cursor-pointer flex items-center justify-center leading-[1.1] px-8 py-2 min-h-[3.25rem] rounded-[2rem] text-center text-green text-lg transition-colors w-max;
+  }
+  @media (pointer: hover) {
+    .button {
+      @apply hover:bg-cream hover:text-green;
+    }
   }
 
   .button--slim {
@@ -28,7 +33,12 @@
   }
 
   .button--green {
-    @apply bg-green hover:bg-fern-green text-white;
+    @apply bg-green  text-white;
+  }
+  @media (hover: hover) {
+    .button--green {
+      @apply hover:bg-fern-green;
+    }
   }
 
   .button--full {
@@ -122,8 +132,10 @@ h6 {
 }
 
 /* Navigation */
-nav a {
-  @apply hover:text-green-tint
+@media (pointer: hover) {
+  nav a {
+    @apply hover:text-green;
+  }
 }
 
 nav li {

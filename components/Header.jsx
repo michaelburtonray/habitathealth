@@ -19,7 +19,7 @@ import Logo from "./Logo";
 export default function Header(props) {
   const { contactList, image, nav, promoBar } = props;
   const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('en');
   const [availableLanguages, setAvailableLanguages] = useState([]);
 
@@ -50,21 +50,21 @@ export default function Header(props) {
 
   // Closes on route change
   useEffect(() => {
-    setIsMenuOpen(false);
+    setMenuIsOpen(false);
   }, [currentLang, pathname]);
 
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.top = `-${window.scrollY}px`;
-      document.body.style.position = 'fixed';
-    } else {
-      const scrollY = document.body.style.top;
+  // useEffect(() => {
+  //   if (menuIsOpen) {
+  //     document.body.style.top = `-${window.scrollY}px`;
+  //     document.body.style.position = 'fixed';
+  //   } else {
+  //     const scrollY = document.body.style.top;
 
-      document.body.style.position = '';
-      document.body.style.top = '';
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
-    }
-  }, [isMenuOpen]);
+  //     document.body.style.position = '';
+  //     document.body.style.top = '';
+  //     window.scrollTo(0, parseInt(scrollY || '0') * -1);
+  //   }
+  // }, [menuIsOpen]);
 
   const initWeglot = useCallback(async () => {
     if (typeof window !== 'undefined' && window.Weglot) {
@@ -105,17 +105,17 @@ export default function Header(props) {
   }, [])
 
   return (
-    <header className={`bg-fern-green sticky top-0 z-30 ${isMenuOpen ? 'menu-open' : ''}`}>
+    <header className={`bg-fern-green sticky top-0 z-30 ${menuIsOpen ? 'menu-open' : ''}`}>
       <Script
         src="https://cdn.weglot.com/weglot.min.js"
         onReady={initWeglot}
       />
 
-      {isMenuOpen && <div className="bg-charcoal/70 fixed inset-0" />}
-      <div className="promo-bar rte body--small flex max-lg:flex-col lg:gap-2 items-center justify-end lg:justify-center h-[4.75rem] lg:h-10 max-lg:pb-4 relative text-white">
+      {menuIsOpen && <div className="bg-charcoal/70 fixed inset-0" />}
+      <div className="promo-bar rte body--small flex max-lg:flex-col lg:gap-2 items-center justify-end lg:justify-center h-[3.75rem] lg:h-10 max-lg:mb-4 relative text-white">
         {promoBar && <PortableText value={promoBar} components={components} />}
       </div>
-      <div className="bg-white flex xl:grid gap-8 xl:grid-cols-3 items-center justify-between min-h-20 px-5 lg:px-10 py-5 relative rounded-t-2xl text-green z-30">
+      <div className="bg-white flex xl:grid gap-8 xl:grid-cols-3 items-center justify-between min-h-20 px-5 max-lg:mt-4 lg:px-10 py-5 relative rounded-t-2xl text-green z-30">
         <Link href="/" className="h-8">
           <Logo />
         </Link>
@@ -148,16 +148,16 @@ export default function Header(props) {
 
         <div className="menu flex items-center xl:hidden">
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => setMenuIsOpen(!menuIsOpen)}
           >
-            {isMenuOpen ? <IconClose /> : <IconHamburger />}
+            {menuIsOpen ? <IconClose /> : <IconHamburger />}
           </button>
         </div>
       </div>
 
       <div className="xl:hidden absolute inset-x-0 text-green">
         <AnimatePresence>
-          {isMenuOpen && (
+          {menuIsOpen && (
             <motion.div
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -168,7 +168,7 @@ export default function Header(props) {
                 <ul className="flex flex-col gap-3">
                   {nav.map((link) => (
                      <li key={link._key} className={`${pathname === link.slug ? 'active' : ''}`}>
-                      <h1><LinkObject {...link} /></h1>
+                      <h1><LinkObject {...link} onNavigate={() => { console.log('Navigating...'); setMenuIsOpen(false); return; }} /></h1>
                      </li>
                   ))}
                 </ul>
