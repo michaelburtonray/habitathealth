@@ -37,6 +37,7 @@ const imageData = /* groq */`{
   ),
   'assetPath': asset->path,
   'aspectRatio': asset->metadata.dimensions.aspectRatio,
+  'blurDataURL': asset->metadata.lqip,
 }`;
 
 const linkObjectData = /* groq */`{
