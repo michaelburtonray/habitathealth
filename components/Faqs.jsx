@@ -32,8 +32,7 @@ export default function Faqs(props) {
         variants={containerVariants}
         initial="initial"
         whileInView="animate"
-        viewport={{ once: true, amount: 0.5 }} // "once" means trigger only once; "amount" is how much of element should be visible
-
+        viewport={{ once: true, amount: 0.5 }}
       >
         <p className="eyebrow mb-5">{title}</p>
 
@@ -42,11 +41,8 @@ export default function Faqs(props) {
             key={faqQA._key}
             variants={itemVariants}
           >
-            <FaqQa
-              {...faqQA}
-              index={idx}
-            />
-            </motion.div>
+            <FaqQa {...faqQA} index={idx} />
+          </motion.div>
         ))}
       </motion.div>
 

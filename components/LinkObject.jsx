@@ -71,7 +71,6 @@ export default function LinkObject(props) {
         className={`${modifiers} ${isButton ? 'button button--slim flex gap-2 items-center !px-4' : ''}`}
         target="_blank"
         rel="noopener noreferrer"
-        onNavigate={onNavigate}
       >
         {icon}
         <span className={(icon && !isButton) ? 'hidden' : ''}>{title}</span>

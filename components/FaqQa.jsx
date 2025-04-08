@@ -13,7 +13,7 @@ export default function FaqQa({ answer, index, question }) {
 
   return (
     <div className="faq_qa border-t border-green">
-      <h4 className="cursor-pointer py-6 bg-red" onClick={handleClick}>{question}</h4>
+      <h4 className="cursor-pointer py-6" onClick={handleClick}>{question}</h4>
       <AnimatePresence>
         {isExpanded && <motion.div
           animate={{ height: 'auto', opacity: 1 }}
