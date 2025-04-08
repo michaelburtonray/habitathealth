@@ -48,11 +48,6 @@ export default function Header(props) {
     }
   }
 
-  // Closes on route change
-  useEffect(() => {
-    setMenuIsOpen(false);
-  }, [currentLang, pathname]);
-
   // useEffect(() => {
   //   if (menuIsOpen) {
   //     document.body.style.top = `-${window.scrollY}px`;
@@ -70,7 +65,11 @@ export default function Header(props) {
     if (typeof window !== 'undefined' && window.Weglot) {
       await window.Weglot.initialize({
         api_key: process.env.NEXT_PUBLIC_WEGLOT_API_KEY,
+        auto_switch: true,
+        auto_switch_fallback: 'en',
+        cache: true,
         hide_switcher: true,
+        wait_transition: true,
       });
     }
 
@@ -88,6 +87,7 @@ export default function Header(props) {
         value: lang,
         text: Weglot.getLanguageName(lang)
       }
+
       setAvailableLanguages([...availableLangs, base]);
       setCurrentLang(Weglot?.getCurrentLang() || 'en');
     });
@@ -97,11 +97,17 @@ export default function Header(props) {
     initWeglot();
   }, [initWeglot]);
 
+   // Closes menu on route change
+   useEffect(() => {
+    setMenuIsOpen(false);
+  }, [currentLang, pathname]);
+
   const switchLanguage = useCallback(({ target }) => {
     const Weglot = window.Weglot;
 
     Weglot?.switchTo(target.value);
     setCurrentLang(target.value);
+    document.documentElement.lang = target.value;
   }, [])
 
   return (
@@ -112,7 +118,7 @@ export default function Header(props) {
       />
 
       {menuIsOpen && <div className="bg-charcoal/70 fixed inset-0" />}
-      <div className="promo-bar rte body--small flex max-lg:flex-col lg:gap-2 items-center justify-end lg:justify-center h-[3.75rem] lg:h-10 max-lg:mb-4 relative text-white">
+      <div className="hh-weglot--dynamic promo-bar rte body--small flex max-lg:flex-col lg:gap-2 items-center justify-end lg:justify-center h-[3.75rem] lg:h-10 max-lg:mb-4 relative text-white">
         {promoBar && <PortableText value={promoBar} components={components} />}
       </div>
       <div className="bg-white flex xl:grid gap-8 xl:grid-cols-3 items-center justify-between min-h-20 px-5 max-lg:mt-4 lg:px-10 py-5 relative rounded-t-2xl text-green z-30">
@@ -120,17 +126,17 @@ export default function Header(props) {
           <Logo />
         </Link>
 
-        <nav className="nav-desktop body--large flex items-center justify-center max-xl:hidden">
+        <nav className="hh-weglot--dynamic nav-desktop body--large flex items-center justify-center max-xl:hidden">
           <ul className="flex gap-8">
             {nav.map((link) => (
-                <li key={link._key} className={`${pathname === link.slug ? 'active' : ''}`}>
+                <li key={link._key} className={`${pathname.slice(1) === link?.internalLink.slug ? 'active' : ''}`}>
                   <LinkObject {...link} />
                 </li>
             ))}
           </ul>
         </nav>
 
-        <div className="buttons flex gap-3 max-xl:hidden  items-center justify-end">
+        <div className="desktop-switcher buttons flex gap-3 max-xl:hidden  items-center justify-end">
           <select
             name="language-picker"
             id="languages"
@@ -143,10 +149,10 @@ export default function Header(props) {
             })}
           </select>
 
-          <Link href="/check-eligibility" className="button button--green !min-h-10 !px-5">Check Eligibility</Link>
+          <Link href="/check-eligibility" className="hh-weglot--dynamic button button--green !min-h-10 !px-5">Check Eligibility</Link>
         </div>
 
-        <div className="menu flex items-center xl:hidden">
+        <div className="hh-weglot--dynamic menu flex items-center xl:hidden">
           <button
             onClick={() => setMenuIsOpen(!menuIsOpen)}
           >
@@ -165,9 +171,9 @@ export default function Header(props) {
               className="bg-cream px-[--padding] top-[6.375rem] py-10 rounded-b-[--radius] sticky bottom-10 overflow-scroll max-h-[calc(100svh-11.875rem)]"
             >
               <nav className="nav-mobile">
-                <ul className="flex flex-col gap-3">
+                <ul className="hh-weglot--dynamic flex flex-col gap-3">
                   {nav.map((link) => (
-                     <li key={link._key} className={`${pathname === link.slug ? 'active' : ''}`}>
+                     <li key={link._key} className={`${pathname.slice(1) === link?.internalLink.slug ? 'active' : ''}`}>
                       <h1><LinkObject {...link} onNavigate={() => { console.log('Navigating...'); setMenuIsOpen(false); return; }} /></h1>
                      </li>
                   ))}
@@ -185,7 +191,7 @@ export default function Header(props) {
                   })}
                 </select>
 
-                <Link href="/check-eligibility" className="button button--arrow button--green">
+                <Link href="/check-eligibility" className="hh-weglot--dynamic button button--arrow button--green">
                   <span>Check Eligibility</span>
                   <IconArrow />
                 </Link>
@@ -199,7 +205,7 @@ export default function Header(props) {
                   />}
                 </figure>}
 
-                <div className="flex flex-col gap-3">
+                <div className="hh-weglot--dynamic flex flex-col gap-3">
                   {contactList.map((contact) => <LinkObject key={contact._key} {...contact} isButton={true} />)}
                 </div>
               </nav>
