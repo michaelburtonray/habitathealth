@@ -53,19 +53,6 @@ export default function Header(props) {
     setMenuIsOpen(false);
   }, [currentLang, pathname]);
 
-  // useEffect(() => {
-  //   if (menuIsOpen) {
-  //     document.body.style.top = `-${window.scrollY}px`;
-  //     document.body.style.position = 'fixed';
-  //   } else {
-  //     const scrollY = document.body.style.top;
-
-  //     document.body.style.position = '';
-  //     document.body.style.top = '';
-  //     window.scrollTo(0, parseInt(scrollY || '0') * -1);
-  //   }
-  // }, [menuIsOpen]);
-
   const initWeglot = useCallback(async () => {
     if (typeof window !== 'undefined' && window.Weglot) {
       await window.Weglot.initialize({

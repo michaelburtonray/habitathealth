@@ -28,6 +28,10 @@ export default {
       fontFamily: {
         display: ["gelica", "serif"],
         sans: ['var(--font-gellix)', "sans-serif"],
+      },
+      transitionDuration: {
+        DEFAULT: "400ms",
+        fast: "800ms",
       }
     },
   },
