@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import { Keyboard, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { motion } from "motion/react";
 
 import IconArrow from "./IconArrow";
 
@@ -15,12 +16,32 @@ export default function HeroSlider(props) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
+  const textVariants = {
+    initial: { opacity: 0, y: 16 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 4 }
+  }
+
+  const itemVariants = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { duration: 0.8 }
+  }
+
+
   return (
     <div className="hero-slider bg-green grid grid-cols-2 relative overflow-hidden rounded-b-2xl">
       <div className="hero-slider__text flex items-end max-lg:-mr-[100%] p-5 lg:p-10 pointer-events-none text-green z-10">
         <div className="bg-cream p-5 lg:p-10 rounded-2xl sticky bottom-10 pointer-events-auto">
-          {title && <h4>{title}</h4>}
-          {text && <p className="mt-5 lg:mt-[2.125rem]">{text}</p>}
+          <motion.div
+            variants={textVariants}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            {title && <h4>{title}</h4>}
+            {text && <p className="mt-5 lg:mt-[2.125rem]">{text}</p>}
+          </motion.div>
         </div>
       </div>
 
@@ -47,7 +68,14 @@ export default function HeroSlider(props) {
 
             return (
               <SwiperSlide key={_key}>
-                <figure className="relative max-lg:!aspect-[36/55] lg:w-full lg:max-h-[calc(100svh-9.5rem)]" style={{ aspectRatio }}>
+                <motion.figure
+                  className="relative max-lg:!aspect-[36/55] lg:w-full lg:max-h-[calc(100svh-9.5rem)]"
+                  style={{ aspectRatio }}
+                  variants={itemVariants}
+                  initial="initial"
+                  whileInView="animate"
+                  viewport={{ once: true, amount: 0.5 }}
+                >
                   <Image
                     src={assetPath}
                     fill={true}
@@ -55,7 +83,7 @@ export default function HeroSlider(props) {
                     alt={alt || 'Habitat Health'}
                     className="object-center object-cover"
                   />
-                </figure>
+                </motion.figure>
               </SwiperSlide>
             )
           })}

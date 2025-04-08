@@ -37,7 +37,7 @@
   }
   @media (hover: hover) {
     .button--green {
-      @apply hover:bg-fern-green;
+      @apply hover:bg-fern-green hover:text-white;
     }
   }
 

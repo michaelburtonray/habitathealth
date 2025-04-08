@@ -1,8 +1,9 @@
-'use client'
+"use client"
 
 import React, { useActionState, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
+import { motion } from "framer-motion";
 
 import { sendEmail } from "@/app/actions";
 
@@ -144,31 +145,64 @@ export default function CheckEligibility(props) {
     }
   }
 
+  const containerVariants = {
+    initial: { opacity: 0 },
+    transition: { duration: 0.8 },
+    animate: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    }
+  }
+
+  const itemVariants = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { duration: 0.8 }
+  }
+
   return (
     <div className="lg:grid lg:grid-cols-2 lg:gap-[8rem] px-5 lg:px-10 py-10 lg:p-20">
       <div className="">
-        <div className="flex flex-col gap-6 lg:gap-10 max-w-[36rem] lg:sticky lg:top-[calc(var(--header-height)+4.825rem)]">
-          <h1>{title}</h1>
+        <motion.div
+          className="flex flex-col gap-6 lg:gap-10 max-w-[36rem] lg:sticky lg:top-[calc(var(--header-height)+4.825rem)]"
+          variants={containerVariants}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.5 }}
+        >
+          <motion.h1 className="title" variants={itemVariants}>{title}</motion.h1>
           {currentSection === -1 && (
             <>
-              <p className="eyebrow !max-w-[30rem]">{intro}</p>
-              <form className="bg-cream" onSubmit={handleIntroSubmit}>
+              <motion.p className="eyebrow !max-w-[30rem]" variants={itemVariants}>{intro}</motion.p>
+              <motion.form className="bg-cream" variants={itemVariants} onSubmit={handleIntroSubmit}>
                 {cta && <Button {...cta} type={'submit'} />}
-              </form>
+              </motion.form>
             </>
           )}
 
           {currentSection > -1 && (
-            <p className="eyebrow !max-w-[30rem]">{copy}</p>
+            <motion.p className="eyebrow !max-w-[30rem]">{copy}</motion.p>
           )}
-        </div>
+        </motion.div>
       </div>
 
-      <div className={`bg-white flex flex-col gap-10 max-lg:mt-10 px-5 lg:px-10 py-10 lg:py-14 rounded-2xl ${currentSection === -1 && 'md:grid md:grid-cols-2 md:gap-x-10 md:gap-y-14'}`}>
+      <div className={`bg-white max-lg:mt-10 px-5 lg:px-10 py-10 lg:py-14 rounded-2xl`}>
         {currentSection === -1 && (
-          <>
+          <motion.div
+            className="flex flex-col gap-10 md:grid md:grid-cols-2 md:gap-x-10 md:gap-y-14"
+            variants={containerVariants}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, amount: 0.5 }}
+          >
             {sections.map(({ _key, copy, image, subtitle }) => (
-              <div key={_key} className="flex flex-col gap-6">
+              <motion.div
+                key={_key}
+                className="flex flex-col gap-6"
+                variants={itemVariants}
+              >
                 {image && image.assetPath && <>
                   <figure className="aspect-square relative w-full max-w-[6.25rem]">
                     <Image
@@ -181,19 +215,19 @@ export default function CheckEligibility(props) {
                 </>}
                 <p className="body--semibold">{subtitle}</p>
                 <p>{copy}</p>
-              </div>
+              </motion.div>
             ))}
 
             {disclaimer && (
-              <div className="disclaimer col-span-full border-t border-green/40 pt-10">
+              <motion.div className="disclaimer col-span-full border-t border-green/40 pt-10" variants={itemVariants}>
                 <p className="body--small">{disclaimer}</p>
-              </div>
+              </motion.div>
             )}
-          </>
+          </motion.div>
         )}
 
         {currentSection > -1 && (
-          <>
+          <div className="flex flex-col gap-10">
             <div className={`form-nav flex gap-4 justify-between w-full ${hasFailed || currentSection === steps.length && 'pointer-events-none'}`}>
               {steps?.map(({ _key, title }, idx) => {
                 const isActive = idx === currentSection;
@@ -234,7 +268,13 @@ export default function CheckEligibility(props) {
                       </div>
                     )
                     : (
-                      <fieldset className={`lg:mt-10`}>
+                      <motion.fieldset
+                        className="lg:mt-10"
+                        variants={containerVariants}
+                        initial="initial"
+                        whileInView="animate"
+                        viewport={{ once: true, amount: 0.5 }}
+                      >
                         {intro && <div className="rte rte--enroll body--large">
                           <PortableText value={intro} components={components} />
                         </div>}
@@ -247,7 +287,7 @@ export default function CheckEligibility(props) {
                             </React.Fragment>
                           )
                         })}
-                      </fieldset>
+                      </motion.fieldset>
                     )
                   }
 
@@ -274,7 +314,7 @@ export default function CheckEligibility(props) {
                 <PortableText value={successCopy} components={components} />
               </div>
             )}
-          </>
+          </div>
         )}
       </div>
     </div>
