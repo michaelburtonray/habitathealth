@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { PortableText } from "next-sanity";
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
@@ -19,8 +19,11 @@ import Logo from "./Logo";
 export default function Header(props) {
   const { contactList, image, nav, promoBar } = props;
   const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const lang = searchParams.get('lang') || 'en';
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState('en');
+  const [currentLang, setCurrentLang] = useState(lang);
   const [availableLanguages, setAvailableLanguages] = useState([]);
 
   const components = {
@@ -48,11 +51,6 @@ export default function Header(props) {
     }
   }
 
-  // Closes on route change
-  useEffect(() => {
-    setMenuIsOpen(false);
-  }, [currentLang, pathname]);
-
   // useEffect(() => {
   //   if (menuIsOpen) {
   //     document.body.style.top = `-${window.scrollY}px`;
@@ -70,7 +68,11 @@ export default function Header(props) {
     if (typeof window !== 'undefined' && window.Weglot) {
       await window.Weglot.initialize({
         api_key: process.env.NEXT_PUBLIC_WEGLOT_API_KEY,
+        auto_switch: true,
+        auto_switch_fallback: 'en',
+        cache: true,
         hide_switcher: true,
+        wait_transition: true,
       });
     }
 
@@ -95,11 +97,21 @@ export default function Header(props) {
 
   useEffect(() => {
     initWeglot();
-  }, [initWeglot]);
+  }, [initWeglot, pathname]);
+
+   // Closes menu and sets language on route change
+   useEffect(() => {
+    const Weglot = window.Weglot;
+
+    setMenuIsOpen(false);
+
+    console.log(currentLang, pathname);
+  }, [currentLang, pathname]);
 
   const switchLanguage = useCallback(({ target }) => {
     const Weglot = window.Weglot;
 
+    router.replace(`${pathname}?lang=${target.value}`);
     Weglot?.switchTo(target.value);
     setCurrentLang(target.value);
   }, [])
@@ -123,14 +135,14 @@ export default function Header(props) {
         <nav className="nav-desktop body--large flex items-center justify-center max-xl:hidden">
           <ul className="flex gap-8">
             {nav.map((link) => (
-                <li key={link._key} className={`${pathname === link.slug ? 'active' : ''}`}>
-                  <LinkObject {...link} />
+                <li key={link._key} className={`${pathname.slice(1) === link?.internalLink.slug ? 'active' : ''}`}>
+                  <LinkObject {...link} lang={currentLang} />
                 </li>
             ))}
           </ul>
         </nav>
 
-        <div className="buttons flex gap-3 max-xl:hidden  items-center justify-end">
+        <div className="desktop-switcher buttons flex gap-3 max-xl:hidden  items-center justify-end">
           <select
             name="language-picker"
             id="languages"
@@ -167,7 +179,7 @@ export default function Header(props) {
               <nav className="nav-mobile">
                 <ul className="flex flex-col gap-3">
                   {nav.map((link) => (
-                     <li key={link._key} className={`${pathname === link.slug ? 'active' : ''}`}>
+                     <li key={link._key} className={`${pathname.slice(1) === link?.internalLink.slug ? 'active' : ''}`}>
                       <h1><LinkObject {...link} onNavigate={() => { console.log('Navigating...'); setMenuIsOpen(false); return; }} /></h1>
                      </li>
                   ))}
