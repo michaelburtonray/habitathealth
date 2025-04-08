@@ -37,7 +37,7 @@ export default function Footer(props) {
   }
 
   return (
-    <footer className="footer bg-green mt-[--padding] px-5 lg:px-10 py-10 lg:py-20 rounded-2xl">
+    <footer className="hh-weglot--dynamic footer bg-green mt-[--padding] px-5 lg:px-10 py-10 lg:py-20 rounded-2xl">
       <div className="footer__top body--large lg:border-b flex flex-col gap-x-10 gap-y-14 xl:grid xl:grid-cols-4 lg:pb-10">
         <Logo />
 

@@ -4,7 +4,7 @@ import IconPhone from "./IconPhone";
 import IconEmail from "./IconEmail";
 
 export default function LinkObject(props) {
-  const { file, internalLink, isButton, lang, modifiers, title, url, onNavigate } = props;
+  const { file, internalLink, isButton, modifiers, title, url, onNavigate } = props;
   let icon = null;
 
   switch (title) {
@@ -58,7 +58,7 @@ export default function LinkObject(props) {
   return internalLink
     ? (
       <Link
-        href={`/${internalLink.slug}${lang ? `?lang=${lang}` : ''}`}
+        href={`/${internalLink.slug}`}
         className={modifiers}
         onNavigate={onNavigate}
       >
