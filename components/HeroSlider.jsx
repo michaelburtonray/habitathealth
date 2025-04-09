@@ -89,7 +89,7 @@ export default function HeroSlider(props) {
           })}
 
           <div className="hero-slider__controls absolute inset-0 flex lg:items-end lg:justify-end z-10 pointer-events-none">
-            <div className="flex gap-3 h-fit p-5 lg:p-10 sticky lg:bottom-0 pointer-events-auto">
+            <div className="flex gap-3 h-fit p-5 lg:p-10 sticky max-lg:top-0 lg:bottom-0 pointer-events-auto">
               <button ref={prevRef} className="button *:pointer-events-none rotate-180" aria-label="Previous slide">
                 <IconArrow />
               </button>

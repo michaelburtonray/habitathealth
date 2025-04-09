@@ -134,7 +134,7 @@ h6 {
 /* Navigation */
 @media (hover: hover) {
   nav a {
-    @apply hover:text-green;
+    @apply hover:text-green-tint;
   }
 }
 
@@ -142,8 +142,12 @@ nav li {
   @apply relative;
 }
 
-nav li.active {
-  @apply lg:after:absolute lg:after:-bottom-[1.625rem] lg:after:inset-x-0 after:bg-green lg:after:w-full lg:after:h-[0.375rem];
+.nav-desktop li.active {
+  @apply xl:after:absolute xl:after:-bottom-[1.625rem] xl:after:inset-x-0 after:bg-green xl:after:w-full xl:after:h-[0.375rem];
+}
+
+.nav-mobile li.active a {
+  @apply text-green-tint;
 }
 
 /* Footer */
@@ -157,7 +161,7 @@ footer a {
 
 /* Select */
 select {
-  @apply bg-transparent hover:bg-cream bg-no-repeat border border-green-tint hover:border-green box-border cursor-pointer h-10 w-fit max-w-full px-5 rounded-[2rem] text-green text-lg transition-colors;
+  @apply bg-transparent hover:bg-cream bg-no-repeat border border-green-tint hover:border-green box-border cursor-pointer h-10 w-fit max-w-full px-5 rounded-[2rem] text-green text-xl transition-colors;
 }
 
 .select {
