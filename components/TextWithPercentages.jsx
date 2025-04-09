@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "motion/react";
+
 import Button from "./Button";
 
 export default function TextWithPercentages(props) {
@@ -14,16 +18,34 @@ export default function TextWithPercentages(props) {
     return <sup>{idx + 1}</sup>;
   }
 
+  const itemVariants = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { duration: 0.8 }
+  }
+
   return (
     <div className="text-with-percentages bg-green lg:gap-6 lg:grid lg:grid-cols-2 my-[--padding] px-5 lg:px-10 py-10 lg:py-20 rounded-2xl">
-      <div className="text-with-percentages__text">
+      <motion.div
+        className="text-with-percentages__text"
+        variants={itemVariants}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, amount: 0.5 }}
+      >
         <div className="flex flex-col gap-6 max-w-[33rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]">
           {title && <h3>{title}</h3>}
           <Button {...button} modifier="max-lg:hidden" />
         </div>
-      </div>
+      </motion.div>
 
-      <div className="text-with-percentages__percentages max-lg:mt-10">
+      <motion.div
+        className="text-with-percentages__percentages max-lg:mt-10"
+        variants={itemVariants}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, amount: 0.5 }}
+      >
         {percentages.map(({ _key, annotation, text, value }, i) => (
           <div key={_key} className="border-b border-cream/50 flex lg:grid lg:grid-cols-[11.125rem_1fr] max-lg:flex-col gap-6 first:pt-0 py-10 lg:py-14">
             <div className="bg-fern-green flex items-center justify-center rounded-2xl w-[11.125rem] h-[7.375rem]">
@@ -39,7 +61,7 @@ export default function TextWithPercentages(props) {
             <li key={_key} className="table-row before:table-cell before:text-right">{annotation}</li>
           ))}
         </ol>
-      </div>
+      </motion.div>
     </div>
   )
 };

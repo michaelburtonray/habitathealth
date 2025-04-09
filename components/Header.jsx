@@ -48,18 +48,10 @@ export default function Header(props) {
     }
   }
 
-  // useEffect(() => {
-  //   if (menuIsOpen) {
-  //     document.body.style.top = `-${window.scrollY}px`;
-  //     document.body.style.position = 'fixed';
-  //   } else {
-  //     const scrollY = document.body.style.top;
-
-  //     document.body.style.position = '';
-  //     document.body.style.top = '';
-  //     window.scrollTo(0, parseInt(scrollY || '0') * -1);
-  //   }
-  // }, [menuIsOpen]);
+  // Closes on route change
+  useEffect(() => {
+    setMenuIsOpen(false);
+  }, [currentLang, pathname]);
 
   const initWeglot = useCallback(async () => {
     if (typeof window !== 'undefined' && window.Weglot) {

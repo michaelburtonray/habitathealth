@@ -66,7 +66,7 @@ export default function TextWithIcons(props) {
         variants={containerVariants}
         initial="initial"
         whileInView="animate"
-        viewport={{ once: true, amount: 0.5 }} // "once" means trigger only once; "amount" is how much of element should be visible
+        viewport={{ once: true, amount: 0.5 }}
       >
         {icons.map((icon, idx) => (
           <motion.div

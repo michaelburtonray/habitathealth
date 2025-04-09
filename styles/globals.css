@@ -18,7 +18,7 @@
   .button {
     @apply bg-orange box-border cursor-pointer flex items-center justify-center leading-[1.1] px-8 py-2 min-h-[3.25rem] rounded-[2rem] text-center text-green text-lg transition-colors w-max;
   }
-  @media (pointer: hover) {
+  @media (hover: hover) {
     .button {
       @apply hover:bg-cream hover:text-green;
     }
@@ -37,7 +37,7 @@
   }
   @media (hover: hover) {
     .button--green {
-      @apply hover:bg-fern-green;
+      @apply hover:bg-fern-green hover:text-white;
     }
   }
 
@@ -132,7 +132,7 @@ h6 {
 }
 
 /* Navigation */
-@media (pointer: hover) {
+@media (hover: hover) {
   nav a {
     @apply hover:text-green-tint;
   }
