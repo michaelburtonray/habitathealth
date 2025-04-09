@@ -32,6 +32,13 @@ export default function Footer(props) {
         }
 
         return <p>{children}</p>
+      },
+      address: ({ children }) => {
+        return (
+          <address className="flex flex-col gap-3">
+            {children}
+          </address>
+        )
       }
     }
   }
@@ -57,7 +64,7 @@ export default function Footer(props) {
           <li className="rte flex flex-col gap-3">
             <PortableText value={contactInfo} components={components} />
           </li>
-          <li className="flex gap-3">
+          <li className="social-links flex gap-3">
             {socialLinks.map((link) => <LinkObject key={link._key} {...link} />)}
           </li>
         </ul>

@@ -20,7 +20,7 @@ export default defineType({
       of: [
         defineArrayMember({
           type: 'block',
-          styles: [{ title: 'Normal', value: 'normal' }],
+          styles: [{ title: 'Normal', value: 'normal' }, { title: 'Address', value: 'address'}],
           lists: [],
           marks: {
             decorators: [

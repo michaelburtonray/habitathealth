@@ -132,10 +132,14 @@ h6 {
 }
 
 /* Navigation */
+nav li a {
+  @apply text-current;
+}
 @media (hover: hover) {
-  nav a {
-    @apply hover:text-green-tint;
+  nav li:not(.active) {
+    @apply hover:text-green/40 transition-colors;
   }
+
 }
 
 nav li {
@@ -155,13 +159,22 @@ footer .logo {
   @apply max-w-full h-auto;
 }
 
-footer a {
-  @apply hover:text-cream/40;
+@media (hover: hover) {
+  footer :not(.button) > a {
+    @apply hover:text-cream/40;
+    @apply transition-colors;
+  }
 }
 
 /* Select */
 select {
-  @apply bg-transparent hover:bg-cream bg-no-repeat border border-green-tint hover:border-green box-border cursor-pointer h-10 w-fit max-w-full px-5 rounded-[2rem] text-green text-xl transition-colors;
+  @apply text-green text-lg bg-transparent bg-no-repeat border border-green-tint box-border cursor-pointer rounded-[2rem] ;
+  @apply h-10 w-fit max-w-full px-5;
+}
+@media (hover: hover) {
+  select {
+    @apply hover:border-green hover:bg-cream transition-colors;
+  }
 }
 
 .select {
@@ -240,7 +253,7 @@ main.about > .image-with-text:not(:first-child) {
   @apply max-lg:!font-medium max-lg:!text-base;
 }
 
-div:not(.hero) .rte a {
+div:not(.hero) .rte a:not([href^="tel:"]) {
   @apply underline;
 }
 
