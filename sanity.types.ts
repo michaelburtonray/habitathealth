@@ -884,7 +884,7 @@ export type Footer = {
       _type: "span";
       _key: string;
     }>;
-    style?: "normal";
+    style?: "normal" | "address";
     listItem?: never;
     markDefs?: Array<{
       href?: string;
@@ -1101,12 +1101,6 @@ export type InternationalizedArraySlugValue = {
   value?: Slug;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
 export type InternationalizedArrayText = Array<{
   _key: string;
 } & InternationalizedArrayTextValue>;
@@ -1119,7 +1113,22 @@ export type InternationalizedArraySlug = Array<{
   _key: string;
 } & InternationalizedArraySlugValue>;
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | Geopoint | BlockContent | Category | Post | Author | Testimonial | LinkObject | LinkList | FormField | FaqQA | EnrollmentSection | AnswerTextarea | AnswerText | AnswerSelectDropdown | AnswerRadioButtons | TextWithPercentages | TextWithList | TextWithIcons | TextWithChart | TextWithBubbles | Testimonials | TertiaryPageModule | Page | LogoWithIcons | Leadership | ImageWithTextGroup | ImageWithText | HeroSlider | Hero | FaqPageModule | Faq | Enrollment | Button | Settings | Footer | SanityFileAsset | Header | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Metadata | InternationalizedArrayTextValue | InternationalizedArrayStringValue | InternationalizedArraySlugValue | Slug | InternationalizedArrayText | InternationalizedArrayString | InternationalizedArraySlug;
+export type MediaTag = {
+  _id: string;
+  _type: "media.tag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: Slug;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | Geopoint | BlockContent | Category | Post | Author | Testimonial | LinkObject | LinkList | FormField | FaqQA | EnrollmentSection | AnswerTextarea | AnswerText | AnswerSelectDropdown | AnswerRadioButtons | TextWithPercentages | TextWithList | TextWithIcons | TextWithChart | TextWithBubbles | Testimonials | TertiaryPageModule | Page | LogoWithIcons | Leadership | ImageWithTextGroup | ImageWithText | HeroSlider | Hero | FaqPageModule | Faq | Enrollment | Button | Settings | Footer | SanityFileAsset | Header | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Metadata | InternationalizedArrayTextValue | InternationalizedArrayStringValue | InternationalizedArraySlugValue | InternationalizedArrayText | InternationalizedArrayString | InternationalizedArraySlug | MediaTag | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: enrollmentQuery
@@ -1939,7 +1948,7 @@ export type SettingsQueryResult = {
         _type: "span";
         _key: string;
       }>;
-      style?: "normal";
+      style?: "address" | "normal";
       listItem?: never;
       markDefs?: Array<{
         href?: string;

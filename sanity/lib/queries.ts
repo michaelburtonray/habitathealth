@@ -234,8 +234,8 @@ export const pageSlugsQuery = defineQuery(
 
 export const settingsQuery = defineQuery(`
   *[_type == "settings"][0] {
-    ${metadataFields}
     ...,
+    ${metadataFields}
     footer {
       ...,
       contactInfo,
