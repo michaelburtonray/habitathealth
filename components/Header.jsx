@@ -121,7 +121,14 @@ export default function Header(props) {
         <nav className="hh-weglot--dynamic nav-desktop body--large flex items-center justify-center max-xl:hidden">
           <ul className="flex gap-8">
             {nav.map((link) => (
+<<<<<<< Updated upstream
                 <li key={link._key} className={`${pathname.slice(1) === link?.internalLink.slug ? 'active' : ''}`}>
+=======
+                <li
+                  key={link._key}
+                  className={`${link.internalLink && link.internalLink.slug === pathname.slice(1) ? 'active' : ''}`}
+                >
+>>>>>>> Stashed changes
                   <LinkObject {...link} />
                 </li>
             ))}
