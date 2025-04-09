@@ -136,13 +136,8 @@ nav li a {
   @apply text-current;
 }
 @media (hover: hover) {
-<<<<<<< Updated upstream
-  nav a {
-    @apply hover:text-green-tint;
-=======
   nav li:not(.active) {
     @apply hover:text-green/40 transition-colors;
->>>>>>> Stashed changes
   }
 
 }
@@ -173,9 +168,6 @@ footer .logo {
 
 /* Select */
 select {
-<<<<<<< Updated upstream
-  @apply bg-transparent hover:bg-cream bg-no-repeat border border-green-tint hover:border-green box-border cursor-pointer h-10 w-fit max-w-full px-5 rounded-[2rem] text-green text-xl transition-colors;
-=======
   @apply text-green text-lg bg-transparent bg-no-repeat border border-green-tint box-border cursor-pointer rounded-[2rem] ;
   @apply h-10 w-fit max-w-full px-5;
 }
@@ -183,7 +175,6 @@ select {
   select {
     @apply hover:border-green hover:bg-cream transition-colors;
   }
->>>>>>> Stashed changes
 }
 
 .select {
