@@ -10,8 +10,6 @@ export async function generateMetadata() {
   const { metadata } = data
   const { title } = metadata
 
-  console.log('metadata.openGraph.images', metadata.openGraph.images)
-
   metadata.title = {
     template: `%s | ${title}`,
     default: title,

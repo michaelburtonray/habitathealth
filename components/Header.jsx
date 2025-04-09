@@ -169,7 +169,12 @@ export default function Header(props) {
                 <ul className="hh-weglot--dynamic flex flex-col gap-3">
                   {nav.map((link) => (
                      <li key={link._key} className={`${pathname.slice(1) === link?.internalLink.slug ? 'active' : ''}`}>
-                      <h1><LinkObject {...link} onNavigate={() => { console.log('Navigating...'); setMenuIsOpen(false); return; }} /></h1>
+                      <h1>
+                        <LinkObject
+                          {...link}
+                          onNavigate={() => { setMenuIsOpen(false) }}
+                        />
+                      </h1>
                      </li>
                   ))}
                 </ul>
