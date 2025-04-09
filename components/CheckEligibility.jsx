@@ -52,8 +52,6 @@ export default function CheckEligibility(props) {
 
       setCurrentSection(currentSection + 1);
     }
-
-      console.log(formDataState)
   }, [currentSection, formDataState, setFormDataState]);
 
   const submitSection = (e) => {
@@ -63,7 +61,6 @@ export default function CheckEligibility(props) {
       const zip = formDataState['zipCode'];
 
       if (zip) {
-        console.log('inside zip code check');
         const isValidZip = zipCodes.includes(zip);
 
         if (!isValidZip) {
