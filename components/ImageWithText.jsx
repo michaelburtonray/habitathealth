@@ -31,9 +31,11 @@ export default function ImageWithText(props) {
       />;
   };
 
+  const sanitizedCopy = Array.isArray(copy) ? null : copy;
   const sanitizedTitle = Array.isArray(title) ? null : title;
   const getText = (text) => {
     if (!text) return;
+    if (Array.isArray(text)) return null;
 
     if (isHero) return <h1>{text}</h1>
     else return <h3>{text}</h3>
@@ -53,7 +55,7 @@ export default function ImageWithText(props) {
         <div className=" flex flex-col gap-6 max-w-[33rem] lg:sticky lg:top-[calc(var(--header-height)+2.5rem)]">
           {sanitizedTitle &&  <div className="eyebrow">{sanitizedTitle}</div>}
           {getText(text)}
-          {copy && <p className={`max-w-[30rem] body--large-semibold`}>{copy}</p>}
+          {sanitizedCopy && <p className={`max-w-[30rem] body--large-semibold`}>{sanitizedCopy}</p>}
 
           <Button {...button} modifier="max-lg:hidden mt-4" />
         </div>
