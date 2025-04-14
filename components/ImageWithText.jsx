@@ -7,7 +7,6 @@ import Button from "./Button";
 
 export default function ImageWithText(props) {
   const { button, copy, eyebrow, image, isHero, isImageOnLeft, text,  title } = props;
-  console.log(props);
   const getImageWithUrl = (image) => {
     if (!image) return;
 
