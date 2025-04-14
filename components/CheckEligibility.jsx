@@ -11,6 +11,7 @@ import Answers from "@/components/Answers";
 import Button from "@/components/Button";
 import IconPhone from "@/components/IconPhone";
 import IconEmail from "@/components/IconEmail";
+import { form } from "sanity/structure";
 
 export default function CheckEligibility(props) {
   const {
@@ -194,7 +195,7 @@ export default function CheckEligibility(props) {
             variants={containerVariants}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
           >
             {sections.map(({ _key, copy, image, subtitle }) => (
               <motion.div
@@ -272,7 +273,7 @@ export default function CheckEligibility(props) {
                         variants={containerVariants}
                         initial="initial"
                         whileInView="animate"
-                        viewport={{ once: true, amount: 0.5 }}
+                        viewport={{ once: true, amount: 0.25 }}
                       >
                         {intro && <div className="rte rte--enroll body--large">
                           <PortableText value={intro} components={components} />
