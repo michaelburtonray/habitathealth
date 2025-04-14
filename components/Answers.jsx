@@ -54,7 +54,6 @@ export default function Answers({ data, formDataState, handleChange, index }) {
                   value={formDataState[schemaName] || ''}
                   onChange={handleChange}
                   className="input peer body--large"
-                  {...(inputType === 'tel' && { pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}', placeholder: '123-456-7890' })}
                 />
                 <p className="body--small absolute -bottom-2 invisible mt-2 text-red translate-y-full">*This field is required</p>
               </div>
