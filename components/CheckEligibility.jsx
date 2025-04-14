@@ -11,7 +11,6 @@ import Answers from "@/components/Answers";
 import Button from "@/components/Button";
 import IconPhone from "@/components/IconPhone";
 import IconEmail from "@/components/IconEmail";
-import { form } from "sanity/structure";
 
 export default function CheckEligibility(props) {
   const {
