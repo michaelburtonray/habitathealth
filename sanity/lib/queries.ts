@@ -249,6 +249,7 @@ export const settingsQuery = defineQuery(`
     header {
       ...,
       contactList[] ${linkObjectData},
+      cta ${linkObjectData},
       image {
         ...,
         'assetPath': asset->path,

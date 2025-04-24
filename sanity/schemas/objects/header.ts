@@ -36,6 +36,13 @@ export default defineType({
     }),
 
     defineField({
+      name: 'cta',
+      title: 'Call to Action',
+      type: 'linkObject',
+      description: 'The call to action button in the header.',
+    }),
+
+    defineField({
       name: 'image',
       title: 'Mobile Menu Image',
       type: 'image',

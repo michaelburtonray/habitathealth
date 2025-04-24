@@ -17,7 +17,7 @@ import LinkObject from "./LinkObject";
 import Logo from "./Logo";
 
 export default function Header(props) {
-  const { contactList, image, nav, promoBar } = props;
+  const { contactList, cta, image, nav, promoBar } = props;
   const pathname = usePathname();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('en');
@@ -144,7 +144,7 @@ export default function Header(props) {
             })}
           </select>
 
-          <Link href="/check-eligibility" className="hh-weglot--dynamic button button--green !min-h-10 !px-5">Check Eligibility</Link>
+          {cta && <Link href={cta.internalLink ? `/${cta.internalLink.slug}` : cta.url} className="hh-weglot--dynamic button button--green !min-h-10 !px-5">{cta.title || cta.internalLink.title}</Link>}
         </div>
 
         <div className="hh-weglot--dynamic menu flex items-center xl:hidden">
@@ -191,10 +191,10 @@ export default function Header(props) {
                   })}
                 </select>
 
-                <Link href="/check-eligibility" className="hh-weglot--dynamic button button--arrow button--green">
-                  <span>Check Eligibility</span>
+                {cta && <Link href={cta.internalLink ? `/${cta.internalLink.slug}` : cta.url} className="hh-weglot--dynamic button button--arrow button--green">
+                  <span>{cta.title || cta.internalLink.title}</span>
                   <IconArrow />
-                </Link>
+                </Link>}
 
                 {image && <figure className="aspect-square bg-green relative rounded-2xl my-6 w-full sm:max-w-[50%]">
                   {image.assetPath && <Image
