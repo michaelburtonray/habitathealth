@@ -17,7 +17,7 @@ import LinkObject from "./LinkObject";
 import Logo from "./Logo";
 
 export default function Header(props) {
-  const { contactList, image, nav, promoBar } = props;
+  const { contactList, cta, image, nav, promoBar } = props;
   const pathname = usePathname();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('en');
@@ -113,46 +113,48 @@ export default function Header(props) {
       <div className="hh-weglot--dynamic promo-bar rte body--small flex max-lg:flex-col lg:gap-2 items-center justify-end lg:justify-center h-[3.75rem] lg:h-10 max-lg:mb-4 relative text-white">
         {promoBar && <PortableText value={promoBar} components={components} />}
       </div>
-      <div className="bg-white flex xl:grid gap-8 xl:grid-cols-3 items-center justify-between min-h-20 px-5 max-lg:mt-4 lg:px-10 py-5 relative rounded-t-2xl text-green z-30">
-        <Link href="/" className="h-8">
-          <Logo />
-        </Link>
+      <div className="overflow-hidden relative text-green z-30">
+        <div className="bg-white flex xl:grid gap-8 xl:grid-cols-3 items-center justify-between min-h-20 max-lg:mt-4 px-5 lg:px-10 py-5 rounded-t-2xl w-full">
+          <Link href="/" className="h-8">
+            <Logo />
+          </Link>
 
-        <nav className="hh-weglot--dynamic nav-desktop body--large flex items-center justify-center max-xl:hidden">
-          <ul className="flex gap-8">
-            {nav.map((link) => (
-                <li
-                  key={link._key}
-                  className={`${link.internalLink && link.internalLink.slug === pathname.slice(1) ? 'active' : ''}`}
-                >
-                  <LinkObject {...link} />
-                </li>
-            ))}
-          </ul>
-        </nav>
+          <nav className="hh-weglot--dynamic nav-desktop body--large flex items-center justify-center max-xl:hidden">
+            <ul className="flex gap-8">
+              {nav.map((link) => (
+                  <li
+                    key={link._key}
+                    className={`${link.internalLink && link.internalLink.slug === pathname.slice(1) ? 'active' : ''}`}
+                  >
+                    <LinkObject {...link} />
+                  </li>
+              ))}
+            </ul>
+          </nav>
 
-        <div className="desktop-switcher buttons flex gap-3 max-xl:hidden  items-center justify-end">
-          <select
-            name="language-picker"
-            id="languages"
-            className="select select--lang"
-            value={currentLang}
-            onChange={switchLanguage}
-          >
-            {availableLanguages.map(({ value, text }) => {
-              return <option key={value} value={value}>{text}</option>
-            })}
-          </select>
+          <div className="desktop-switcher buttons flex gap-3 max-xl:hidden  items-center justify-end">
+            <select
+              name="language-picker"
+              id="languages"
+              className="select select--lang"
+              value={currentLang}
+              onChange={switchLanguage}
+            >
+              {availableLanguages.map(({ value, text }) => {
+                return <option key={value} value={value}>{text}</option>
+              })}
+            </select>
 
-          <Link href="/check-eligibility" className="hh-weglot--dynamic button button--green !min-h-10 !px-5">Check Eligibility</Link>
-        </div>
+            {cta && <Link href={cta.internalLink ? `/${cta.internalLink.slug}` : cta.url} className="hh-weglot--dynamic button button--green !min-h-10 !px-5">{cta.title || cta.internalLink.title}</Link>}
+          </div>
 
-        <div className="hh-weglot--dynamic menu flex items-center xl:hidden">
-          <button
-            onClick={() => setMenuIsOpen(!menuIsOpen)}
-          >
-            {menuIsOpen ? <IconClose /> : <IconHamburger />}
-          </button>
+          <div className="hh-weglot--dynamic menu flex items-center xl:hidden">
+            <button
+              onClick={() => setMenuIsOpen(!menuIsOpen)}
+            >
+              {menuIsOpen ? <IconClose /> : <IconHamburger />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -191,10 +193,10 @@ export default function Header(props) {
                   })}
                 </select>
 
-                <Link href="/check-eligibility" className="hh-weglot--dynamic button button--arrow button--green">
-                  <span>Check Eligibility</span>
+                {cta && <Link href={cta.internalLink ? `/${cta.internalLink.slug}` : cta.url} className="hh-weglot--dynamic button button--arrow button--green">
+                  <span>{cta.title || cta.internalLink.title}</span>
                   <IconArrow />
-                </Link>
+                </Link>}
 
                 {image && <figure className="aspect-square bg-green relative rounded-2xl my-6 w-full sm:max-w-[50%]">
                   {image.assetPath && <Image
