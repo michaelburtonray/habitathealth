@@ -165,7 +165,7 @@ export default function Header(props) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               initial={{ opacity: 0 }}
-              className="bg-cream px-[--padding] top-[6.325rem] py-10 rounded-b-[--radius] sticky bottom-10 overflow-scroll max-h-[calc(100svh-11.875rem)]"
+              className="bg-cream px-[--padding] top-[6.375rem] py-10 rounded-b-[--radius] sticky bottom-10 overflow-scroll max-h-[calc(100svh-11.875rem)]"
             >
               <nav className="nav-mobile">
                 <ul className="hh-weglot--dynamic flex flex-col gap-3">
