@@ -40,7 +40,7 @@ export default async function RootLayout({
         {children}
         {footer && <Footer { ...footer } />}
       </body>
-      <GoogleAnalytics gaId="G-XYZ" />
+      <GoogleAnalytics gaId={gaId} />
     </html>
   );
 }
