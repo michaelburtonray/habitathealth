@@ -1,9 +1,19 @@
 export default function Answers({ data, formDataState, handleChange, index }) {
   const answers = data
     ? data.map((a) => {
-      const { _key, _type, answers, heading, schemaName } = a;
+      const { _key, _type, answers, heading, schemaName, value } = a;
 
       switch (_type) {
+        case 'answerHidden':
+          return (
+            <input
+              key={_key}
+              type="hidden"
+              name={schemaName}
+              value={value}
+            />
+          )
+
         case 'answerRadioButtons':
           return (
             <div key={_key} className="flex gap-6 lg:gap-8 mt-10 relative">

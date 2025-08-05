@@ -1,8 +1,8 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
-  name: 'enrollment',
-  title: 'Enrollment Flow Page (deprecated)',
+  name: 'enrollmentFlow',
+  title: 'Enrollment Flow Page New',
   type: 'document',
   fields: [
     defineField({
@@ -16,26 +16,10 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      validation: (Rule) => Rule.required(),
       options: {
         source: 'title',
         maxLength: 96,
       },
-    }),
-
-    defineField({
-      name: 'emailFrom',
-      title: 'Email From',
-      type: 'string',
-      description: 'The email address that will appear in the "From" field of the email.',
-      validation: (Rule) => Rule.required(),
-    }),
-
-    defineField({
-      name: 'emailTo',
-      title: 'Email To',
-      type: 'string',
-      description: 'The email address that will receive the form submissions.',
       validation: (Rule) => Rule.required(),
     }),
 
@@ -100,5 +84,5 @@ export default defineType({
         }),
       ],
     }),
-  ],
-});
+  ]
+})

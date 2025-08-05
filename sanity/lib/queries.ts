@@ -211,7 +211,7 @@ metadata {
 
 
 export const enrollmentQuery = defineQuery(`
-  *[_type == "enrollment" && slug.current == $slug][0] {
+  *[_type == "enrollmentFlow" && slug.current == $slug][0] {
     ...,
     cta ${buttonData},
     sections[] {

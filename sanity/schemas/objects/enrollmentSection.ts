@@ -64,6 +64,13 @@ export default defineType({
     }),
 
     defineField({
+      name: 'formAction',
+      title: 'Form Action',
+      type: 'string',
+      description: 'The URL to which the form will be submitted.',
+    }),
+
+    defineField({
       name: 'questions',
       title: 'Questions',
       type: 'array',
