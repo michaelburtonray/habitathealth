@@ -218,7 +218,9 @@ export type FormField = {
     _key: string;
   } & AnswerText | {
     _key: string;
-  } & AnswerTextarea>;
+  } & AnswerTextarea | {
+    _key: string;
+  } & AnswerHidden>;
 };
 
 export type FaqQA = {
@@ -280,6 +282,7 @@ export type EnrollmentSection = {
     _type: "block";
     _key: string;
   }>;
+  formAction?: string;
   questions?: Array<{
     _key: string;
   } & FormField>;
@@ -338,6 +341,12 @@ export type AnswerRadioButtons = {
     _type: "answer";
     _key: string;
   }>;
+};
+
+export type AnswerHidden = {
+  _type: "answerHidden";
+  schemaName?: string;
+  value?: string;
 };
 
 export type TextWithPercentages = {
@@ -794,6 +803,42 @@ export type Faq = {
   button?: Button;
 };
 
+export type EnrollmentFlow = {
+  _id: string;
+  _type: "enrollmentFlow";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  intro?: string;
+  copy?: string;
+  cta?: Button;
+  sections?: Array<{
+    _key: string;
+  } & EnrollmentSection>;
+  disclaimer?: string;
+  zipCodes?: string;
+  successCopy?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
 export type Enrollment = {
   _id: string;
   _type: "enrollment";
@@ -1146,21 +1191,19 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = BlockContent | Category | Post | Author | Testimonial | LinkList | LinkObject | FormField | FaqQA | EnrollmentSection | AnswerTextarea | AnswerText | AnswerSelectDropdown | AnswerRadioButtons | TextWithPercentages | TextWithList | TextWithIcons | TextWithChart | TextWithBubbles | Testimonials | TertiaryPageModule | Page | LogoWithIcons | Leadership | ImageWithTextGroup | ImageWithText | HeroSlider | Hero | FaqPageModule | Faq | Enrollment | Button | Settings | Footer | Header | Metadata | InternationalizedArrayTextValue | InternationalizedArrayStringValue | InternationalizedArraySlugValue | InternationalizedArrayText | InternationalizedArrayString | InternationalizedArraySlug | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = BlockContent | Category | Post | Author | Testimonial | LinkList | LinkObject | FormField | FaqQA | EnrollmentSection | AnswerTextarea | AnswerText | AnswerSelectDropdown | AnswerRadioButtons | AnswerHidden | TextWithPercentages | TextWithList | TextWithIcons | TextWithChart | TextWithBubbles | Testimonials | TertiaryPageModule | Page | LogoWithIcons | Leadership | ImageWithTextGroup | ImageWithText | HeroSlider | Hero | FaqPageModule | Faq | EnrollmentFlow | Enrollment | Button | Settings | Footer | Header | Metadata | InternationalizedArrayTextValue | InternationalizedArrayStringValue | InternationalizedArraySlugValue | InternationalizedArrayText | InternationalizedArrayString | InternationalizedArraySlug | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: enrollmentQuery
-// Query: *[_type == "enrollment" && slug.current == $slug][0] {    ...,    cta {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},    sections[] {      ...,      image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,  'blurDataURL': asset->metadata.lqip,},    }  }
+// Query: *[_type == "enrollmentFlow" && slug.current == $slug][0] {    ...,    cta {  ...,  'title': coalesce(  title[_key == $lang][0].value,  title[_key == "en"][0].value,  title,  "Missing translation",),},    sections[] {      ...,      image {  ...,  'alt': coalesce(    alt[_key == $lang][0].value,    alt[_key == "en"][0].value,    alt,    "Missing translation",  ),  'assetPath': asset->path,  'aspectRatio': asset->metadata.dimensions.aspectRatio,  'blurDataURL': asset->metadata.lqip,},    }  }
 export type EnrollmentQueryResult = {
   _id: string;
-  _type: "enrollment";
+  _type: "enrollmentFlow";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   title?: string;
   slug?: Slug;
-  emailFrom?: string;
-  emailTo?: string;
   intro?: string;
   copy?: string;
   cta: {
@@ -1212,6 +1255,7 @@ export type EnrollmentQueryResult = {
       _type: "block";
       _key: string;
     }>;
+    formAction?: string;
     questions?: Array<{
       _key: string;
     } & FormField>;
@@ -2156,7 +2200,7 @@ export type SiteUrlsQueryResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n  *[_type == \"enrollment\" && slug.current == $slug][0] {\n    ...,\n    cta {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n    sections[] {\n      ...,\n      image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n  'blurDataURL': asset->metadata.lqip,\n},\n    }\n  }": EnrollmentQueryResult;
+    "\n  *[_type == \"enrollmentFlow\" && slug.current == $slug][0] {\n    ...,\n    cta {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n    sections[] {\n      ...,\n      image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n  'blurDataURL': asset->metadata.lqip,\n},\n    }\n  }": EnrollmentQueryResult;
     "\n  *[_type == \"page\" && $slug == slug.current][0] {\n    ...,\n    \nmetadata {\n  title,\n  description,\n  'metadataBase': 'https://www.habitathealth.com/',\n  openGraph {\n    ...,\n    images[] {\n      'url': asset->url,\n      'width': asset->metadata.dimensions.width,\n      'height': asset->metadata.dimensions.height,\n      'alt': asset->altText,\n    }\n  },\n  twitter {\n    ...,\n    images[] {\n      'url': asset->url,\n      'width': asset->metadata.dimensions.width,\n      'height': asset->metadata.dimensions.height,\n      'alt': asset->altText,\n    }\n  },\n  allowRobots == false => {\n    'robots': {\n      'index': false,\n      'follow': false,\n    }\n  }\n},\n\n    content[]->{\n  ...,\n  _type == 'faq' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  _type == 'faqPageModule' => {\n  ...,\n  sections[]->{\n    _id,\n    faqQAs,\n    title,\n  },\n},\n  _type == 'hero' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n  'blurDataURL': asset->metadata.lqip,\n},\n  mobileImage {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n  'blurDataURL': asset->metadata.lqip,\n},\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'heroSlider' => {\n  ...,\n  slides[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n  'blurDataURL': asset->metadata.lqip,\n},\n},\n  _type == 'imageWithText' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  'isImageOnLeft': isImageOnLeft,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n  'blurDataURL': asset->metadata.lqip,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'imageWithTextGroup' => {\n  ...,\n  content[]-> {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  'isImageOnLeft': isImageOnLeft,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n  'blurDataURL': asset->metadata.lqip,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'leadership' => {\n  ...,\n  leaders[] {\n    ...,\n    image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n  'blurDataURL': asset->metadata.lqip,\n},\n  },\n},\n  _type == 'logoWithIcons' => {\n  ...,\n  icons[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n  'blurDataURL': asset->metadata.lqip,\n},\n},\n  _type == 'tertiaryPageModule' => {\n  ...,\n  content[] {\n    ...,\n    _type == 'file' => {\n      ...,\n      'url': asset->url,\n    }\n  }\n},\n  _type == 'testimonials' => {\n  ...,\n  testimonials[] {\n  ...,\n  image {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n  'blurDataURL': asset->metadata.lqip,\n},\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'textWithChart' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  _type == 'textWithIcons' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  'copy': coalesce(\n  copy[_key == $lang][0].value,\n  copy[_key == \"en\"][0].value,\n  copy,\n  \"Missing translation\",\n),\n  icons[] {\n  ...,\n  'alt': coalesce(\n    alt[_key == $lang][0].value,\n    alt[_key == \"en\"][0].value,\n    alt,\n    \"Missing translation\",\n  ),\n  'assetPath': asset->path,\n  'aspectRatio': asset->metadata.dimensions.aspectRatio,\n  'blurDataURL': asset->metadata.lqip,\n},\n  'text': coalesce(\n  text[_key == $lang][0].value,\n  text[_key == \"en\"][0].value,\n  text,\n  \"Missing translation\",\n),\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n  _type == 'textWithList' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n  _type == 'textWithPercentages' => {\n  ...,\n  button {\n  ...,\n  'title': coalesce(\n  title[_key == $lang][0].value,\n  title[_key == \"en\"][0].value,\n  title,\n  \"Missing translation\",\n),\n},\n},\n},\n  }\n": PageQueryResult;
     "*[_type == \"page\" && defined(slug.current)]{\"slug\": slug.current}": PageSlugsQueryResult;
     "\n  *[_type == \"settings\"][0] {\n    ...,\n    \nmetadata {\n  title,\n  description,\n  'metadataBase': 'https://www.habitathealth.com/',\n  openGraph {\n    ...,\n    images[] {\n      'url': asset->url,\n      'width': asset->metadata.dimensions.width,\n      'height': asset->metadata.dimensions.height,\n      'alt': asset->altText,\n    }\n  },\n  twitter {\n    ...,\n    images[] {\n      'url': asset->url,\n      'width': asset->metadata.dimensions.width,\n      'height': asset->metadata.dimensions.height,\n      'alt': asset->altText,\n    }\n  },\n  allowRobots == false => {\n    'robots': {\n      'index': false,\n      'follow': false,\n    }\n  }\n},\n\n    footer {\n      ...,\n      contactInfo,\n      linkLists[] {\n        ...,\n        links[] {\n  ...,\n  file {\n    ...,\n    'url': asset->url,\n  },\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n      },\n      regulatoryLinks[] {\n  ...,\n  file {\n    ...,\n    'url': asset->url,\n  },\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n      socialLinks[] {\n  ...,\n  file {\n    ...,\n    'url': asset->url,\n  },\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n    },\n    header {\n      ...,\n      contactList[] {\n  ...,\n  file {\n    ...,\n    'url': asset->url,\n  },\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n      cta {\n  ...,\n  file {\n    ...,\n    'url': asset->url,\n  },\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n      image {\n        ...,\n        'assetPath': asset->path,\n        'aspectRatio': asset->metadata.dimensions.aspectRatio,\n      },\n      nav[] {\n  ...,\n  file {\n    ...,\n    'url': asset->url,\n  },\n  internalLink->{\n    'slug': slug.current,\n    title,\n  },\n},\n    }\n  }\n": SettingsQueryResult;

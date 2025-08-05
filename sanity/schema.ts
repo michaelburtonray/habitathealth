@@ -6,6 +6,7 @@ import post from './schemas/post'
 import author from './schemas/author'
 
 import enrollment from './schemas/singletons/enrollment'
+import enrollmentFlow from './schemas/singletons/enrollmentFlow'
 import settings from './schemas/singletons/settings'
 
 import faq from './schemas/documents/faq'
@@ -25,6 +26,7 @@ import textWithIcons from './schemas/documents/textWithIcons'
 import textWithList from './schemas/documents/textWithList'
 import textWithPercentages from './schemas/documents/textWithPercentages'
 
+import answerHidden from './schemas/objects/answerHidden'
 import answerRadioButtons from './schemas/objects/answerRadioButtons'
 import answerSelectDropdown from './schemas/objects/answerSelectDropdown'
 import answerText from './schemas/objects/answerText'
@@ -47,6 +49,7 @@ const singletons = [
 const documents = [
   ...singletons,
   enrollment,
+  enrollmentFlow,
   faq,
   faqPageModule,
   hero,
@@ -66,6 +69,7 @@ const documents = [
 ];
 
 const objects = [
+  answerHidden,
   answerRadioButtons,
   answerSelectDropdown,
   answerText,

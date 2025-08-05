@@ -26,6 +26,7 @@ export default defineType({
         defineArrayMember({ type: 'answerSelectDropdown' }),
         defineArrayMember({ type: 'answerText' }),
         defineArrayMember({ type: 'answerTextarea' }),
+        defineArrayMember({ type: 'answerHidden' }),
       ]
     }),
   ]

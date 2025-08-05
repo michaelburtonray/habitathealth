@@ -1,11 +1,11 @@
 "use client"
 
-import React, { useActionState, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
-import { sendEmail } from "@/app/actions";
+// import { sendEmail } from "@/app/actions";
 
 import Answers from "@/components/Answers";
 import Button from "@/components/Button";
@@ -17,29 +17,24 @@ export default function CheckEligibility(props) {
     copy,
     cta,
     disclaimer,
-    emailFrom,
-    emailTo,
     intro,
     sections,
-    successCopy,
     title,
     zipCodes,
   } = props;
 
   const [currentSection, setCurrentSection] = useState(-1);
-  const [failureMessage, setFailureMessage] = useState('');
+  const [failureMessage] = useState('');
   const [formDataState, setFormDataState] = useState({});
   const [hasFailed, setHasFailed] = useState(false);
-  const [steps, setSteps] = useState(
+  const [steps] = useState(
     sections.filter(({ questions }) => questions && questions.length > 0)
   );
 
-  const initialState = {
+/*   const initialState = {
     hasSent: false,
     message: '',
-  }
-
-  // const [actionState, formAction, isPending] = useActionState
+  } */
 
   const handleChange = useCallback((e) => {
     const { name, type, value } = e.target;
@@ -80,7 +75,7 @@ export default function CheckEligibility(props) {
     setCurrentSection(0);
   };
 
-  const submitForm = async () => {
+  /* const submitForm = async () => {
     const { message } = initialState;
     const formData = { ...formDataState, message };
     const res = await sendEmail(initialState, formData, { emailFrom, emailTo });
@@ -94,9 +89,9 @@ export default function CheckEligibility(props) {
       setFailureMessage(res.message);
     }
 
-  }
+  } */
 
-  const [actionState, formAction, isPending] = useActionState(submitForm, initialState)
+  // const [actionState, isPending] = useActionState(submitForm, initialState)
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -163,7 +158,7 @@ export default function CheckEligibility(props) {
 
   return (
     <div className="lg:grid lg:grid-cols-2 lg:gap-[8rem] px-5 lg:px-10 py-10 lg:p-20">
-      <div className="">
+      <div>
         <motion.div
           className="flex flex-col gap-6 lg:gap-10 max-w-[36rem] lg:sticky lg:top-[calc(var(--header-height)+4.825rem)]"
           variants={containerVariants}
@@ -256,9 +251,9 @@ export default function CheckEligibility(props) {
               })}
             </div>
 
-            {steps?.map(({ _key, failureCopy, intro, questions }, idx) => {
+            {steps?.map(({ _key, failureCopy, formAction, intro, questions }, idx) => {
               return idx === currentSection && (
-                <form key={_key} {...(currentSection === steps.length - 1 ? { action: formAction } : { onSubmit: submitSection })}>
+                <form key={_key} {...(currentSection === steps.length - 1 ? { action: formAction } : { onSubmit: submitSection })} {...(formAction && { method: 'POST' })}>
                   {hasFailed
                     ? (
                       <div className={`rte bg-orange p-5 rounded-2xl`}>
@@ -277,7 +272,7 @@ export default function CheckEligibility(props) {
                         {intro && <div className="rte rte--enroll body--large">
                           <PortableText value={intro} components={components} />
                         </div>}
-                        {questions.map(({ _key, _type, answers, info, question }, idx) => {
+                        {questions.map(({ _key, answers, info, question }, idx) => {
                           return (
                             <React.Fragment key={_key}>
                               {question && questions.length === 1 && <h3>{question}</h3>}
@@ -299,20 +294,14 @@ export default function CheckEligibility(props) {
                   {currentSection === steps.length - 1 && !hasFailed && <div className="flex lg:justify-center mt-10">
                     <Button
                       hasArrow={true}
-                      modifier={`!w-[15rem] ${isPending ? 'pointer-events-none' : ''}`}
-                      title={isPending ? 'Submitting…' : 'Submit'}
+                      modifier={`!w-[15rem]`}
+                      title={'Submit'}
                       type="submit"
                     />
                   </div>}
                 </form>
               )
             })}
-
-            {currentSection === steps.length && (
-              <div className={`rte bg-sky-blue p-5 rounded-2xl`}>
-                <PortableText value={successCopy} components={components} />
-              </div>
-            )}
           </div>
         )}
       </div>
