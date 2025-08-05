@@ -5,6 +5,9 @@ import { gellix } from "@/styles/font";
 import Footer from "@/components/Footer";
 import { getSettingsData } from "@/sanity/lib/fetch";
 
+import { GoogleAnalytics } from '@next/third-parties/google'
+
+
 export async function generateMetadata() {
   const data = await getSettingsData()
   const { metadata } = data
@@ -25,6 +28,9 @@ export default async function RootLayout({
 }) {
   const settingsData = await getSettingsData();
   const { header, footer } = settingsData;
+
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-XYZ';
+
   return (
     <html lang="en">
       <body
@@ -34,6 +40,7 @@ export default async function RootLayout({
         {children}
         {footer && <Footer { ...footer } />}
       </body>
+      <GoogleAnalytics gaId={gaId} />
     </html>
   );
 }
