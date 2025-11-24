@@ -12,7 +12,7 @@
     "typegen": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {
-    "@next/third-parties": "^15.4.5",
+    "@next/third-parties": "^16.0.4",
     "@sanity/cli": "^3.80.1",
     "@sanity/icons": "^3.7.0",
     "@sanity/image-url": "1",
